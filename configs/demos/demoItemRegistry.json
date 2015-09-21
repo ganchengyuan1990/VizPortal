@@ -1,0 +1,26 @@
+[{
+    "key": "Chart_Sample",
+    "text": "Charts",
+    "url": "demo/ChartSample/overall.html",
+    "path": ["configs/demos/ChartSample/demotemplate.json"]
+},{
+    "key": "Feature_Demos",
+    "text": "Features",
+    "url": "demo/FeatureDemo/overall.html",
+    "path": ["configs/demos/FeatureDemo/featuretemplate.json"]
+},{
+    "key": "Map_Sample",
+    "text": "Maps",
+    "url": "demo/Map/overall.html",
+    "path": ["configs/demos/Map/map.json"]
+},{
+    "key": "Extension_Demo",
+    "text": "Extensions",
+    "url": "demo/Extension/overall.html",
+    "path": ["configs/demos/Extension/extemplate.json"]
+}, {
+    "key": "Light-weight_UVB_Service",
+    "text": "VizFrame",
+    "url": "demo/LightWeightUVB/overall.html",
+    "path": ["configs/demos/LightWeightUVB/demotemplate.json"]
+}]

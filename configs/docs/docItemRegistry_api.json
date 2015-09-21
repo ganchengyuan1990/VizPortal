@@ -1,0 +1,8 @@
+[{
+        "key": "api",
+        "text": "API Documentation",
+        "url": "docs/apiDocumentOverview.html",
+        "path": [
+            "configs/docs/API/apiDocumentationTemplate.json"
+        ]
+    }]

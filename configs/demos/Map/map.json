@@ -1,0 +1,43 @@
+[{
+    "title" : "Choropleth",
+    "pages" : [{
+        "title": "Sequential Colors",
+        "url" : "demo/Map/choropleth/index_mbc.html"
+    },{
+        "title": "Customized Categorical Colors",
+        "url" : "demo/Map/choropleth/index_color.html"
+    }]
+},{
+    "title" : "Bubble",
+    "pages" : [{
+        "title": "Categorical Division",
+        "url" : "demo/Map/bubble/index_measure.html"
+    },{
+        "title": "Size Measure",
+        "url" : "demo/Map/bubble/index_size.html"
+    }]
+},{
+    "title" : "Marker",
+    "pages" : [{
+        "title": "Clustering",
+        "url" : "demo/Map/marker/index_cluster.html"
+    },{
+        "title": "Images",
+        "url" : "demo/Map/marker/index_image.html"
+    }]
+},{
+    "title" : "Pie",
+    "pages" : [{
+        "title": "Categorical Division",
+        "url" : "demo/Map/pie/index_pie.html"
+    },{
+        "title": "Donut",
+        "url" : "demo/Map/pie/index_donut.html"
+    }]
+},{
+    "title" : "Combination",
+    "pages" : [{
+        "title": "Choropleth & Bubble & Pie",
+        "url" : "demo/Map/combination/index_choropleth_bubble_pie.html"
+    }]
+}]

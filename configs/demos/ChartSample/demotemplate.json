@@ -1,0 +1,216 @@
+[
+{
+    "title" : "Bar & Column",
+    "pages" : [{
+        "title" : "Bar Chart",
+        "url" : "demo/ChartSample/index.html?chartType=bar"
+    }, {
+        "title" : "Dual Bar Chart",
+        "url" : "demo/ChartSample/index.html?chartType=dual_bar"
+    }, {
+        "title" : "Column Chart",
+        "url" : "demo/ChartSample/index.html?chartType=column"
+    }, {
+        "title" : "Dual Column Chart",
+        "url" : "demo/ChartSample/index.html?chartType=dual_column"
+    }, {
+        "title" : "Stacked Bar Chart",
+        "url" : "demo/ChartSample/index.html?chartType=stacked_bar"
+    }, {
+        "title" : "Stacked Column Chart",
+        "url" : "demo/ChartSample/index.html?chartType=stacked_column"
+    }]
+},
+{
+    "title" : "Line",
+    "pages" : [{
+        "title" : "Line Chart",
+        "url" : "demo/ChartSample/index.html?chartType=line"
+    }, {
+        "title" : "Dual Line Chart",
+        "url" : "demo/ChartSample/index.html?chartType=dual_line"
+    }, {
+        "title" : "Line Chart with Time Axis",
+        "url" : "demo/ChartSample/index.html?chartType=timeseries_line"
+    }]
+},
+{
+    "title" : "Combination",
+    "pages" : [{
+        "title" : "Combined Column Chart",
+        "url" : "demo/ChartSample/index.html?chartType=combination"
+    }, {
+        "title" : "Combined Bar Chart",
+        "url" : "demo/ChartSample/index.html?chartType=horizontal_combination"
+    }, {
+        "title" : "Stacked Combined Bar Line Chart",
+        "url" : "demo/ChartSample/index.html?chartType=horizontal_stacked_combination"
+    }, {
+        "title" : "Stacked Combined Column Line Chart",
+        "url" : "demo/ChartSample/index.html?chartType=stacked_combination"
+    }, {
+        "title" : "Combined Column Line Chart with Time Axis",
+        "url" : "demo/ChartSample/index.html?chartType=combination"
+    }]
+},
+{
+    "title" : "Scatter",
+    "pages" : [{
+        "title" : "Bubble Chart",
+        "url" : "demo/ChartSample/index.html?chartType=bubble"
+    }, {
+        "title" : "Scatter Plot",
+        "url" : "demo/ChartSample/index.html?chartType=scatter"
+    }]
+},
+{
+    "title" : "Pie",
+    "pages" : [{
+        "title" : "Pie Chart",
+        "url" : "demo/ChartSample/index.html?chartType=pie"
+    }, {
+        "title" : "Donut Chart",
+        "url" : "demo/ChartSample/index.html?chartType=donut"
+    }]
+},
+{
+    "title" : "Bullet",
+    "pages" : [{
+        "title" : "Vertical Bullet Chart",
+        "url" : "demo/ChartSample/index.html?chartType=vertical_bullet"
+    }, {
+        "title" : "Horizontal Bullet Chart",
+        "url" : "demo/ChartSample/index.html?chartType=bullet"
+    }]
+},
+{
+    "title" : "Tile",
+    "pages" : [{
+        "title" : "Tree Map",
+        "url" : "demo/ChartSample/index.html?chartType=treemap"
+    }, {
+        "title" : "Heat Map",
+        "url" : "demo/ChartSample/index.html?chartType=heatmap"
+    }]
+},
+{
+    "title" : "Marimekko",
+    "pages" :[{
+        "title" : "Marimekko Chart",
+        "url" : "demo/ChartSample/index.html?chartType=mekko"
+    }]
+},
+{
+    "title" : "Area",
+    "pages" :[{
+            "title" : "Area Chart",
+            "url" : "demo/ChartSample/index.html?chartType=area"
+        },{
+            "title" : "Horizontal Area Chart",
+            "url" : "demo/ChartSample/index.html?chartType=horizontal_area"
+        },
+        {
+            "title" : "100% Area Chart",
+            "url" : "demo/ChartSample/index.html?chartType=100_area"
+        }]
+},
+{
+    "title" : "Numeric Point",
+    "pages" : [{
+        "title" : "Numeric Point",
+        "url" : "demo/ChartSample/index.html?chartType=number"
+        }]
+},
+{
+    "title" : "Trellis",
+    "pages" : [{ 
+        "title" : "Trellis Bar Chart",
+        "url" : "demo/ChartSample/index.html?chartType=trellis_bar"
+        },{
+            "title" : "Trellis Stacked Bar Chart",
+            "url" : "demo/ChartSample/index.html?chartType=trellis_stacked_bar"
+        },{
+            "title" : "Trellis Line Chart",
+            "url" : "demo/ChartSample/index.html?chartType=trellis_line"
+        },{
+            "title" : "Trellis Pie Chart",
+            "url" : "demo/ChartSample/index.html?chartType=trellis_pie"
+        },{
+            "title" : "Trellis Donut Chart",
+            "url" : "demo/ChartSample/index.html?chartType=trellis_donut"
+        },{
+            "title" : "Trellis Combined Column Line Chart",
+            "url" :  "demo/ChartSample/index.html?chartType=trellis_combination"
+        },{
+            "title" : "Trellis Combined Bar Line Chart",
+            "url" : "demo/ChartSample/index.html?chartType=trellis_horizontal_combination"
+        },{
+            "title" : "Trellis Bubble Chart",
+            "url" : "demo/ChartSample/index.html?chartType=trellis_bubble"
+        },{
+            "title" : "Trellis Scatter Chart",
+            "url" : "demo/ChartSample/index.html?chartType=trellis_scatter"
+        },
+        {
+            "title" : "Trellis Area Chart",
+            "url" : "demo/ChartSample/index.html?chartType=trellis_area"
+        }
+    ]
+
+},
+{
+    "title" : "TagCloud",
+    "pages" : [{
+        "title" : "TagCloud Chart",
+        "url" : "demo/ChartSample/index.html?chartType=tagcloud"
+        }]
+},
+
+{
+    "title" : "Radar",
+    "pages" : [{
+        "title" : "Radar Chart",
+        "url" : "demo/ChartSample/index.html?chartType=radar"
+        }]
+},
+{
+    "title" : "WaterFall",
+    "pages" : [
+        {
+        "title" : "WaterFall Chart",
+        "url" : "demo/ChartSample/index.html?chartType=waterfall"
+        },{
+        "title" : "Stacked WaterFall Chart",
+        "url" : "demo/ChartSample/index.html?chartType=stacked_waterfall"
+        },{
+        "title" : "Horizontal WaterFall Chart",
+        "url" : "demo/ChartSample/index.html?chartType=horizontal_waterfall"
+        },{
+        "title" : "Horizontal Stacked WaterFall Chart",
+        "url" : "demo/ChartSample/index.html?chartType=horizontal_stacked_waterfall"
+        }]
+},
+{
+    "title" : "Hichert",
+    "pages" : [
+        {
+        "title" : "Hichert Bar Chart",
+        "url" : "demo/ChartSample/index.html?chartType=hichert_bar"
+        },{
+        "title" : "Hichert Column Chart",
+        "url" : "demo/ChartSample/index.html?chartType=hichert_column"
+        },{
+        "title" : "Hichert Line Chart",
+        "url" : "demo/ChartSample/index.html?chartType=hichert_line"
+        },{
+        "title" : "Hichert Variance Line Chart",
+        "url" : "demo/ChartSample/index.html?chartType=hichert_variance_line"
+        },{
+        "title" : "Hichert Stacked Bar Chart",
+        "url" : "demo/ChartSample/index.html?chartType=hichert_stacked_bar"
+        },{
+        "title" : "Hichert Stacked Column Chart",
+        "url" : "demo/ChartSample/index.html?chartType=hichert_stacked_column"
+        }]
+}
+]

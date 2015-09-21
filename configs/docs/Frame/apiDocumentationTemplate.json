@@ -1,0 +1,17 @@
+[
+{
+    "headline": "VizFrame Service API",
+    "pages": [{
+        "title": "sap.viz.vizframe",
+        "pages": [{
+            "title": "VizFrame",
+            "url": "docs/apiDocumentation/sap.viz.vizframe.VizFrame.html",
+            "icon": "resources/img/class_icon.png"
+        }, {
+            "title": "VERSION",
+            "url": "docs/apiDocumentation/sap.viz.vizframe.VERSION.html",
+            "icon": "resources/img/namespace_icon.png"
+        }]
+    }]
+}
+]

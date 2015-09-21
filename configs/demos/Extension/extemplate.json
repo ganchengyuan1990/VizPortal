@@ -1,0 +1,16 @@
+[{
+    "title" : "Create Custom Properties",
+    "url" : "demo/Extension/DataFilter/index.html"
+},
+{
+    "title" : "Generate Thumbnail",
+    "url" : "demo/Extension/Gauge/index.html"
+},
+{
+    "title" : "Embed Image",
+    "url" : "demo/Extension/FlagBar/index.html"
+},
+{
+    "title" : "Create Maps",
+    "url" : "demo/Extension/GoogleHeatMap/index.html"
+}]

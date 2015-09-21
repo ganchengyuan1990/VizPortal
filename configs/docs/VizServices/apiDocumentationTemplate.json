@@ -1,0 +1,17 @@
+[
+{
+    "headline": "vizservices",
+    "pages": [{
+        "title": "sap.viz.vizservices",
+        "pages": [{
+            "title": "VERSION",
+            "url": "docs/apiDocumentation/sap.viz.vizservices.VERSION.html",
+            "icon": "resources/img/namespace_icon.png"
+        }, {
+            "title": "BVRService",
+            "url": "docs/apiDocumentation/sap.viz.vizservices.BVRService.html",
+            "icon": "resources/img/namespace_icon.png"
+        }]
+    }]
+}
+]

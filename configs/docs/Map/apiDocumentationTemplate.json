@@ -1,0 +1,103 @@
+[
+{
+    "headline": "Geo Map API",
+    "pages": [{
+        "title": "sap.viz.geo",
+        "pages": [{
+            "title": "Map",
+            "url": "docs/apiDocumentation/sap.viz.geo.Map.html",
+            "icon": "resources/img/class_icon.png"
+        }, {
+            "title": "BasemapSwitcher",
+            "url": "docs/apiDocumentation/sap.viz.geo.BasemapSwitcher.html",
+            "icon": "resources/img/class_icon.png"
+        }, {
+            "title": "TemplateManager",
+            "url": "docs/apiDocumentation/sap.viz.geo.TemplateManager.html",
+            "icon": "resources/img/class_icon.png"
+        }, {
+            "title": "LocationType",
+            "url": "docs/apiDocumentation/sap.viz.geo.LocationType.html",
+            "icon": "resources/img/class_icon.png"
+        }, {
+            "title": "AdminLevel",
+            "url": "docs/apiDocumentation/sap.viz.geo.AdminLevel.html",
+            "icon": "resources/img/class_icon.png"
+        }, {
+            "title": "basemap",
+            "pages": [{
+                "title": "AbstractProvider",
+                "url": "docs/apiDocumentation/sap.viz.geo.basemap.AbstractProvider.html",
+                "icon": "resources/img/class_icon.png"
+            }, {
+                "title": "cvom",
+                "pages": [{
+                    "title": "Provider",
+                    "url": "docs/apiDocumentation/sap.viz.geo.basemap.cvom.Provider.html",
+                    "icon": "resources/img/class_icon.png"
+                }]
+            }, {
+                "title": "esri",
+                "pages": [{
+                    "title": "Authentication",
+                    "url": "docs/apiDocumentation/sap.viz.geo.basemap.esri.Authentication.html",
+                    "icon": "resources/img/class_icon.png"
+                }, {
+                    "title": "Provider",
+                    "url": "docs/apiDocumentation/sap.viz.geo.basemap.esri.Provider.html",
+                    "icon": "resources/img/class_icon.png"
+                }]
+            }, {
+                "title": "navteq",
+                "pages": [{
+                    "title": "Provider",
+                    "url": "docs/apiDocumentation/sap.viz.geo.basemap.navteq.Provider.html",
+                    "icon": "resources/img/class_icon.png"
+                }]
+            }]
+        }, {
+            "title": "Bounds",
+            "url": "docs/apiDocumentation/sap.viz.geo.Bounds.html",
+            "icon": "resources/img/class_icon.png"
+        }, {
+            "title": "dataviz",
+            "pages": [{
+                "title": "Bubble",
+                "url": "docs/apiDocumentation/sap.viz.geo.dataviz.Bubble.html",
+                "icon": "resources/img/class_icon.png"
+            }, {
+                "title": "Choropleth",
+                "url": "docs/apiDocumentation/sap.viz.geo.dataviz.Choropleth.html",
+                "icon": "resources/img/class_icon.png"
+            }, {
+                "title": "Pie",
+                "url": "docs/apiDocumentation/sap.viz.geo.dataviz.Pie.html",
+                "icon": "resources/img/class_icon.png"
+            }, {
+                "title": "Marker",
+                "url": "docs/apiDocumentation/sap.viz.geo.dataviz.Marker.html",
+                "icon": "resources/img/class_icon.png"
+            }, {
+                "title": "Layer",
+                "url": "docs/apiDocumentation/sap.viz.geo.dataviz.Layer.html",
+                "icon": "resources/img/class_icon.png"
+            }, {
+                "title": "SelectionModel",
+                "url": "docs/apiDocumentation/sap.viz.geo.dataviz.SelectionModel.html",
+                "icon": "resources/img/class_icon.png"
+            }, {
+                "title": "Tooltip",
+                "url": "docs/apiDocumentation/sap.viz.geo.dataviz.Tooltip.html",
+                "icon": "resources/img/class_icon.png"
+            }]
+        }, {
+            "title": "utils",
+            "pages": [{
+                "title": "Serialization",
+                "url": "docs/apiDocumentation/sap.viz.geo.utils.Serialization.html",
+                "icon": "resources/img/class_icon.png"
+            }]
+        }]
+    }]
+}
+]

@@ -1,0 +1,107 @@
+[
+{
+    "title" : "Create your first bar chart",
+    "url" : "docs/tutorial/bar/index.html",
+    "jsurl": "chart.js",
+    "showCode" : true,
+    "panel" : {
+        "title" : "Bar Chart",
+        "sections": [{
+            "description":"This is a bar chart."
+        },{
+            "title":"",
+            "content":"floatPanel"
+        }]
+    }
+},{
+    "title" : "Customize your bar chart",
+    "pages" : [{
+        "title" : "Enable legend",
+        "url" : "docs/tutorial/legend/index.html",
+        "jsurl": "chart.js",
+        "showCode" : true,
+        "panel" : {
+            "title": "Three types of cvom legends",
+            "sections": [{
+                "description": "This demo shows you different CVOM legend type, which present legend items by color, size or MBC (Measure Based Color) values. SizeLegend are often found in bubble chart, and MBCLegend can be found in TagCloud."
+            }, {
+                "title": "",
+                "content": "floatPanel"
+            }]
+        }
+    },{
+        "title" : "Change selection",
+        "url" : "docs/tutorial/selection/index.html",
+        "showCode": true,
+        "jsurl":"chart.js",
+        "panel": {
+            "title": "Customize the interactions by selection API",
+            "sections": [{
+                "description": "This demo shows  how to use selection() API to 'get selected data points' and  to 'set data points meant to be selected'. Parameter 'selectionMode' is provided for user to choose if clearing previous selection or not. Parameter 'withDataCtx' and 'winInfo' are provided to return with additional information of the selected data points."
+
+            }, {
+                "title": "",
+                "content": "floatPanel"
+            }]
+        }
+    },{
+        "title" : "Modify the scale of asix",
+        "url": "docs/tutorial/fixscale/index.html",
+        "showCode": true,
+        "jsurl" : "chart.js",
+        "panel": {
+            "title": "Modify the scale of axis",
+            "sections": [{
+                "description": "Modify the scale of axis ."
+            }, {
+                "title": "",
+                "content": "floatPanel"
+            }]
+        }
+    }]
+},{
+    "title" : "Extend your bar chart",
+    "pages" : [{
+        "title": "Create an user defined tooltip",
+        "url": "docs/tutorial/tooltip/index_tooltip.html",
+        "jsurl": "chart.js",
+        "showCode": true,
+        "panel": {
+            "title": "Extending Charts",
+            "sections": [{
+                "description": "Extending Charts."
+            }, {
+                "title": "",
+                "content": "floatPanel"
+            }]
+        }
+    }]
+},{
+    "title" : "For UI5 vizFrame Users",
+    "pages" : [{
+        "title" : "Create a chart in UI5",
+        "url": "docs/tutorial/line/index.html",
+        "showCode": true,
+        "jsurl":"chart.js",
+        "panel": {
+            "title": "Chart",
+            "sections": [{
+                "description": "This is a line chart."
+            }, {
+                "title": "",
+                "content": "floatPanel"
+            }]
+        }
+        },{
+            "title" : "Chart accessibility",
+            "pages" : [{
+                "title" : "keyboard navigation"
+            },{
+                "title" : "screen reader"
+            }]
+    }]
+},{
+    "title" : "VizFrame"
+},{
+    "title" : "Geo"
+}]

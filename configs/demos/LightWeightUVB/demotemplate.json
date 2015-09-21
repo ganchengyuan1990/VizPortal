@@ -1,0 +1,44 @@
+[
+{
+    "title" : "VizFrame",
+    "pages" : [{
+        "title" : "Create a VizFrame",
+        "showCode" : true,
+        "jsurl": "vizFrame.js",
+        "url" : "demo/LightWeightUVB/VizFrame/index.html"
+    }, {
+        "title" : "Listen Events",
+        "showCode" : true,
+        "jsurl": "listenSelectData.js",
+        "url" : "demo/LightWeightUVB/listenSelectData/index.html"
+    }, {
+        "title" : "Change Properties",
+        "showCode" : true,
+        "jsurl": "showTitle.js",
+        "url" : "demo/LightWeightUVB/showTitle/index.html"
+    }, {
+        "title" : "Enable Morpher",
+        "showCode" : true,
+        "jsurl": "enableMorpher.js",
+        "url" : "demo/LightWeightUVB/enableMorpher/index.html"
+    }]
+},
+{
+    "title" : "VizServices",
+    "pages" :[{
+        "title" : "BVRService",
+        "pages" : [{
+            "title" : "switchFeeds",
+            "showCode" : true,
+            "jsurl": "switchChartType.js",
+            "url" : "demo/LightWeightUVB/switchChartType/index.html"
+        }, {
+            "title" : "suggestFeeds",
+            "showCode" : true,
+            "jsurl": "suggestFeeds.js",
+            "url" : "demo/LightWeightUVB/suggestFeeds/index.html"
+        }]
+    }]
+    
+}
+]

@@ -1,0 +1,17 @@
+ [{
+     "key": "home",
+     "url": "home/index.html",
+     "text": "Home"
+ }, {
+     "key": "demos",
+     "text": "Demos",
+     "path": "configs/demos/demoItemRegistry.json"
+ }, {
+     "key": "docs",
+     "text": "Docs",
+     "path": "configs/docs/docItemRegistry.json"
+ }, {
+     "key": "support",
+     "text": "Support",
+     "url": "support/support.html"
+ }]

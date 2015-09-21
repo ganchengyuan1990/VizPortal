@@ -1,0 +1,28 @@
+[{
+        "key": "tutorial",
+        "text": "Tutorial",
+        "url": "docs/tutorial/simplePage/tutorial.html",
+        "path": [
+        ]
+    }, {
+        "key": "chartConcept",
+        "text": "Chart Concept",
+        "url": "docs/chartConcept/chartconceptindex.html",
+        "path": []
+    }, {
+        "key": "chartProperty",
+        "text": "Chart Property Reference",
+        "url": "docs/chartproperty/chartpropertyindex.html",
+        "path": []
+    }, {
+        "key": "api",
+        "text": "API Documentation",
+        "url": "docs/apiDocumentOverview.html",
+        "path": [
+            "configs/docs/API/apiDocumentationTemplate.json",
+            "configs/docs/Map/apiDocumentationTemplate.json",
+            "configs/docs/Frame/apiDocumentationTemplate.json",
+            "configs/docs/VizContainer/apiDocumentationTemplate.json",
+            "configs/docs/VizServices/apiDocumentationTemplate.json"
+        ]
+    }]

@@ -1,0 +1,180 @@
+[
+{
+    "headline": "VizContainer API",
+    "pages": [{
+        "title": "sap.viz.controls",
+        "pages": [{
+            "title": "common",
+            "pages": [{
+                "title": "VizControlBase",
+                "url": "docs/apiDocumentation/sap.viz.controls.common.VizControlBase.html",
+                "icon": "resources/img/class_icon.png"
+            }, {
+                "title": "VizControlHost",
+                "url": "docs/apiDocumentation/sap.viz.controls.common.VizControlHost.html",
+                "icon": "resources/img/class_icon.png"
+            }, {
+                "title": "config",
+                "pages": [{
+                    "title": "GlobalConfig",
+                    "url": "docs/apiDocumentation/sap.viz.controls.common.config.GlobalConfig.html",
+                    "icon": "resources/img/class_icon.png"
+                }]
+            }, {
+                "title": "constants",
+                "pages": [{
+                    "title": "ChartConst",
+                    "url": "docs/apiDocumentation/sap.viz.controls.common.constants.ChartConst.html",
+                    "icon": "resources/img/class_icon.png"
+                }, {
+                    "title": "DatasetTypeConst",
+                    "url": "docs/apiDocumentation/sap.viz.controls.common.constants.DatasetTypeConst.html",
+                    "icon": "resources/img/class_icon.png"
+                }, {
+                    "title": "FilterEventConst",
+                    "url": "docs/apiDocumentation/sap.viz.controls.common.constants.FilterEventConst.html",
+                    "icon": "resources/img/class_icon.png"
+                }]
+            }, {
+                "title": "events",
+                "pages": [{
+                    "title": "FeedEvent",
+                    "url": "docs/apiDocumentation/sap.viz.controls.common.events.FeedEvent.html",
+                    "icon": "resources/img/class_icon.png"
+                }]
+            }, {
+                "title": "feeds",
+                "pages": [{
+                    "title": "AnalysisObject",
+                    "url": "docs/apiDocumentation/sap.viz.controls.common.feeds.AnalysisObject.html",
+                    "icon": "resources/img/class_icon.png"
+                }, {
+                    "title": "AnalyticalType",
+                    "url": "docs/apiDocumentation/sap.viz.controls.common.feeds.AnalyticalType.html",
+                    "icon": "resources/img/class_icon.png"
+                }, {
+                    "title": "FeedItem",
+                    "url": "docs/apiDocumentation/sap.viz.controls.common.feeds.FeedItem.html",
+                    "icon": "resources/img/class_icon.png"
+                }, {
+                    "title": "FeedItemType",
+                    "url": "docs/apiDocumentation/sap.viz.controls.common.feeds.FeedItemType.html",
+                    "icon": "resources/img/class_icon.png"
+                }, {
+                    "title": "HierarchyLevelObject",
+                    "url": "docs/apiDocumentation/sap.viz.controls.common.feeds.HierarchyLevelObject.html",
+                    "icon": "resources/img/class_icon.png"
+                }]
+            }, {
+                "title": "managers",
+                "pages": [{
+                    "title": "DragManager",
+                    "url": "docs/apiDocumentation/sap.viz.controls.common.managers.DragManager.html",
+                    "icon": "resources/img/class_icon.png"
+                }]
+            }, {
+                "title": "utils",
+                "pages": [{
+                    "title": "Feeds",
+                    "url": "docs/apiDocumentation/sap.viz.controls.common.utils.Feeds.html",
+                    "icon": "resources/img/class_icon.png"
+                }, {
+                    "title": "Serialization",
+                    "url": "docs/apiDocumentation/sap.viz.controls.common.utils.Serialization.html",
+                    "icon": "resources/img/class_icon.png"
+                }]
+            }, {
+                "title": "views",
+                "pages": [{
+                    "title": "feed",
+                    "pages": [{
+                        "title": "FeedListEvent",
+                        "url": "docs/apiDocumentation/sap.viz.controls.common.views.feed.FeedListEvent.html",
+                        "icon": "resources/img/class_icon.png"
+                    }]
+                }, {
+                    "title": "menu",
+                    "pages": [{
+                        "title": "MenuGroup",
+                        "url": "docs/apiDocumentation/sap.viz.controls.common.views.menu.MenuGroup.html",
+                        "icon": "resources/img/class_icon.png"
+                    }, {
+                        "title": "MenuItem",
+                        "url": "docs/apiDocumentation/sap.viz.controls.common.views.menu.MenuItem.html",
+                        "icon": "resources/img/class_icon.png"
+                    }]
+                }]
+            }]
+        }, {
+            "title": "builder",
+            "pages": [{
+                "title": "VizBuilder",
+                "url": "docs/apiDocumentation/sap.viz.controls.builder.VizBuilder.html",
+                "icon": "resources/img/class_icon.png"
+            }]
+        }, {
+            "title": "frame",
+            "pages": [{
+                "title": "Metadata",
+                "url": "docs/apiDocumentation/sap.viz.controls.frame.Metadata.html",
+                "icon": "resources/img/class_icon.png"
+            }, {
+                "title": "VizFrame",
+                "url": "docs/apiDocumentation/sap.viz.controls.frame.VizFrame.html",
+                "icon": "resources/img/class_icon.png"
+            }, {
+                "title": "VizFrameEvent",
+                "url": "docs/apiDocumentation/sap.viz.controls.frame.VizFrameEvent.html",
+                "icon": "resources/img/class_icon.png"
+            }]
+        }, {
+            "title": "feeding",
+            "pages": [{
+                "title": "FeedingPanel",
+                "url": "docs/apiDocumentation/sap.viz.controls.feeding.FeedingPanel.html",
+                "icon": "resources/img/class_icon.png"
+            }]
+        }, {
+            "title": "filterbar",
+            "pages": [{
+                "title": "FilterBar",
+                "url": "docs/apiDocumentation/sap.viz.controls.filterbar.FilterBar.html",
+                "icon": "resources/img/class_icon.png"
+            }, {
+                "title": "FilterBarEvent",
+                "url": "docs/apiDocumentation/sap.viz.controls.filterbar.FilterBarEvent.html",
+                "icon": "resources/img/class_icon.png"
+            }, {
+                "title": "FilterItem",
+                "url": "docs/apiDocumentation/sap.viz.controls.filterbar.FilterItem.html",
+                "icon": "resources/img/class_icon.png"
+            }]
+        }, {
+            "title": "mapbuilder",
+            "pages": [{
+                "title": "MapBuilder",
+                "url": "docs/apiDocumentation/sap.viz.controls.mapbuilder.MapBuilder.html",
+                "icon": "resources/img/class_icon.png"
+            }]
+        }, {
+            "title": "propertyeditor",
+            "pages": [{
+                "title": "PropertyEditor",
+                "url": "docs/apiDocumentation/sap.viz.controls.propertyeditor.PropertyEditor.html",
+                "icon": "resources/img/class_icon.png"
+            }]
+        }, {
+            "title": "switchbar",
+            "pages": [{
+                "title": "SwitchBar",
+                "url": "docs/apiDocumentation/sap.viz.controls.switchbar.SwitchBar.html",
+                "icon": "resources/img/class_icon.png"
+            }]
+        }, {
+            "title": "VERSION",
+            "url": "docs/apiDocumentation/sap.viz.controls.VERSION.html",
+            "icon": "resources/img/namespace_icon.png"
+        }]
+    }]
+}
+]
