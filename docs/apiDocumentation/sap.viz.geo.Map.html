@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>[VIZDOC] Class: Map</title>
+    <script src="static/jquery-1.7.2.min.js"> </script>
+    <script src="static/jquery-ui-1.8.22.custom.min.js"> </script>
+    <script src="static/jquery.ui.autocomplete.html.js"> </script>
+    <script src="metadata.js"> </script>
+    <script>
+        $(function() {
+            $("#tabs").tabs();
+            $("#tags").autocomplete({
+                source: metadata.searchDS,
+                select: function(event, ui) {
+                    var link = ui.item.value;
+                    location.href = link;
+                },
+                html: true
+            });
+            
+            var tcX = $(window).width() - $('#tableContent').width() - 20, tcY = 125;
+            /*$("#tableContent").draggable({
+                handle: '#tcTitle',
+                start: function(event, ui) {
+                    $('#tableContent').css('right', '');
+                },
+                stop: function(event, ui) {
+                    tcX = $(this).offset().left - document.body.scrollLeft;
+                    tcY = $(this).offset().top - document.body.scrollTop;
+                }
+            }).resizable({
+                resize: function(){
+                    $('#tcTitle').width($(this).width());
+                    $('#tcContent').width($(this).width()-11)
+                        .height($(this).height()-11 - $('#tcTitle').height());
+                }
+            });*/
+            $(window).resize(function() {
+                var newX = $(window).width() - $('#tableContent').width() - 20;
+                //if (tcX > newX) {
+                    tcX = newX;
+                    $('#tableContent').css('left', tcX+document.body.scrollLeft);
+                    $('#tableContent').css('right', '');
+                //}
+                
+            });
+            //$('#tableContent').css('left', tcX).css('top', tcY);
+            $('#tableContent').css('right', 20).css('top', 20);
+            if (getParameterByName('version') == '1') {
+                $("#version1").css({"text-decoration":"none","color":"#333333"});
+                $("#version2").css({"text-decoration":"underline","color":"#66ccff"});
+                $("#gif2").hide();
+            }
+            else {
+                $("#version1").css({"color":"#66ccff"});
+                $("#version2").css({"text-decoration":"none"});
+                $("#gif1").hide();
+            }
+            $('.widget-header .widget-title').click(function() {
+                $('.widget-body').animate({height: 'toggle', opacity: 'toggle'}, "slow");
+                if ($(this).hasClass("widget-title-click")) {
+                    $(this).removeClass("widget-title-click");
+                } else {
+                    $(this).addClass("widget-title-click");
+                }
+            });
+            if(parent.window._getIndexOfSelection){
+                var selectionIndex = parent.window._getIndexOfSelection();
+                $(".container-overall").before("<h2 id=\"selectionIndex\" style=\"padding-bottom:20px\">"+selectionIndex + "</h2>")
+            }
+            
+                $('#tableContent').css('visibility', 'visible');
+            
+        });
+        
+        function linkToChartProperty() {
+            window.location.href = "../chartproperty/chartproperty.html";
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+    </script>
+    <link type="text/css" rel="stylesheet" href="static/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="static/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="static/jquery-ui-1.8.22.custom.css">
+    <link type="text/css" rel="stylesheet" href="static/renew.css">
+</head>
+
+<body>
+<script>
+      function returnTop() {
+          $('body,html').animate({'scrollTop':0}, 500);
+      }
+</script>
+<div class="returnIcon" id="svgToTop">
+  <img src="static/to_top.svg" onclick="returnTop()">
+</div>
+<div id='tableContent'>
+    <div id='tcTitle' class="widget-header">
+        <div class="widget-title">Class: Map</div>
+    </div>
+    <div id='tcContent' class='widget-body'>
+         							<a href="#event" class="table-title">Event</a> 							<ul><li><a href="#event:mapInitialized">mapInitialized</a></li>
+<li><a href="#event:zoomComplete">zoomComplete</a></li>
+<li><a href="#event:panComplete">panComplete</a></li>
+<li><a href="#event:resizeComplete">resizeComplete</a></li></ul> 							<a href="#methods" class="table-title">Methods</a> 							<ul><li><a href="#bounds">bounds</a></li>
+<li><a href="#getLayer">getLayer</a></li>
+<li><a href="#getLayers">getLayers</a></li>
+<li><a href="#addLayer">addLayer</a></li>
+<li><a href="#removeLayer">removeLayer</a></li>
+<li><a href="#reorderLayer">reorderLayer</a></li>
+<li><a href="#toPixel">toPixel</a></li>
+<li><a href="#toLngLat">toLngLat</a></li>
+<li><a href="#getSelectionModel">getSelectionModel</a></li>
+<li><a href="#toggleMapControl">toggleMapControl</a></li>
+<li><a href="#getBasemapSwitcher">getBasemapSwitcher</a></li>
+<li><a href="#getTemplateManager">getTemplateManager</a></li>
+<li><a href="#destroy">destroy</a></li>
+<li><a href="#getTooltip">getTooltip</a></li>
+<li><a href="#save">save</a></li>
+<li><a href="#load">load</a></li></ul>
+    </div>
+</div>  
+
+<div id="main">
+    
+
+
+
+<section class="container-overall">
+    
+<header>
+    <h2 class="section-title">
+        Class: Map
+    </h2>
+    
+        <div class="class-description">Extends: 
+        
+            sap.viz.geo.EventSource
+        
+        </div>
+    
+    
+        
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        <h3 class="subsection-title">Constructor</h3>
+        
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="Map">
+        <a name="Map"></a>
+        <span class="type-signature"></span>Map
+        <span class="method-var">
+        
+                
+                    (container,
+                
+                    options)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Create a new geo map object. Event <a href="sap.viz.geo.Map.html#event:mapInitialized">"mapInitialized"</a>
+will be fired when the map is created and rendered.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>container</code>
+                
+                
+                 : 
+                 
+                        HTMLElement
+                        
+                
+                
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the DOM element to place geo map</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>options</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the geo map initial configuration:
+                <h6>Properties</h6>
+                
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>baseMap</code>
+                
+                
+                 : 
+                 
+                        <a href="sap.viz.geo.basemap.AbstractProvider.html">sap.viz.geo.basemap.AbstractProvider</a>
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                    
+                
+                </li>
+            
+            
+            <div class="description last">Provide a base map provider object which
+           should be an implementation of <a
+           href="sap.viz.geo.basemap.AbstractProvider.html">AbstractProvider</a>.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>selectionModel</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                    
+                
+                </li>
+            
+            
+            <div class="description last">Settings of the selectionModel.
+                <h6>Properties</h6>
+                
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>mode</code>
+                
+                
+                 : 
+                 
+                        string
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                    
+                        [Default: "inclusive"]
+                    
+                
+                </li>
+            
+            
+            <div class="description last">The selection mode
+           to set.</div>
+            </ul>
+	
+	
+</div>
+
+            </div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>tooltip</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                    
+                
+                </li>
+            
+            
+            <div class="description last">the options of tooltip</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>mapControls</code>
+                
+                
+                 : 
+                 
+                        boolean
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                    
+                        [Default: true]
+                    
+                
+                </li>
+            
+            
+            <div class="description last">whether to show the map control
+           which is a group of control buttons including zoom in/out,
+           reset and lasso enabling</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>basemapSwitcher</code>
+                
+                
+                 : 
+                 
+                        boolean
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                    
+                        [Default: true]
+                    
+                
+                </li>
+            
+            
+            <div class="description last">whether to show the basemap
+           switcher</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>template</code>
+                
+                
+                 : 
+                 
+                        string
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                    
+                
+                </li>
+            
+            
+            <div class="description last">the id of template to apply.</div>
+            </ul>
+	
+	
+</div>
+
+            </div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+    
+    </div>
+    
+    
+        <h3 class="subsection-title"><a name="event">Events</a></h3>
+        
+            
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="event:mapInitialized">
+        mapInitialized
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Fired when the map is initialized.
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="event:zoomComplete">
+        zoomComplete
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Fired when zooming on map is finished.
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="event:panComplete">
+        panComplete
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Fired when panning on map is finished.
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="event:resizeComplete">
+        resizeComplete
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Fired when resizing on map is finished.
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title"><a name="methods">Methods</a></h3>
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="bounds">
+        <a name="bounds"></a>
+        <span class="type-signature"></span>bounds
+        <span class="method-var">
+        
+                
+                    (bounds)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/set the bounds of map.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>bounds</code>
+                
+                
+                 : 
+                 
+                        <a href="sap.viz.geo.Bounds.html">sap.viz.geo.Bounds</a>
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the bounds to set</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+            </li> 
+            
+            <div class="description last">
+                the current bounds(getting) or the map object itself(setting)
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="getLayer">
+        <a name="getLayer"></a>
+        <span class="type-signature"></span>getLayer
+        <span class="method-var">
+        
+                
+                    (index)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Return the layer by index.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>index</code>
+                
+                
+                 : 
+                 
+                        Number
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the index number</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    <a href="sap.viz.geo.dataviz.Layer.html">sap.viz.geo.dataviz.Layer</a>
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                the layer
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="getLayers">
+        <a name="getLayers"></a>
+        <span class="type-signature"></span>getLayers
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Return all layers.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    array
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                of {sap.viz.geo.dataviz.Layer} the layer
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="addLayer">
+        <a name="addLayer"></a>
+        <span class="type-signature"></span>addLayer
+        <span class="method-var">
+        
+                
+                    (layer,
+                
+                    adjustBounds)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Add a layer.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>layer</code>
+                
+                
+                 : 
+                 
+                        <a href="sap.viz.geo.dataviz.Layer.html">sap.viz.geo.dataviz.Layer</a>
+                        
+                
+                
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the layer to be added</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>adjustBounds</code>
+                
+                
+                 : 
+                 
+                        Boolean
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">if true, the bounding box of map will be
+           adjusted to fully show this layer.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+            </li> 
+            
+            <div class="description last">
+                the map object itself
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="removeLayer">
+        <a name="removeLayer"></a>
+        <span class="type-signature"></span>removeLayer
+        <span class="method-var">
+        
+                
+                    (layer)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Remove a layer.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>layer</code>
+                
+                
+                 : 
+                 
+                        <a href="sap.viz.geo.dataviz.Layer.html">sap.viz.geo.dataviz.Layer</a>
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the layer to be removed</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+            </li> 
+            
+            <div class="description last">
+                the map object itself
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="reorderLayer">
+        <a name="reorderLayer"></a>
+        <span class="type-signature"></span>reorderLayer
+        <span class="method-var">
+        
+                
+                    (layer,
+                
+                    index)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Reorder a layer by a given index.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>layer</code>
+                
+                
+                 : 
+                 
+                        <a href="sap.viz.geo.dataviz.Layer.html">sap.viz.geo.dataviz.Layer</a>
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the layer to be reordered</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>index</code>
+                
+                
+                 : 
+                 
+                        Number
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the index position the layer is reordered to</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+            </li> 
+            
+            <div class="description last">
+                the map object itself
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="toPixel">
+        <a name="toPixel"></a>
+        <span class="type-signature"></span>toPixel
+        <span class="method-var">
+        
+                
+                    (lnglat)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Convert a geographic coordinate to screen coordinate.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>lnglat</code>
+                
+                
+                 : 
+                 
+                        Array
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">an array holding longitude and latitude values</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                an array holding x and y values
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="toLngLat">
+        <a name="toLngLat"></a>
+        <span class="type-signature"></span>toLngLat
+        <span class="method-var">
+        
+                
+                    (point)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Convert a screen coordinate to geographic coordinate.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>point</code>
+                
+                
+                 : 
+                 
+                        Array
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">an array holding x and y values to be converted</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                an array holding longitude and latitude values
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="getSelectionModel">
+        <a name="getSelectionModel"></a>
+        <span class="type-signature"></span>getSelectionModel
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Return the selection model of map.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    <a href="sap.viz.geo.dataviz.SelectionModel.html">sap.viz.geo.dataviz.SelectionModel</a>
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="toggleMapControl">
+        <a name="toggleMapControl"></a>
+        <span class="type-signature"></span>toggleMapControl
+        <span class="method-var">
+        
+                
+                    (show)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Show/hide the map control
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>show</code>
+                
+                
+                 : 
+                 
+                        boolean
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">if true, the map control will be shown otherwise hidden.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="getBasemapSwitcher">
+        <a name="getBasemapSwitcher"></a>
+        <span class="type-signature"></span>getBasemapSwitcher
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Return the base map switcher object.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    <a href="sap.viz.geo.BasemapSwitcher.html">sap.viz.geo.BasemapSwitcher</a>
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="getTemplateManager">
+        <a name="getTemplateManager"></a>
+        <span class="type-signature"></span>getTemplateManager
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Return the map's template manager object.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    <a href="sap.viz.geo.TemplateManager.html">sap.viz.geo.TemplateManager</a>
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="destroy">
+        <a name="destroy"></a>
+        <span class="type-signature"></span>destroy
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Destroy the map.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+            </li> 
+            
+            <div class="description last">
+                the map object itself
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="getTooltip">
+        <a name="getTooltip"></a>
+        <span class="type-signature"></span>getTooltip
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Return the tooltip object.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    <a href="sap.viz.geo.dataviz.Tooltip.html">sap.viz.geo.dataviz.Tooltip</a>
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="save">
+        <a name="save"></a>
+        <span class="type-signature">[static] </span>save
+        <span class="method-var">
+        
+                
+                    (map,
+                
+                    options)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Save the map as a plain object.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>map</code>
+                
+                
+                 : 
+                 
+                        <a href="sap.viz.geo.Map.html">sap.viz.geo.Map</a>
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the map instance to be saved.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>options</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the options
+                <h6>Properties</h6>
+                
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>discardData</code>
+                
+                
+                 : 
+                 
+                        boolean
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                    
+                        [Default: false]
+                    
+                
+                </li>
+            
+            
+            <div class="description last">if true, the result will not
+           include the dataset infomations.</div>
+            </ul>
+	
+	
+</div>
+
+            </div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                the saved object
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="load">
+        <a name="load"></a>
+        <span class="type-signature">[static] </span>load
+        <span class="method-var">
+        
+                
+                    (serialization,
+                
+                    container)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Restore a map from saved object.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>serialization</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the saved object of a map.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>container</code>
+                
+                
+                 : 
+                 
+                        HTMLElement
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the dom element to place the map.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Promise
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                a promise object which will be resolved with the
+         restored map instance when loading is over.
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+</article>
+</section>  
+
+
+
+
+</div>
+
+<br clear="both">
+
+<!--footer>
+    Documentation generated by <a href="https://github.com/micmath/jsdoc">JSDoc 3</a> on Wed Jul 08 2015 07:30:31 GMT+0200 (CEST)
+</footer-->
+<script src="static/linenumber.js"> </script>
+<link href="../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet"> 
+<script src="../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/css/css.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+<script src="static/livedemo.js"></script>
+</body>
+</html>

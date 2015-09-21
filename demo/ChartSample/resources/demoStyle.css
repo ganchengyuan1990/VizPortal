@@ -1,0 +1,348 @@
+div,body,p{
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin-left: 70px;
+    margin-right: 70px;
+}
+.settingPanel {
+    position: relative;
+    height: auto;
+}
+
+.panel1 > div {
+    padding: 0;
+}
+
+div[class*="sapMPanelContent"] {
+    padding-top: 0.5em;
+    border: none !important;
+}
+
+div[class*="sapMPanelHdr"] {
+	font-family: "Arial";
+	font-weight: 700;
+    color: #666666;
+}
+
+li[class*="sapMSelectListItem"] {
+	font-family: "Arial";
+}
+
+div[id*="__layout2"] {
+    /*display: flex;*/
+    /*width: 100%*/
+}
+
+.chartPanel {
+    height: 25em;
+    margin-bottom: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #BDBDBD;
+}
+
+.codePanel {
+    margin: 0 2em 2em 2em;
+    height: 10em;
+}
+
+.VBox1, .VBox1_long {
+    float: left;
+    /*width: 100%;*/
+}
+
+.VBox2, .VBox2_long {
+	float: right;
+}
+
+.HBox2, .HBox2_long {
+    float: right;
+    /*padding-top: 2.125em;*/
+}
+
+.HBox3, .HBox3_long {
+    float: right;
+    height: 52px;
+    /*padding-top: 1.875em;*/
+}
+
+.pageTitle {
+    width: 100%;
+    height: 3.750em;
+    margin-top: 1em !important;
+}
+
+.HBox1_1 {
+    display: flex !important;
+    flex-wrap: wrap;
+    /*margin-bottom: -1em;*/
+}
+
+.overallPanel1 {
+    border-width: 1px;
+    border-color: #BDBDBD;
+    margin: 1.875em 0 3.75em 0;
+}
+
+.pic_link {
+    text-decoration: none;
+}
+
+.pic_small {
+    border: solid;
+    border-width: 1px;
+    border-color: #BDBDBD;
+    width: 100%;
+    height: auto;
+}
+
+.pic_small_container {
+    text-align: center;
+    padding: 0 1.18% 4.375em 1.18%;
+    display: inline-block;
+    vertical-align: top;
+    width: 22%;
+}
+.picPanel {
+    margin-top: 1.125em;
+}
+.demo_illus {
+    text-decoration: none;
+    font-family: 'Arial';
+    font-weight: 200;
+    font-style: normal;
+    font-size: 0.875em;
+    color: #3498DB;
+    overflow: hidden;
+    width: 12.5em;
+    display: inline-block;
+}
+
+.overview_page_title {
+    text-decoration: none;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.1em;
+    margin-left: -1.875em;
+}
+
+.overview_chart_title {
+    text-decoration: none;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    margin-left: 1.1%;
+    font-size: 1.1em;
+    
+}
+
+
+
+.codeButton {
+    float: right;
+}
+
+.selectionFont {
+    font-family: Arial;
+}
+
+.itemFont {
+	font-family: Arial;
+}
+
+.RTLSwitch, .RTLSwitch_long {
+    margin-left: 1em !important;
+    /*margin-top: 1.5em !important;
+    float: right;*/
+}
+
+.RTLSelection, .RTLSelection_long {
+    margin-left: 1em !important; 
+    /*margin-top: 1.8em !important;
+    float: right;*/
+}
+
+@media screen and (max-width: 1160px) {
+    .VBox1_long {
+        width: 100%;
+    }
+
+    .VBox2_long {
+        float: left;
+    }
+
+    .HBox2_long {
+        display: flex !important;
+        flex-wrap: wrap ;
+        float: left;
+        margin-left: -1em;
+        /*margin-top: -1em;
+        float: left;
+        padding-top: 0;
+        margin-left: -1em;
+        float: left;
+        padding-top: 0;
+        margin-top: -1.875em;*/
+    }
+
+    .HBox3_long {
+        display: flex !important;
+        flex-wrap: wrap ;
+        float: left;
+        margin-left: -1em;
+    }
+
+    .RTLSwitch_long {
+        margin-left: 0;
+        /*margin-top: 0;
+        float: left;*/
+    }
+
+    .RTLSelection_long {
+        margin-left: 0;
+        /*margin-left: 0;
+        margin-top: 0;
+        float: left;*/
+    }
+}
+
+@media screen and (max-width: 870px) { 
+    /*div[id*="__layout5"] {
+        margin-left: 0 !important; 870
+    }*/
+
+    .VBox1 {
+        width: 100%;
+    }
+
+    .VBox2 {
+    	float: left;
+    }
+
+    .HBox2 {
+        display: flex !important;
+        flex-wrap: wrap ;
+        float: left;
+        margin-left: -1em;
+        /*margin-top: -1em;
+        float: left;
+        padding-top: 0;
+        margin-left: -1em;
+        float: left;
+        padding-top: 0;
+        margin-top: -1.875em;*/
+    }
+
+    .HBox3 {
+    	display: flex !important;
+        flex-wrap: wrap ;
+        float: left;
+        margin-left: -1em;
+    }
+
+    .RTLSwitch {
+        margin-left: 0;
+        /*margin-top: 0;
+        float: left;*/
+    }
+
+    .RTLSelection {
+        margin-left: 0;
+        /*margin-left: 0;
+        margin-top: 0;
+        float: left;*/
+    }
+
+    .settingPanel {
+        height: auto;
+        position: relative;
+    }
+}
+
+@media screen and (max-width: 463px) {
+    /*div[id*="__layout5"] {
+        margin-left: 0 !important;
+    }*/
+    #RB1-3 {
+        margin-left: 3.5em;
+        margin-top: -1.5em;
+    }
+}
+#code-content{
+    margin: 0 2em 2em 2em;
+    border:1px solid #dddddd; 
+}
+ 
+.sapMSwtLabel{
+    font-family: Arial ! important;
+}
+@media screen and (max-width: 415px) {
+    /*div[id*="__layout5"] {
+        margin-left: 0 !important;
+    }*/
+    #RB1-2 {
+        margin-bottom: 0.1em;
+    }
+
+    #RB2-2 {
+        margin-left: 3.5em;
+        margin-top: -1.5em;
+    }
+}
+
+@media screen and (max-width: 359px) {
+    /*div[id*="__layout5"] {
+        margin-left: 0 !important;
+    }*/
+    #RB1-2 {
+        margin-left: 3.5em;
+        margin-top: -1.5em;
+    }
+}
+@media screen and (device-width: 768px) {
+     .pic_small_container {
+        text-align: center;
+        padding: 0 1.5% 4.375em 1.5%;
+        display: inline-block;
+        vertical-align: top;
+        width: 30%;
+     }
+}
+@media screen and (max-device-width: 767px) {
+    .overview_chart_title {
+        text-decoration: none;
+        font-family: Arial,Helvetica,sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        margin-left: 4%;
+        font-size: 1.1em;
+     }
+     .pic_small_container {
+        text-align: center;
+        padding: 0 4% 4.375em 4%;
+        display: inline-block;
+        vertical-align: top;
+        width: 40%;
+     }
+}
+@media screen and (max-width: 610px ) and (min-width: 605px)   {
+    .overview_chart_title {
+        text-decoration: none;
+        font-family: Arial,Helvetica,sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        margin-left: 4%;
+        font-size: 1.1em;
+     }
+     .pic_small_container {
+        text-align: center;
+        padding: 0 4% 4.375em 4%;
+        display: inline-block;
+        vertical-align: top;
+        width: 40%;
+     }
+
+ 

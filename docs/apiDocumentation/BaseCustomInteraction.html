@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>[VIZDOC] Namespace: BaseCustomInteraction</title>
+    <script src="static/jquery-1.7.2.min.js"> </script>
+    <script src="static/jquery-ui-1.8.22.custom.min.js"> </script>
+    <script src="static/jquery.ui.autocomplete.html.js"> </script>
+    <script src="metadata.js"> </script>
+    <script>
+        $(function() {
+            $("#tabs").tabs();
+            $("#tags").autocomplete({
+                source: metadata.searchDS,
+                select: function(event, ui) {
+                    var link = ui.item.value;
+                    location.href = link;
+                },
+                html: true
+            });
+            
+            var tcX = $(window).width() - $('#tableContent').width() - 20, tcY = 125;
+            /*$("#tableContent").draggable({
+                handle: '#tcTitle',
+                start: function(event, ui) {
+                    $('#tableContent').css('right', '');
+                },
+                stop: function(event, ui) {
+                    tcX = $(this).offset().left - document.body.scrollLeft;
+                    tcY = $(this).offset().top - document.body.scrollTop;
+                }
+            }).resizable({
+                resize: function(){
+                    $('#tcTitle').width($(this).width());
+                    $('#tcContent').width($(this).width()-11)
+                        .height($(this).height()-11 - $('#tcTitle').height());
+                }
+            });*/
+            $(window).resize(function() {
+                var newX = $(window).width() - $('#tableContent').width() - 20;
+                //if (tcX > newX) {
+                    tcX = newX;
+                    $('#tableContent').css('left', tcX+document.body.scrollLeft);
+                    $('#tableContent').css('right', '');
+                //}
+                
+            });
+            //$('#tableContent').css('left', tcX).css('top', tcY);
+            $('#tableContent').css('right', 20).css('top', 20);
+            if (getParameterByName('version') == '1') {
+                $("#version1").css({"text-decoration":"none","color":"#333333"});
+                $("#version2").css({"text-decoration":"underline","color":"#66ccff"});
+                $("#gif2").hide();
+            }
+            else {
+                $("#version1").css({"color":"#66ccff"});
+                $("#version2").css({"text-decoration":"none"});
+                $("#gif1").hide();
+            }
+
+            $('.widget-header .widget-title').click(function() {
+                $('.widget-body').animate({height: 'toggle', opacity: 'toggle'}, "slow");
+                if ($(this).hasClass("widget-title-click")) {
+                    $(this).removeClass("widget-title-click");
+                } else {
+                    $(this).addClass("widget-title-click");
+                }
+            });
+            if(parent.window._getIndexOfSelection){
+                var selectionIndex = parent.window._getIndexOfSelection();
+                $(".container-overall").before("<h2 id=\"selectionIndex\" style=\"padding-bottom:20px\">"+selectionIndex + "</h2>")
+            }
+
+            
+                $('#tableContent').css('visibility', 'visible');
+            
+        });
+        
+        function linkToChartProperty() {
+            window.location.href = "../chartproperty/chartproperty.html";
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+    </script>
+    <link type="text/css" rel="stylesheet" href="static/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="static/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="static/jquery-ui-1.8.22.custom.css">
+    <link type="text/css" rel="stylesheet" href="static/renew.css">
+</head>
+
+<body>
+<script>
+      function returnTop() {
+          $('body,html').animate({'scrollTop':0}, 500);
+      }
+</script>
+<div class="returnIcon" id="svgToTop">
+  <img src="static/to_top.svg" onclick="returnTop()">
+</div>
+<div id='tableContent'>
+    <div id='tcTitle' class="widget-header">
+        <div class="widget-title">Namespace: BaseCustomInteraction</div>
+    </div>
+    <div id='tcContent' class='widget-body'>
+         							<a href="#members" class="table-title">Properties</a> 							<ul><li><a href="#id">id</a></li>
+<li><a href="#metadata">metadata</a></li>
+<li><a href="#triggers">triggers</a></li></ul> 							<a href="#methods" class="table-title">Methods</a> 							<ul><li><a href="#handle">handle</a></li>
+<li><a href="#exportToSVGString">exportToSVGString</a></li>
+<li><a href="#container">container</a></li>
+<li><a href="#properties">properties</a></li>
+<li><a href="#vizInstanceInfo">vizInstanceInfo</a></li>
+<li><a href="#reRenderVizInstance">reRenderVizInstance</a></li></ul>
+    </div>
+</div>  
+
+<div id="main">
+    
+
+
+
+<section class="container-overall">
+    
+<header>
+    <h2 class="section-title">
+        Namespace: BaseCustomInteraction
+    </h2>
+    
+    
+        
+            <div class="class-description">The base class of interaction customization, the instance function and metadata can be overridden.</div>
+        
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title"><a name="members">Properties</a></h3>
+        
+                
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="id">
+        <span class="type-signature">[static] </span>id<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Set the id of interaction customization chart.
+<pre>
+<h4>id : String</h4>The unique interaction customization id.
+BaseCustomInteraction.id = id
+</pre>
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+                
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="metadata">
+        <span class="type-signature">[static] </span>metadata<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Set the metadata of interaction customization chart, it includes propertyDefinition, eventDefinition.<br>
+   <h4>propertyDefinition : Object</h4> the properties value can be get/set in BaseCustomInteraction.<br>
+   <h4>eventDefinition : Object</h4> the event can be use by the vizInstanceInfo.on/off/dispatchEvent.<br>
+        the event internally prefixs with customization tag.
+<pre>
+<h4>propertyDefinition : Object</h4>propertyDefinition schema: {
+                  "supportedValueType": "Object", // Number, String, Boolean, StringArray, NumberArray, BooleanArray
+                  "defaultValue": null,
+                  // optional, by default read-only is false
+                  "readonly": false,
+                  // optional, by default serializable is true
+                  "serializable": true,
+                  // optional
+                  "description": "",
+              }
+
+BaseCustomInteraction.metadata = {
+  propertyDefinition: {},
+  eventDefinition: {}
+}; 
+</pre>
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+                
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="triggers">
+        <span class="type-signature">[static] </span>triggers<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Set the triggers of interaction customization chart, it includes id, event, targets, excludeTargets, preventDefault.<br>
+   <h4>id : String</h4> the trigger id <br>
+   <h4>event:  </h4>the value is one of sap.viz.extapi.customization.constants.CustomInteractionEvents, <br>
+         the definition can referred to <a href="sap.viz.extapi.customization.constants.CustomInteractionEvents.html">CustomInteractionEvents</a>.<br>
+   <h4>targets : Array</h4> target module can be captured the event, <br>
+         array value can be sap.viz.extapi.customization.constants.CustomInteractionTargets,<br>
+         the defintion can referred to <a href="sap.viz.extapi.customization.constants.CustomInteractionTargets.html">CustomInteractionTargets</a>.<br>
+   <h4>excludeTargets : Array</h4> excludeTargets module could not be captured the event, <br>
+        array value can be sap.viz.extapi.customization.constants.CustomInteractionTargets,<br>
+        the defintion can referred to <a href="sap.viz.extapi.customization.constants.CustomInteractionTargets.html">CustomInteractionTargets</a>.<br>
+   <h4>preventDefault : Boolean</h4> Prevent the current behaivor type defined event if the targets and excludeTargets is the same.<br>
+<pre>
+      InteractionCustomization.triggers = [{
+         id: "custom.click.chart",
+         event: "click",
+         targets: [
+                     sap.viz.extapi.customization.constants.CustomInteractionTargets.CHART_BACKGROUND
+                  ]
+         },
+         excludeTargets: [
+                     sap.viz.extapi.customization.constants.CustomInteractionTargets.DATALABEL
+                  ]
+         },
+         preventDefault: true
+      }];
+</pre>
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+        <h3 class="subsection-title"><a name="methods">Methods</a></h3>
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="handle">
+        <a name="handle"></a>
+        <span class="type-signature"></span>handle
+        <span class="method-var">
+        
+                
+                    (id,
+                
+                    event,
+                
+                    vizModelInfo,
+                
+                    vizRenderInfo)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Handle the custom interaction. <br>
+ The function is called when perform the event defined ine the metadata in the chart module.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>id</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the id defined in the triggers.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>event</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the event data, it includes data, preventBrowserDefault, name.
+<pre>
+      {
+         name: "", // the event name
+         data: {
+                targets: {Object} // current target renderInfo, 
+                  // the structure value can referred to <a href="BaseCustomOverlay.html#render">vizRenderInfo</a>.
+                point: {Object} // {x, y} the touched position.
+                ctrlKey: {Boolean} // indicate the ctrl key or not.
+                wheelDelta: {Number} // the wheel delta value when perform the mouse scroll event.
+                scale: {Number} // the scale value when perform the pinch/pan event.
+         },
+         preventBrowserDefault: [Function] // prevent the default browser event.
+      }
+</pre></div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>vizModelInfo</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the vizModelInfo, the definition can be refered at <a href="BaseCustomOverlay.html#overrideProperties">vizModelInfo</a>.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>vizRenderInfo</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the vizRenderInfo, the definition can be refered at <a href="BaseCustomOverlay.html#render">vizRenderInfo</a></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="exportToSVGString">
+        <a name="exportToSVGString"></a>
+        <span class="type-signature"></span>exportToSVGString
+        <span class="method-var">
+        
+                
+                    (option)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Export interaction customization to SVG string, can be overridden.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>option</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the size object required to export {width: Number, height: Number}</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="container">
+        <a name="container"></a>
+        <span class="type-signature"></span>container
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get the interaction customization container layer.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    HTMLDIVElement
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                the interaction customization Layer DIV
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="properties">
+        <a name="properties"></a>
+        <span class="type-signature"></span>properties
+        <span class="method-var">
+        
+                
+                    (key|properties,
+                
+                    value)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set the property defined in propertyDefinition of metadata.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>key|properties</code>
+                
+                
+                 : 
+                 
+                        String
+                         | 
+                
+                        Object
+                         | 
+                
+                        null
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the key defined in the metadata propertyDefinition. Only using a string key will be treated as a get. Otherwise it's a set.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>value</code>
+                
+                
+                 : 
+                 
+                        String
+                         | 
+                
+                        Object
+                         | 
+                
+                        null
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Optional. Here we support (key, value) setting or an object setting.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                the property's value for for the specific key if get.
+ Sample:
+<pre>
+    // get all value defined in propertyDefinition:
+    var value = this.properties();
+    // get a single property:
+    var visible = this.properties('title.visible');
+    // get a bunch of properties by prefix:
+    var props = this.properties('title');
+    var visible = props.visible;
+
+    // set a single property value:
+    this.properties('legend.title.color', '#cccccc');
+    // set a bunch of properties by providing a prefix:
+    this.properties('legend', {
+         title: {
+            visible: true,
+            color: '#cccccc'
+         }
+    });
+    // set a bunch of properties by providing a prefix:
+    this.properties('legend.title', {
+         visible: true,
+         color: '#cccccc'
+    });
+</pre>
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizInstanceInfo">
+        <a name="vizInstanceInfo"></a>
+        <span class="type-signature">[static] </span>vizInstanceInfo
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get the vizInstanceInfo of current customization chart.
+ The detailed structure can be referred from <a href="BaseCustomOverlay.html#vizInstanceInfo">vizInstanceInfo</a>.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="reRenderVizInstance">
+        <a name="reRenderVizInstance"></a>
+        <span class="type-signature"></span>reRenderVizInstance
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Re-render the whole vizInstance after the end of current call stack (next frame).<br>
+   BaseCustomInteraction doesn't support change the interacton triggers at runtime, <br>
+   means reRenderVizInstance will not register the triggers.<br>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+</article>
+</section>  
+
+
+
+
+</div>
+
+<br clear="both">
+
+<!--footer>
+    Documentation generated by <a href="https://github.com/micmath/jsdoc">JSDoc 3</a> on Wed Jul 08 2015 07:35:14 GMT+0200 (CEST)
+</footer-->
+<script src="static/linenumber.js"> </script>
+<link href="../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet"> 
+<script src="../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/css/css.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+<script src="static/livedemo.js"></script>
+</body>
+</html>

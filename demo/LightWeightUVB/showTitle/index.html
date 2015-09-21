@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Show Legend</title>
+        <script type="text/javascript" src="../../../resources/libs/jquery.js"></script>
+        <script type="text/javascript" src="../../../resources/libs/jquery-ui.js"></script>
+        <script src="../../../resources/sap-ui-core.js" id="sap-ui-bootstrap" data-sap-ui-libs="sap.ui.commons,sap.ui.ux3,sap.m" data-sap-ui-theme="sap_bluecrystal"></script>
+        <script type="text/javascript" src="../../../resources/libs/d3.js"></script>
+        <script type="text/javascript" src="../../../resources/libs/require.js"></script>
+        <script type="text/javascript" src="../../../resources/libs/json2.js"></script>
+        <script type="text/javascript" src="../../../resources/libs/rgbcolor/rgbcolor_static.js"></script>
+        <script type="text/javascript" src="../../../resources/libs/sap.viz/sap.viz.info.js"></script>
+        <script type="text/javascript" src="../../../resources/libs/sap.viz.vizframe/sap.viz.vizframe.js">
+        </script>
+        <script src="../../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+        <script src="../../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+        <script src="../../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="../../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+        <script src="../../../resources/libs/CodeMirror/mode/css/css.js"></script>
+        <script src="../../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+        <link href="../../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+        <link href="../../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+        <link href="../../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet">
+        <link href="../../../docs/tutorial/resources/css/button.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="../resources/lightWeightStyle.css">
+        <script type="text/javascript"></script>  
+        <script type="text/javascript" src="../../../js/codeView.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../../resources/css/codeView.css">
+        <style>
+            fieldset {
+                width: 300px;
+                display: inline-block;
+                vertical-align: top;
+            }
+        </style>
+    </head>
+    <body >
+        <div id="setting" class="htmlView"></div>
+        <div id="vizFrame" class="chartAreaSetting"></div>
+        <p  id="toggle"  ><span id="htmlView" class="htmlView active">HTML view</span><span id="jsView" class="htmlView">JS view</span></p>
+        <div id="code-content" ></div>
+        <script type="text/javascript" src="showTitle.js"></script>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+.button_class:active{
+/*         -webkit-box-shadow: inset 0px 0px 3px rgba(0,0,0, .8);
+         -moz-box-shadow: inset 0px 0px 3px rgba(0,0,0, .8);
+         box-shadow: inset 0px 0px 3px rgba(0,0,0, .8);*/
+         background-color: #007dc0;
+         }
+
+         .button_class{
+/*         -webkit-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+         -moz-box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);
+         box-shadow: 1px 1px 1px rgba(0,0,0, .29), inset 1px 1px 1px rgba(255,255,255, .44);*/
+         -webkit-transition: all 0.15s ease;
+         -moz-transition: all 0.15s ease;
+         -o-transition: all 0.15s ease;
+         -ms-transition: all 0.15s ease;
+         transition: all 0.15s ease;
+         background-color:#3498DB;
+         width : 82px;
+         height : 26px;
+         color : #FFF;
+         -webkit-border-radius : 3px;
+         -moz-border-radius : 3px;
+         border-radius : 3px;
+         border-width : 0px;
+         margin : 15px 0px 1px 1px;
+         display : inline-block;
+         }
+         .button_class:focus{
+         outline: none;
+         }
+         .button_class:hover {
+            cursor: pointer;
+            /*background-color: #3498DB;*/
+         }
+         /*used to override codemirror's scrollbar*/
+         #playground-float-panel{
+            z-index: 6;
+         }

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>[VIZDOC] Namespace: BaseCustomization</title>
+    <script src="static/jquery-1.7.2.min.js"> </script>
+    <script src="static/jquery-ui-1.8.22.custom.min.js"> </script>
+    <script src="static/jquery.ui.autocomplete.html.js"> </script>
+    <script src="metadata.js"> </script>
+    <script>
+        $(function() {
+            $("#tabs").tabs();
+            $("#tags").autocomplete({
+                source: metadata.searchDS,
+                select: function(event, ui) {
+                    var link = ui.item.value;
+                    location.href = link;
+                },
+                html: true
+            });
+            
+            var tcX = $(window).width() - $('#tableContent').width() - 20, tcY = 125;
+            /*$("#tableContent").draggable({
+                handle: '#tcTitle',
+                start: function(event, ui) {
+                    $('#tableContent').css('right', '');
+                },
+                stop: function(event, ui) {
+                    tcX = $(this).offset().left - document.body.scrollLeft;
+                    tcY = $(this).offset().top - document.body.scrollTop;
+                }
+            }).resizable({
+                resize: function(){
+                    $('#tcTitle').width($(this).width());
+                    $('#tcContent').width($(this).width()-11)
+                        .height($(this).height()-11 - $('#tcTitle').height());
+                }
+            });*/
+            $(window).resize(function() {
+                var newX = $(window).width() - $('#tableContent').width() - 20;
+                //if (tcX > newX) {
+                    tcX = newX;
+                    $('#tableContent').css('left', tcX+document.body.scrollLeft);
+                    $('#tableContent').css('right', '');
+                //}
+                
+            });
+            //$('#tableContent').css('left', tcX).css('top', tcY);
+            $('#tableContent').css('right', 20).css('top', 20);
+            if (getParameterByName('version') == '1') {
+                $("#version1").css({"text-decoration":"none","color":"#333333"});
+                $("#version2").css({"text-decoration":"underline","color":"#66ccff"});
+                $("#gif2").hide();
+            }
+            else {
+                $("#version1").css({"color":"#66ccff"});
+                $("#version2").css({"text-decoration":"none"});
+                $("#gif1").hide();
+            }
+
+            $('.widget-header .widget-title').click(function() {
+                $('.widget-body').animate({height: 'toggle', opacity: 'toggle'}, "slow");
+                if ($(this).hasClass("widget-title-click")) {
+                    $(this).removeClass("widget-title-click");
+                } else {
+                    $(this).addClass("widget-title-click");
+                }
+            });
+            if(parent.window._getIndexOfSelection){
+                var selectionIndex = parent.window._getIndexOfSelection();
+                $(".container-overall").before("<h2 id=\"selectionIndex\" style=\"padding-bottom:20px\">"+selectionIndex + "</h2>")
+            }
+
+            
+                $('#tableContent').css('visibility', 'visible');
+            
+        });
+        
+        function linkToChartProperty() {
+            window.location.href = "../chartproperty/chartproperty.html";
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+    </script>
+    <link type="text/css" rel="stylesheet" href="static/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="static/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="static/jquery-ui-1.8.22.custom.css">
+    <link type="text/css" rel="stylesheet" href="static/renew.css">
+</head>
+
+<body>
+<script>
+      function returnTop() {
+          $('body,html').animate({'scrollTop':0}, 500);
+      }
+</script>
+<div class="returnIcon" id="svgToTop">
+  <img src="static/to_top.svg" onclick="returnTop()">
+</div>
+<div id='tableContent'>
+    <div id='tcTitle' class="widget-header">
+        <div class="widget-title">Namespace: BaseCustomization</div>
+    </div>
+    <div id='tcContent' class='widget-body'>
+         							<a href="#members" class="table-title">Properties</a> 							<ul><li><a href="#id">id</a></li>
+<li><a href="#chartType">chartType</a></li>
+<li><a href="#customOverlay">customOverlay</a></li>
+<li><a href="#customRenderers">customRenderers</a></li>
+<li><a href="#customInteraction">customInteraction</a></li></ul>
+    </div>
+</div>  
+
+<div id="main">
+    
+
+
+
+<section class="container-overall">
+    
+<header>
+    <h2 class="section-title">
+        Namespace: BaseCustomization
+    </h2>
+    
+    
+        
+            <div class="class-description">The base class of customization, the id, chartType, customOverlay can be configured.</div>
+        
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title"><a name="members">Properties</a></h3>
+        
+                
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="id">
+        <span class="type-signature">[static] </span>id<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Set the id of customization chart.
+<pre>
+<h4>id : String</h4>The unique customization id
+BaseCustomization.id = id
+</pre>
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+                
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="chartType">
+        <span class="type-signature">[static] </span>chartType<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Set the chartType of customization chart.
+<pre>
+<h4>chartType : String</h4>The build-in chart type which customization extends
+Supported chart list:
+          ['info/column',
+          'info/dual_column',
+          'info/bar',
+          'info/dual_bar',
+          'info/stacked_column',
+          'info/stacked_bar',
+          'info/100_stacked_bar',
+          'info/100_stacked_column',
+          'info/100_dual_stacked_bar',
+          'info/100_dual_stacked_column',
+          'info/dual_stacked_bar',
+          'info/dual_stacked_column',
+          'info/line',
+          'info/horizontal_line',
+          'info/dual_line',
+          'info/dual_horizontal_line',
+          'info/combination',
+          'info/horizontal_combination',
+          'info/stacked_combination',
+          'info/horizontal_stacked_combination',
+          'info/dual_stacked_combination',
+          'info/dual_horizontal_stacked_combination',
+          'info/scatter',
+          'info/bubble'];
+Not all CVOM's all in one bundle contains all the chart types above, so please make sure the chart type is existing in your CVOM libs.
+
+BaseCustomization.chartType = chartType
+</pre>
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+                
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="customOverlay">
+        <span class="type-signature">[static] </span>customOverlay<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Set the customOverlay of customization chart, which the definition is <a href="BaseCustomOverlay.html">BaseCustomOverlay</a>,
+the instance function and metadata of customOverlay can be overridden.
+<pre>
+BaseCustomization.customOverlay = customOverlay
+</pre>
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+                
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="customRenderers">
+        <span class="type-signature">[static] </span>customRenderers<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Set the customRenderers of customization chart, which the definition is <a href="BaseCustomRenderer.html">BaseCustomRenderer</a>,
+the instance function and metadata of customRenderers can be overridden.
+<pre>
+BaseCustomization.customRenderers = customRenderers
+</pre>
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+                
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="customInteraction">
+        <span class="type-signature">[static] </span>customInteraction<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Set the customInteraction of customization chart, which the definition is <a href="BaseCustomInteraction.html">BaseCustomInteraction</a>,
+the instance function and metadata of customInteraction can be overridden.
+<pre>
+BaseCustomization.customInteraction = customInteraction
+</pre>
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+    
+    
+</article>
+</section>  
+
+
+
+
+</div>
+
+<br clear="both">
+
+<!--footer>
+    Documentation generated by <a href="https://github.com/micmath/jsdoc">JSDoc 3</a> on Wed Jul 08 2015 07:35:14 GMT+0200 (CEST)
+</footer-->
+<script src="static/linenumber.js"> </script>
+<link href="../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet"> 
+<script src="../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/css/css.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+<script src="static/livedemo.js"></script>
+</body>
+</html>

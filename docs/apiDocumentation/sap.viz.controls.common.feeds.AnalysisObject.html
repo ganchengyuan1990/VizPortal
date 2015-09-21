@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>[VIZDOC] Class: AnalysisObject</title>
+    <script src="static/jquery-1.7.2.min.js"> </script>
+    <script src="static/jquery-ui-1.8.22.custom.min.js"> </script>
+    <script src="static/jquery.ui.autocomplete.html.js"> </script>
+    <script src="metadata.js"> </script>
+    <script>
+        $(function() {
+            $("#tabs").tabs();
+            $("#tags").autocomplete({
+                source: metadata.searchDS,
+                select: function(event, ui) {
+                    var link = ui.item.value;
+                    location.href = link;
+                },
+                html: true
+            });
+            
+            var tcX = $(window).width() - $('#tableContent').width() - 20, tcY = 125;
+            /*$("#tableContent").draggable({
+                handle: '#tcTitle',
+                start: function(event, ui) {
+                    $('#tableContent').css('right', '');
+                },
+                stop: function(event, ui) {
+                    tcX = $(this).offset().left - document.body.scrollLeft;
+                    tcY = $(this).offset().top - document.body.scrollTop;
+                }
+            }).resizable({
+                resize: function(){
+                    $('#tcTitle').width($(this).width());
+                    $('#tcContent').width($(this).width()-11)
+                        .height($(this).height()-11 - $('#tcTitle').height());
+                }
+            });*/
+            $(window).resize(function() {
+                var newX = $(window).width() - $('#tableContent').width() - 20;
+                //if (tcX > newX) {
+                    tcX = newX;
+                    $('#tableContent').css('left', tcX+document.body.scrollLeft);
+                    $('#tableContent').css('right', '');
+                //}
+                
+            });
+            //$('#tableContent').css('left', tcX).css('top', tcY);
+            $('#tableContent').css('right', 20).css('top', 20);
+            if (getParameterByName('version') == '1') {
+                $("#version1").css({"text-decoration":"none","color":"#333333"});
+                $("#version2").css({"text-decoration":"underline","color":"#66ccff"});
+                $("#gif2").hide();
+            }
+            else {
+                $("#version1").css({"color":"#66ccff"});
+                $("#version2").css({"text-decoration":"none"});
+                $("#gif1").hide();
+            }
+            $('.widget-header .widget-title').click(function() {
+                $('.widget-body').animate({height: 'toggle', opacity: 'toggle'}, "slow");
+                if ($(this).hasClass("widget-title-click")) {
+                    $(this).removeClass("widget-title-click");
+                } else {
+                    $(this).addClass("widget-title-click");
+                }
+            });
+            if(parent.window._getIndexOfSelection){
+                var selectionIndex = parent.window._getIndexOfSelection();
+                $(".container-overall").before("<h2 id=\"selectionIndex\" style=\"padding-bottom:20px\">"+selectionIndex + "</h2>")
+            }
+            
+                $('#tableContent').css('visibility', 'visible');
+            
+        });
+        
+        function linkToChartProperty() {
+            window.location.href = "../chartproperty/chartproperty.html";
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+    </script>
+    <link type="text/css" rel="stylesheet" href="static/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="static/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="static/jquery-ui-1.8.22.custom.css">
+    <link type="text/css" rel="stylesheet" href="static/renew.css">
+</head>
+
+<body>
+<script>
+      function returnTop() {
+          $('body,html').animate({'scrollTop':0}, 500);
+      }
+</script>
+<div class="returnIcon" id="svgToTop">
+  <img src="static/to_top.svg" onclick="returnTop()">
+</div>
+<div id='tableContent'>
+    <div id='tcTitle' class="widget-header">
+        <div class="widget-title">Class: AnalysisObject</div>
+    </div>
+    <div id='tcContent' class='widget-body'>
+         							<a href="#methods" class="table-title">Methods</a> 							<ul><li><a href="#type">type</a></li>
+<li><a href="#toJSON">toJSON</a></li>
+<li><a href="#fromJSON">fromJSON</a></li>
+<li><a href="#hierarchyLevels">hierarchyLevels</a></li>
+<li><a href="#actions">actions</a></li>
+<li><a href="#customData">customData</a></li>
+<li><a href="#onlySelectedLevel">onlySelectedLevel</a></li>
+<li><a href="#fixedOnShelf">fixedOnShelf</a></li>
+<li><a href="#iconData">iconData</a></li></ul>
+    </div>
+</div>  
+
+<div id="main">
+    
+
+
+
+<section class="container-overall">
+    
+<header>
+    <h2 class="section-title">
+        Class: AnalysisObject
+    </h2>
+    
+    
+        
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        <h3 class="subsection-title">Constructor</h3>
+        
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="AnalysisObject">
+        <a name="AnalysisObject"></a>
+        <span class="type-signature"></span>AnalysisObject
+        <span class="method-var">
+        
+                
+                    (id,
+                
+                    name,
+                
+                    type,
+                
+                    dataType,
+                
+                    aggregationType,
+                
+                    aggregationTarget,
+                
+                    customData,
+                
+                    onlySelectedLevel,
+                
+                    fixedOnShelf)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        AnalysisObject Class
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>id</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>name</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>type</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Enumeration: dimension, measure, hierarchy, mnd</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>dataType</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Enumeration: string, number, date...</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>aggregationType</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">if the ananlysis object is to be used as a
+                aggregation, sum, min, max, avg....</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>aggregationTarget</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the dimension which aggregation is created.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>customData</code>
+                
+                
+                 : 
+                 
+                        JSON
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">custom data JSON.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>onlySelectedLevel</code>
+                
+                
+                 : 
+                 
+                        Boolean
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">indicate only use selected level when there are hierarchies.
+We need to keep the dimension id for publishing to map to the real dimension</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>fixedOnShelf</code>
+                
+                
+                 : 
+                 
+                        Boolean
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">indicate the token is fixed on shelf.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title"><a name="methods">Methods</a></h3>
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="type">
+        <a name="type"></a>
+        <span class="type-signature"></span>type
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get type
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    String
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="toJSON">
+        <a name="toJSON"></a>
+        <span class="type-signature">[static] </span>toJSON
+        <span class="method-var">
+        
+                
+                    (instance)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Serialize AnalysisObject or AnalysisObject array to a JSON object.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>instance</code>
+                
+                
+                 : 
+                 
+                        <a href="sap.viz.controls.common.feeds.AnalysisObject.html">sap.viz.controls.common.feeds.AnalysisObject</a>
+                         | 
+                
+                        Array.&lt;sap.viz.controls.common.feeds.AnalysisObject>
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    JSON
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="fromJSON">
+        <a name="fromJSON"></a>
+        <span class="type-signature">[static] </span>fromJSON
+        <span class="method-var">
+        
+                
+                    (json)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Deserialize a JSON object to AnalysisObject or AnalysisObject array.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>json</code>
+                
+                
+                 : 
+                 
+                        JSON
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    <a href="sap.viz.controls.common.feeds.AnalysisObject.html">sap.viz.controls.common.feeds.AnalysisObject</a>
+                     | 
+                
+                    Array.&lt;sap.viz.controls.common.feeds.AnalysisObject>
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="hierarchyLevels">
+        <a name="hierarchyLevels"></a>
+        <span class="type-signature"></span>hierarchyLevels
+        <span class="method-var">
+        
+                
+                    (hierarchyLevels)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set hierarchyLevels.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>hierarchyLevels</code>
+                
+                
+                 : 
+                 
+                        Array&lt;<a href="sap.viz.controls.common.feeds.HierarchyLevelObject.html">sap.viz.controls.common.feeds.HierarchyLevelObject</a>&gt;
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array&lt;<a href="sap.viz.controls.common.feeds.HierarchyLevelObject.html">sap.viz.controls.common.feeds.HierarchyLevelObject</a>&gt;
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="actions">
+        <a name="actions"></a>
+        <span class="type-signature"></span>actions
+        <span class="method-var">
+        
+                
+                    (menuGroups)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set AnalysisObject actions.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>menuGroups</code>
+                
+                
+                 : 
+                 
+                        Array&lt;<a href="sap.viz.controls.common.views.menu.MenuGroup.html">sap.viz.controls.common.views.menu.MenuGroup</a>&gt;
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array&lt;<a href="sap.viz.controls.common.views.menu.MenuGroup.html">sap.viz.controls.common.views.menu.MenuGroup</a>&gt;
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="customData">
+        <a name="customData"></a>
+        <span class="type-signature"></span>customData
+        <span class="method-var">
+        
+                
+                    (customData)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set AnalysisObject customData.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>customData</code>
+                
+                
+                 : 
+                 
+                        JSON
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    JSON
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="onlySelectedLevel">
+        <a name="onlySelectedLevel"></a>
+        <span class="type-signature"></span>onlySelectedLevel
+        <span class="method-var">
+        
+                
+                    (onlySelectedLevel)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set AnalysisObject onlySelectedLevel.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>onlySelectedLevel</code>
+                
+                
+                 : 
+                 
+                        Boolean
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Boolean
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="fixedOnShelf">
+        <a name="fixedOnShelf"></a>
+        <span class="type-signature"></span>fixedOnShelf
+        <span class="method-var">
+        
+                
+                    (fixedOnShelf)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set AnalysisObject fixedOnShelf.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>fixedOnShelf</code>
+                
+                
+                 : 
+                 
+                        Boolean
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Boolean
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="iconData">
+        <a name="iconData"></a>
+        <span class="type-signature"></span>iconData
+        <span class="method-var">
+        
+                
+                    (iconData)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set AnalysisObject iconData
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>iconData</code>
+                
+                
+                 : 
+                 
+                        Array
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"><pre>
+     [{
+        "className" : "String", // Customer class name
+        "tooltip" : "String", // (Optional) Set tooltip
+        "position": "String" // Provide at most 3 icons position. "dataset", "hierarchy" are respectively put on text left, and "link" are put on text right.
+     }]
+</pre>
+iconData allow user to customize className and tooltip.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var analysisObject = new AnalysisObject(...);
+//Set custom icon font class
+analysisObject.iconData = ([{
+          "className" : "custom-class",
+          "tooltip" : "this is a tooltip",
+          "position" : "dataset"
+     },{
+          "className" : "custom-class",
+          "tooltip" : "this is a tooltip",
+          "position" : "hierarchy"
+     }, {
+          "className" : "custom-class",
+          "tooltip" : "this is a tooltip",
+          "position" : "link"
+     }]);
+var iconData = analysisObject.iconData();
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+</article>
+</section>  
+
+
+
+
+</div>
+
+<br clear="both">
+
+<!--footer>
+    Documentation generated by <a href="https://github.com/micmath/jsdoc">JSDoc 3</a> on Wed Jul 08 2015 07:37:46 GMT+0200 (CEST)
+</footer-->
+<script src="static/linenumber.js"> </script>
+<link href="../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet"> 
+<script src="../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/css/css.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+<script src="static/livedemo.js"></script>
+</body>
+</html>

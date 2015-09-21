@@ -1,0 +1,207 @@
+[
+{
+    "headline": "Consumption API",
+    "pages": [{
+        "title": "sap.viz.api",
+        "pages": [{
+            "title": "data",
+            "pages": [{
+                "title": "CrosstableDataset",
+                "url": "docs/apiDocumentation/sap.viz.api.data.CrosstableDataset.html",
+                "icon": "resources/img/class_icon.png"
+            }, {
+                "title": "FlatTableDataset",
+                "url": "docs/apiDocumentation/sap.viz.api.data.FlatTableDataset.html",
+                "icon": "resources/img/class_icon.png"
+            }]
+        }, {
+            "title": "core",
+            "url": "docs/apiDocumentation/sap.viz.api.core.html",
+            "pages": [{
+                "title": "VizInstance",
+                "url": "docs/apiDocumentation/sap.viz.api.core.VizInstance.html",
+                "icon": "resources/img/namespace_icon.png"
+            }]
+        }, {
+            "title": "VERSION",
+            "url": "docs/apiDocumentation/sap.viz.api.VERSION.html",
+            "icon": "resources/img/namespace_icon.png"
+        }, {
+            "title": "metadata",
+            "pages": [{
+                "title": "Viz",
+                "url": "docs/apiDocumentation/sap.viz.api.metadata.Viz.html",
+                "icon": "resources/img/namespace_icon.png"
+            }]
+        }, {
+            "title": "env",
+            "pages": [{
+                "title": "Format",
+                "url": "docs/apiDocumentation/sap.viz.api.env.Format.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "Language",
+                "url": "docs/apiDocumentation/sap.viz.api.env.Language.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "Locale",
+                "url": "docs/apiDocumentation/sap.viz.api.env.Locale.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "Resource",
+                "url": "docs/apiDocumentation/sap.viz.api.env.Resource.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "Template",
+                "url": "docs/apiDocumentation/sap.viz.api.env.Template.html",
+                "icon": "resources/img/namespace_icon.png"
+            }]
+        }, {
+            "title": "env",
+            "url": "docs/apiDocumentation/sap.viz.api.env.html",
+            "icon": "resources/img/namespace_icon.png"
+        }, {
+            "title": "log",
+            "pages": [{
+                "title": "Appender",
+                "url": "docs/apiDocumentation/sap.viz.api.log.Appender.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "Layout",
+                "url": "docs/apiDocumentation/sap.viz.api.log.Layout.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "Logger",
+                "url": "docs/apiDocumentation/sap.viz.api.log.Logger.html",
+                "icon": "resources/img/namespace_icon.png"
+            }]
+        }, {
+            "title": "manifest",
+            "pages": [{
+                "title": "Feed",
+                "url": "docs/apiDocumentation/sap.viz.api.manifest.Feed.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "Module",
+                "url": "docs/apiDocumentation/sap.viz.api.manifest.Module.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "Viz",
+                "url": "docs/apiDocumentation/sap.viz.api.manifest.Viz.html",
+                "icon": "resources/img/namespace_icon.png"
+            }]
+        }]
+    }]
+},
+{
+    "headline": "Extension API",
+    "pages": [{
+        "title": "sap.viz.extapi",
+        "pages": [{
+            "title": "core",
+            "pages": [{
+                "title": "BaseCustomOverlay",
+                "url": "docs/apiDocumentation/sap.viz.extapi.core.BaseCustomOverlay.html"
+            }, {
+                "title": "BaseCustomRenderer",
+                "url": "docs/apiDocumentation/sap.viz.extapi.core.BaseCustomRenderer.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "BaseCustomInteraction",
+                "url": "docs/apiDocumentation/sap.viz.extapi.core.BaseCustomInteraction.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "BaseCustomization",
+                "url": "docs/apiDocumentation/sap.viz.extapi.core.BaseCustomization.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "BaseChart",
+                "url": "docs/apiDocumentation/sap.viz.extapi.core.BaseChart.html",
+                "icon": "resources/img/namespace_icon.png"
+            }]
+        }, {
+            "title": "VERSION",
+            "url": "docs/apiDocumentation/sap.viz.extapi.VERSION.html",
+            "icon": "resources/img/namespace_icon.png"
+        }, {
+            "title": "component",
+            "pages": [{
+                "title": "component",
+                "url": "docs/apiDocumentation/sap.viz.extapi.component.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "Title",
+                "url": "docs/apiDocumentation/sap.viz.extapi.component.Title.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "ColorLegend",
+                "url": "docs/apiDocumentation/sap.viz.extapi.component.ColorLegend.html",
+                "icon": "resources/img/namespace_icon.png"
+            }]
+        }, {
+            "title": "customization",
+            "pages": [{
+                "title": "constants",
+                "pages": [{
+                    "title": "CustomInteractionEvents",
+                    "url": "docs/apiDocumentation/sap.viz.extapi.customization.constants.CustomInteractionEvents.html",
+                    "icon": "resources/img/namespace_icon.png"
+                }, {
+                    "title": "CustomInteractionTargets",
+                    "url": "docs/apiDocumentation/sap.viz.extapi.customization.constants.CustomInteractionTargets.html",
+                    "icon": "resources/img/namespace_icon.png"
+                }, {
+                    "title": "CustomRendererTypes",
+                    "url": "docs/apiDocumentation/sap.viz.extapi.customization.constants.CustomRendererTypes.html",
+                    "icon": "resources/img/namespace_icon.png"
+                }]
+            }]
+        }, {
+            "title": "env",
+            "pages": [{
+                "title": "Language",
+                "url": "docs/apiDocumentation/sap.viz.extapi.env.Language.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "Locale",
+                "url": "docs/apiDocumentation/sap.viz.extapi.env.Locale.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "Resource",
+                "url": "docs/apiDocumentation/sap.viz.extapi.env.Resource.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "Template",
+                "url": "docs/apiDocumentation/sap.viz.extapi.env.Template.html",
+                "icon": "resources/img/namespace_icon.png"
+            }]
+        }, {
+            "title": "Flow",
+            "url": "docs/apiDocumentation/sap.viz.extapi.Flow.html",
+            "icon": "resources/img/namespace_icon.png"
+        }, {
+            "title": "manifest",
+            "pages": [{
+                "title": "Feed",
+                "url": "docs/apiDocumentation/sap.viz.extapi.manifest.Feed.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "Module",
+                "url": "docs/apiDocumentation/sap.viz.extapi.manifest.Module.html",
+                "icon": "resources/img/namespace_icon.png"
+            }, {
+                "title": "Viz",
+                "url": "docs/apiDocumentation/sap.viz.extapi.manifest.Viz.html",
+                "icon": "resources/img/namespace_icon.png"
+            }]
+        }, {
+            "title": "utils",
+            "pages": [{
+                "title": "Data",
+                "url": "docs/apiDocumentation/sap.viz.extapi.utils.Data.html",
+                "icon": "resources/img/namespace_icon.png"
+            }]
+        }]
+    }]
+}
+]

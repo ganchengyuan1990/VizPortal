@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html id="html">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Map with choropleth</title>
+        <link href="../resources/style.css" rel="stylesheet">
+        <script type="text/javascript" src="../../../resources/libs/d3.js"></script>
+        <script type="text/javascript" src="../../../resources/libs/jquery.js"></script>
+        <script src="../../../resources/sap-ui-core.js" id="sap-ui-bootstrap" data-sap-ui-libs="sap.ui.commons,sap.ui.ux3,sap.m" data-sap-ui-theme="sap_bluecrystal"></script>
+        <script type="text/javascript" src="../../../resources/libs/require.js"></script>
+        <script type="text/javascript" src="../../../resources/libs/sap.viz/sap.viz.info.js"></script>
+        <script type="text/javascript" src="../../../resources/libs/sap.viz/sap.viz.map.js"></script>
+        <link href="../../../resources/libs/sap.viz/resources/geo/styles/map.css" rel="stylesheet" type="text/css"/> 
+        <script id="prepare" type="text/javascript" src="main_color.js"></script>
+        <script src="../../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+        <script src="../../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+        <script src="../../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+        <script src="../../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+        <script src="../../../resources/libs/CodeMirror/mode/css/css.js"></script>
+        <script src="../../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+        <link href="../../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+        <link href="../../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+        <link href="../../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet">  
+        <script type="text/javascript"></script>
+        <script type="text/javascript" src="../../../js/codeView.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../../resources/css/codeView.css">
+    </head>
+    <body>
+        <div id="chart" class="chartArea"></div>
+        <p  id="toggle"><span id="htmlView" class="htmlView active">HTML view</span><span id="jsView" class="htmlView">JS view</span></p>
+        <div id="code-content"  ></div>
+    </body>
+</html>

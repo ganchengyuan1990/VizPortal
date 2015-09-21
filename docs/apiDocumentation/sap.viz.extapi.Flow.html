@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>[VIZDOC] Namespace: Flow</title>
+    <script src="static/jquery-1.7.2.min.js"> </script>
+    <script src="static/jquery-ui-1.8.22.custom.min.js"> </script>
+    <script src="static/jquery.ui.autocomplete.html.js"> </script>
+    <script src="metadata.js"> </script>
+    <script>
+        $(function() {
+            $("#tabs").tabs();
+            $("#tags").autocomplete({
+                source: metadata.searchDS,
+                select: function(event, ui) {
+                    var link = ui.item.value;
+                    location.href = link;
+                },
+                html: true
+            });
+            
+            var tcX = $(window).width() - $('#tableContent').width() - 20, tcY = 125;
+            /*$("#tableContent").draggable({
+                handle: '#tcTitle',
+                start: function(event, ui) {
+                    $('#tableContent').css('right', '');
+                },
+                stop: function(event, ui) {
+                    tcX = $(this).offset().left - document.body.scrollLeft;
+                    tcY = $(this).offset().top - document.body.scrollTop;
+                }
+            }).resizable({
+                resize: function(){
+                    $('#tcTitle').width($(this).width());
+                    $('#tcContent').width($(this).width()-11)
+                        .height($(this).height()-11 - $('#tcTitle').height());
+                }
+            });*/
+            $(window).resize(function() {
+                var newX = $(window).width() - $('#tableContent').width() - 20;
+                //if (tcX > newX) {
+                    tcX = newX;
+                    $('#tableContent').css('left', tcX+document.body.scrollLeft);
+                    $('#tableContent').css('right', '');
+                //}
+                
+            });
+            //$('#tableContent').css('left', tcX).css('top', tcY);
+            $('#tableContent').css('right', 20).css('top', 20);
+            if (getParameterByName('version') == '1') {
+                $("#version1").css({"text-decoration":"none","color":"#333333"});
+                $("#version2").css({"text-decoration":"underline","color":"#66ccff"});
+                $("#gif2").hide();
+            }
+            else {
+                $("#version1").css({"color":"#66ccff"});
+                $("#version2").css({"text-decoration":"none"});
+                $("#gif1").hide();
+            }
+
+            $('.widget-header .widget-title').click(function() {
+                $('.widget-body').animate({height: 'toggle', opacity: 'toggle'}, "slow");
+                if ($(this).hasClass("widget-title-click")) {
+                    $(this).removeClass("widget-title-click");
+                } else {
+                    $(this).addClass("widget-title-click");
+                }
+            });
+            if(parent.window._getIndexOfSelection){
+                var selectionIndex = parent.window._getIndexOfSelection();
+                $(".container-overall").before("<h2 id=\"selectionIndex\" style=\"padding-bottom:20px\">"+selectionIndex + "</h2>")
+            }
+
+            
+                $('#tableContent').css('visibility', 'visible');
+            
+        });
+        
+        function linkToChartProperty() {
+            window.location.href = "../chartproperty/chartproperty.html";
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+    </script>
+    <link type="text/css" rel="stylesheet" href="static/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="static/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="static/jquery-ui-1.8.22.custom.css">
+    <link type="text/css" rel="stylesheet" href="static/renew.css">
+</head>
+
+<body>
+<script>
+      function returnTop() {
+          $('body,html').animate({'scrollTop':0}, 500);
+      }
+</script>
+<div class="returnIcon" id="svgToTop">
+  <img src="static/to_top.svg" onclick="returnTop()">
+</div>
+<div id='tableContent'>
+    <div id='tcTitle' class="widget-header">
+        <div class="widget-title">Namespace: Flow</div>
+    </div>
+    <div id='tcContent' class='widget-body'>
+         							<a href="#methods" class="table-title">Methods</a> 							<ul><li><a href="#createFlow">createFlow</a></li>
+<li><a href="#createElement">createElement</a></li>
+<li><a href="#registerFlow">registerFlow</a></li>
+<li><a href="#unregisterFlow">unregisterFlow</a></li></ul>
+    </div>
+</div>  
+
+<div id="main">
+    
+
+
+
+<section class="container-overall">
+    
+<header>
+    <h2 class="section-title">
+        Namespace: Flow
+    </h2>
+    
+    
+        
+            <div class="class-description">sap.viz.extapi.Flow</div>
+        
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title"><a name="methods">Methods</a></h3>
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="createFlow">
+        <a name="createFlow"></a>
+        <span class="type-signature">[static] </span>createFlow
+        <span class="method-var">
+        
+                
+                    (flowParams)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Create visualization flow
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>flowParams</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Parameters for the visualization flow.<br>
+e.g.<br>
+<pre>
+     {
+         'id':"flowId", // The flow ID; you can use this ID to create a visualization.
+         'name': "flowName", // The flow name
+         'type': flow type, // We currently have: "DIV", "BorderDIVFlow", "BorderSVGFlow"
+         'dataModel': dataModel, // The visualization will use the dataModel. CVOM currently supports: "sap.viz.api.data.CrosstableDataset” and “sap.viz.api.data.FlatTableDataset". The default is none which means there is no specific data model defined.
+     }
+</pre></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                Return a flow instance<br><br>
+             With this instance, you can add an element into the flow by calling its method :addElement.
+<br>
+<div class="name" id="flowInstance.addElement" style="margin:20px,font-size:12px;color:black;font-weight:bold">
+    <a name="createFlow"></a><br>method:</div>
+<div style="font-family:''Open Sans' sans-serif';font-weight:bold;font-size:12px;color:gray;padding-left:10px;">flowInstance.addElement</div>
+<div style="color:black;font-weight:bold"><br>Parameters:<br></div>
+<div style="padding-left:25px;"><li><span style="font-family:''Open Sans' sans-serif';font-weight:bold;font-size:12px;color:#7f7f7f;">elementParam:</span><span style="margin-left:5px;">Object</span></li></div>
+<div style="margin-left:25px;">Element and its properties.<div>e.g.</div></div>
+<pre>
+         {
+             element:elementInstance, // The element instance which is created by sap.viz.extapi.Flow.createElement
+             propertyCategory: property category, // You can use this category to set the property for the element in createViz.
+             place:  position for the element. // We currently support five positions: "center", "top", "right", "bottom", "left".
+         }
+</pre>
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">How to add the element into the flow:</p>
+    
+    <pre class="prettyprint"><code> var element1 = sap.viz.extapi.Flow.createElement({
+    id:elementId,
+});
+ var flow = sap.viz.extapi.Flow.createFlow({
+    id:flowId,
+    name:flowName
+});
+//add element1 into flow.
+ flow.addElement({
+    element:element1
+    propertyCategory: "plot",
+    place: "center"
+});</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="createElement">
+        <a name="createElement"></a>
+        <span class="type-signature">[static] </span>createElement
+        <span class="method-var">
+        
+                
+                    (elmParams)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Create visualization element
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>elmParams</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Parameters for the visualization element:<br>
+e.g.<br>
+<pre>
+     {
+         'id':"elementId", // The element ID
+         'name':"elementName", // The element name
+                'dimensionIndex': dimensionIndex, // (Optional) The index of the dimension which is required by your element. It is currently used by the CVOM legend to set the correct dimensions to the legend element only. 
+     }
+</pre>
+CVOM enables you to reuse internal elements to create flow</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                Return an element instance
+
+<br>With this instance you can add its implementation by using the method: implement();
+<br>With this instance you can add its property by using the method: addProperty();
+<br>With this instance you can add its feed definition by using the method: addFeed();
+<br>
+<div class="name" id="implement" style="margin:20px,font-size:12px;color:black;font-weight:bold"><a name="implement"></a><br>method:</div>
+<div style="font-family:''Open Sans' sans-serif';font-weight:bold;font-size:12px;color:gray;padding-left:10px;">elementInstance.implement</div>
+<div style="color:black;font-weight:bold"><br>Parameters:<br></div>
+<div style="padding-left:25px;">
+        <li><span style="font-family:''Open Sans' sans-serif';font-weight:bold;font-size:12px;color:#7f7f7f;">baseElementPath:</span><span style="margin-left:5px;">String</span></li>
+             <div>Base element path. We currently only support:'sap.viz.elements.common.BaseGraphic'.</div>
+        <br>
+        <li><span style="font-family:''Open Sans' sans-serif';font-weight:bold;font-size:12px;color:#7f7f7f;">implementFunction:</span><span style="margin-left:5px;">Object</span></li>
+             <div>Element implementation class</div>
+</div>
+<br>
+<div class="name" id="implement" style="margin:20px,font-size:12px;color:black;font-weight:bold"><a name="implement"></a><br>method:</div>
+<div style="font-family:''Open Sans' sans-serif';font-weight:bold;font-size:12px;color:gray;padding-left:10px;">elementInstance.addProperty</div>
+<div style="color:black;font-weight:bold"><br>Parameters:<br></div>
+<div style="padding-left:25px;"><li><span style="font-family:''Open Sans' sans-serif';font-weight:bold;font-size:12px;color:#7f7f7f;">propertyObject:</span><span style="margin-left:5px;">Object</span></li></div>
+<div style="margin-left:25px;">Properties for the element:</div>
+<pre style="margin-left:50px;">
+{
+    name:propName, // (Required) The property name
+    type:String, // (Required) The property type
+    supportedValues:[value1, value2] // (Optional) The supportedValues array.
+}
+</pre>
+<br>
+<div class="name" id="implement" style="margin:20px,font-size:12px;color:black;font-weight:bold"><a name="implement"></a><br>method:</div>
+<div style="font-family:''Open Sans' sans-serif';font-weight:bold;font-size:12px;color:gray;padding-left:10px;">elementInstance.addFeed</div>
+<div style="margin:20px,font-size:12px;color:black;font-weight:bold"><br>Parameters:<br></div>
+<div style="padding-left:25px;"><li><span style="font-family:''Open Sans' sans-serif';font-weight:bold;font-size:12px;color:#7f7f7f;">feedObject:</span><span style="margin-left:5px;">Object</span></li></div>
+<div style="margin-left:25px;">Feed for the element</div>
+<br>
+<br>
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">How to add the implementation class into the element:</p>
+    
+    <pre class="prettyprint"><code> var element1 = sap.viz.extapi.Flow.createElement({
+    id:elementId,
+});
+
+ var DimfeedingInfo = [{
+'id' : 'regionColor',
+'name' : 'IDS_REGIONCOLOR',
+      'type' : 'Dimension', // Cannot access constants.Type.Dimension,
+      'min' : 0,
+      'max' : 2,
+      'aaIndex' : 2,
+      'acceptMND' : 1
+  }, {
+      'id' : 'axisLabels',
+      'name' : 'IDS_AXISLABELS',
+      'type' : 'Dimension',
+      'min' : 1,
+      'max' : 2,
+      'acceptMND' : 0,
+      'aaIndex' : 1
+  }];
+  var MeasureFeedingInfo = {
+      'id' : 'primaryValues',
+      'name' : 'IDS_PRIMARYVALUES',
+      'type' : 'Measure',
+      'min' : 1,
+     'max' : Number.POSITIVE_INFINITY,
+      'mgIndex' : 1
+ };
+
+element1.addFeed(DimfeedingInfo);// addFeed by using the array of feeding definition
+element1.addFeed(MeasureFeedingInfo);// addFeed by the single feeding definition
+
+var chartFn = {
+     render : function(){
+    // Enter your rendering work here:
+     }
+};
+// Add the visualization implement functions into element1.
+ element1.implement('sap.viz.elements.common.BaseGraphic',chartFn);</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="registerFlow">
+        <a name="registerFlow"></a>
+        <span class="type-signature">[static] </span>registerFlow
+        <span class="method-var">
+        
+                
+                    (flowInstance)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Register flow into CVOM. <br>
+After registering, you can use sap.viz.api.core.createViz to create the registered visualization by using the flow's ID as the visualization ID.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>flowInstance</code>
+                
+                
+                 : 
+                 
+                        flowInstance
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Flow Instance</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">How to register and create the visualization flow:</p>
+    
+    <pre class="prettyprint"><code> // Create Flow steps:
+ var element1 = sap.viz.extapi.Flow.createElement({
+    id:elementId,
+ });
+ var chartFn = {
+     render : function(){
+    // Enter your rendering work here:
+     }
+ };
+ // Add visualization implementation functions into element1.
+ element1.implement('sap.viz.elements.common.BaseGraphic',chartFn);
+
+ // Create visualization flow
+var chartFlow = sap.viz.extapi.Flow.createFlow({
+    id:flowId,
+ });
+
+ // Add element into flow
+ chartFlow.addElement({
+    element:element1
+ });
+
+ // Register flow into CVOM.
+ sap.viz.extapi.Flow.registerFlow(flow);
+
+ // Create visualization flow:
+ var chartInstance = sap.viz.api.core.createViz({
+   type : flowId,
+    data : {}// Visualization dataset
+    container :{} // Visualization plotting jquery HTMLDivElement
+    options : {}// Visualization options
+});</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="unregisterFlow">
+        <a name="unregisterFlow"></a>
+        <span class="type-signature">[static] </span>unregisterFlow
+        <span class="method-var">
+        
+                
+                    (flowId)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Unregister flow from CVOM
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>flowId</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The flow ID you want to unregister</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+</article>
+</section>  
+
+
+
+
+</div>
+
+<br clear="both">
+
+<!--footer>
+    Documentation generated by <a href="https://github.com/micmath/jsdoc">JSDoc 3</a> on Wed Jul 08 2015 07:35:15 GMT+0200 (CEST)
+</footer-->
+<script src="static/linenumber.js"> </script>
+<link href="../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet"> 
+<script src="../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/css/css.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+<script src="static/livedemo.js"></script>
+</body>
+</html>

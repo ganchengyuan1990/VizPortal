@@ -1,0 +1,172 @@
+@font-face {
+	font-family: 'Arial', 'BentonSans', 'Helvetica', 'sans-serif';
+	src: url('SAP-icons.ttf'),
+    url('SAP-icons.eot'); /* IE9+ */
+	font-weight: normal;
+	font-style: normal;
+}
+
+/*----------- general -----------*/
+article {
+	border: none;
+}
+
+h5 {
+	color: rgb(15,15,15) !important;
+}
+
+/*----------- title -----------*/
+.sention-title {
+	font-family: 'Arial', 'BentonSans', 'Helvetica', 'sans-serif';
+  	font-weight: 400;
+}
+
+.class-description {
+  	padding-left: 6px;
+  	font-family: 'Arial', 'BentonSans', 'Helvetica', 'sans-serif';
+  	font-weight: 400;
+  	color: #000;
+  	margin-top: 0;
+  	font-size: 14px;
+}
+
+/*----------- method -----------*/
+.subsection-title {
+	margin-top: 10px;
+  	font-size: 18px;
+  	border-bottom: 1px solid #d0d0d0;
+  	background-color: white;
+  	font-weight: 400;
+  	font-family: 'Arial', 'BentonSans', 'Helvetica', 'sans-serif';
+}
+
+.method {
+	padding-top: 10px;
+	/*border-color: #d0d0d0;*/
+	border-color: white;
+}
+
+.method .method-content {
+	border-left: none;
+	margin-left: 20px;
+    border-bottom:1px solid #ccc;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.method .description, .method h5, .method .name code, .method .description pre,
+.method .sample-code, .method .code-caption {
+	color: #868686;
+	font-family: 'Arial', 'BentonSans', 'Helvetica', 'sans-serif';
+  	font-weight: 400;
+  	font-size: 13px;
+}
+
+.method .description pre {
+	background-color: #f2f2f2;
+	padding: 20px;
+  	margin: 10px 0px;
+}
+
+.method .name {
+	color: rgb(255, 0, 102);
+    font-family: 'Arial', 'BentonSans', 'Helvetica', 'sans-serif';
+	font-size: 15px;
+  	margin: 5px 0px;
+}
+
+/*----------- properties -----------*/
+.members {
+	padding-top: 10px;
+	/*border-color: #d0d0d0;*/
+	border-color: white;
+}
+
+.members .members-content {
+	border-left: none;
+	margin-left: 20px;
+}
+
+.members .members-content h4{
+	/*color: rgb(0, 124, 192);*/
+	font-family: 'Arial', 'BentonSans', 'Helvetica', 'sans-serif';
+  	font-weight: 400;
+  	font-size: 14px;
+  	margin: 5px 0px;
+}
+
+/*----------- fixed div -----------*/
+#tableContent {
+	border: none;
+}
+
+.widget-header {
+	font-family: 'Arial', 'BentonSans', 'Helvetica', 'sans-serif';
+  	font-size: 13px;
+ 	background-color: rgb(30, 135, 212);
+}
+
+.widget-header .widget-title {
+	color: white;
+	cursor: pointer;
+}
+
+.widget-body {
+	background-color: #f2f2f2;
+	font-family: 'Arial', 'BentonSans', 'Helvetica', 'sans-serif';
+  	font-weight: 400;
+  	font-size: 13px;
+  	text-decoration: none;
+  	border: 1px solid #ddd;
+}
+
+.widget-body .table-title {
+	text-decoration: none;
+}
+
+.widget-header .widget-title:after {
+	font-family: 'SAP-icons';
+  	position: relative;
+	float: right;
+	top: 1px;
+	content: "\e1ef";
+	margin-left: 11px;
+}
+
+.widget-header .widget-title-click:after {
+	font-family: 'SAP-icons';
+  	position: relative;
+	float: right;
+	top: 1px;
+	content: "\e1ed";
+	margin-left: 13px;
+}
+
+.widget-body li {
+	margin: auto;
+}
+
+.widget-body li a {
+	text-decoration: none;
+	color: rgb(0, 124, 192);
+}
+
+#selectionIndex{
+    font-family: Arial, ArialMT; 
+    font-weight: 400; 
+    color: rgb(51, 51, 51);
+}
+
+div#svgToTop{
+    cursor: pointer;
+    opacity: 0.8;
+    display: block;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    overflow: hidden;
+}
+
+
+
+

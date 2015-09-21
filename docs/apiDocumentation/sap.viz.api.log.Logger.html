@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>[VIZDOC] Namespace: Logger</title>
+    <script src="static/jquery-1.7.2.min.js"> </script>
+    <script src="static/jquery-ui-1.8.22.custom.min.js"> </script>
+    <script src="static/jquery.ui.autocomplete.html.js"> </script>
+    <script src="metadata.js"> </script>
+    <script>
+        $(function() {
+            $("#tabs").tabs();
+            $("#tags").autocomplete({
+                source: metadata.searchDS,
+                select: function(event, ui) {
+                    var link = ui.item.value;
+                    location.href = link;
+                },
+                html: true
+            });
+            
+            var tcX = $(window).width() - $('#tableContent').width() - 20, tcY = 125;
+            /*$("#tableContent").draggable({
+                handle: '#tcTitle',
+                start: function(event, ui) {
+                    $('#tableContent').css('right', '');
+                },
+                stop: function(event, ui) {
+                    tcX = $(this).offset().left - document.body.scrollLeft;
+                    tcY = $(this).offset().top - document.body.scrollTop;
+                }
+            }).resizable({
+                resize: function(){
+                    $('#tcTitle').width($(this).width());
+                    $('#tcContent').width($(this).width()-11)
+                        .height($(this).height()-11 - $('#tcTitle').height());
+                }
+            });*/
+            $(window).resize(function() {
+                var newX = $(window).width() - $('#tableContent').width() - 20;
+                //if (tcX > newX) {
+                    tcX = newX;
+                    $('#tableContent').css('left', tcX+document.body.scrollLeft);
+                    $('#tableContent').css('right', '');
+                //}
+                
+            });
+            //$('#tableContent').css('left', tcX).css('top', tcY);
+            $('#tableContent').css('right', 20).css('top', 20);
+            if (getParameterByName('version') == '1') {
+                $("#version1").css({"text-decoration":"none","color":"#333333"});
+                $("#version2").css({"text-decoration":"underline","color":"#66ccff"});
+                $("#gif2").hide();
+            }
+            else {
+                $("#version1").css({"color":"#66ccff"});
+                $("#version2").css({"text-decoration":"none"});
+                $("#gif1").hide();
+            }
+
+            $('.widget-header .widget-title').click(function() {
+                $('.widget-body').animate({height: 'toggle', opacity: 'toggle'}, "slow");
+                if ($(this).hasClass("widget-title-click")) {
+                    $(this).removeClass("widget-title-click");
+                } else {
+                    $(this).addClass("widget-title-click");
+                }
+            });
+            if(parent.window._getIndexOfSelection){
+                var selectionIndex = parent.window._getIndexOfSelection();
+                $(".container-overall").before("<h2 id=\"selectionIndex\" style=\"padding-bottom:20px\">"+selectionIndex + "</h2>")
+            }
+
+            
+                $('#tableContent').css('visibility', 'visible');
+            
+        });
+        
+        function linkToChartProperty() {
+            window.location.href = "../chartproperty/chartproperty.html";
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+    </script>
+    <link type="text/css" rel="stylesheet" href="static/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="static/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="static/jquery-ui-1.8.22.custom.css">
+    <link type="text/css" rel="stylesheet" href="static/renew.css">
+</head>
+
+<body>
+<script>
+      function returnTop() {
+          $('body,html').animate({'scrollTop':0}, 500);
+      }
+</script>
+<div class="returnIcon" id="svgToTop">
+  <img src="static/to_top.svg" onclick="returnTop()">
+</div>
+<div id='tableContent'>
+    <div id='tcTitle' class="widget-header">
+        <div class="widget-title">Namespace: Logger</div>
+    </div>
+    <div id='tcContent' class='widget-body'>
+         							<a href="#constant" class="table-title">Constants</a> 							<ul><li><a href="#LEVEL.OFF">LEVEL.OFF</a></li>
+<li><a href="#LEVEL.TRACE">LEVEL.TRACE</a></li>
+<li><a href="#LEVEL.DEBUG">LEVEL.DEBUG</a></li>
+<li><a href="#LEVEL.INFO">LEVEL.INFO</a></li>
+<li><a href="#LEVEL.WARN">LEVEL.WARN</a></li>
+<li><a href="#LEVEL.ERROR">LEVEL.ERROR</a></li></ul> 							<a href="#methods" class="table-title">Methods</a> 							<ul><li><a href="#appenders">appenders</a></li>
+<li><a href="#level">level</a></li></ul>
+    </div>
+</div>  
+
+<div id="main">
+    
+
+
+
+<section class="container-overall">
+    
+<header>
+    <h2 class="section-title">
+        Namespace: Logger
+    </h2>
+    
+    
+        
+            <div class="class-description">sap.viz.api.log.Logger<br>
+[NOTE: This API is only applicable to all viz charts, in which the ID starts with “viz/”]</div>
+        
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+    </div>
+    
+    
+    
+    
+        <h3 class="subsection-title"><a name="constant">Constants</a></h3>
+        
+                    
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="LEVEL.OFF">
+        <span class="type-signature">[static, constant] </span>LEVEL.OFF<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Log level constant; OFF
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+                    
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="LEVEL.TRACE">
+        <span class="type-signature">[static, constant] </span>LEVEL.TRACE<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Log level constant; TRACE
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+                    
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="LEVEL.DEBUG">
+        <span class="type-signature">[static, constant] </span>LEVEL.DEBUG<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Log level constant; DEBUG
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+                    
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="LEVEL.INFO">
+        <span class="type-signature">[static, constant] </span>LEVEL.INFO<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Log level constant; INFO
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+                    
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="LEVEL.WARN">
+        <span class="type-signature">[static, constant] </span>LEVEL.WARN<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Log level constant; WARN
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+                    
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="LEVEL.ERROR">
+        <span class="type-signature">[static, constant] </span>LEVEL.ERROR<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Log level constant; ERROR
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+    
+    
+        <h3 class="subsection-title"><a name="methods">Methods</a></h3>
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="appenders">
+        <a name="appenders"></a>
+        <span class="type-signature">[static] </span>appenders
+        <span class="method-var">
+        
+                
+                    (value)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get or set log appenders
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>value</code>
+                
+                
+                 : 
+                 
+                        Array
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Array of the instances of sap.viz.api.log.Appender.#Appender
+<pre>
+{
+  The instances can be 
+  sap.viz.api.log.Appender.ConsoleAppender
+  sap.viz.api.log.Appender.DivAppender
+  sap.viz.api.log.Appender.AjaxAppender
+}
+</pre></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                [sap.viz.api.log.ConsoleAppender, sap.viz.api.log.DivAppender].
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="level">
+        <a name="level"></a>
+        <span class="type-signature">[static] </span>level
+        <span class="method-var">
+        
+                
+                    (value)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get or set log level
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>value</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">sap.viz.log.LEVEL constant.
+<pre>
+{
+  The value can be 
+  sap.viz.log.LEVEL.NO
+  sap.viz.log.LEVEL.TRACE
+  sap.viz.log.LEVEL.DEBUG
+  sap.viz.log.LEVEL.INFO
+  sap.viz.log.LEVEL.WARN
+  sap.viz.log.LEVEL.ERROR
+}
+</pre></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    String
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                sap.viz.log.LEVEL constant.
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+</article>
+</section>  
+
+
+
+
+</div>
+
+<br clear="both">
+
+<!--footer>
+    Documentation generated by <a href="https://github.com/micmath/jsdoc">JSDoc 3</a> on Wed Jul 08 2015 07:35:13 GMT+0200 (CEST)
+</footer-->
+<script src="static/linenumber.js"> </script>
+<link href="../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet"> 
+<script src="../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/css/css.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+<script src="static/livedemo.js"></script>
+</body>
+</html>

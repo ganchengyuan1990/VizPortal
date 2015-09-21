@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html >
+   <head >
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+      <title >Demo Legend Properties</title>
+      <script type="text/javascript" src="../../../resources/libs/d3.js"></script>
+      <script type="text/javascript" src="../../../resources/libs/require.js"></script>
+      <script type="text/javascript" src="../../../resources/libs/jquery.js"></script>
+      <script type="text/javascript" src="../../../resources/libs/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../resources/libs/json2.js"></script>
+      <script type="text/javascript" src="lib/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="../../../resources/libs/sap.viz/sap.viz.info.js"></script>
+      <script src="../../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+      <script src="../../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+      <script src="../../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+      <script src="../../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+      <script src="../../../resources/libs/CodeMirror/mode/css/css.js"></script>
+      <script src="../../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+      <link href="../../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+      <link href="../../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+      <link href="../../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet">
+      <!--<script type="text/javascript" src="resources/libs/Info_chart/sap.common.globalization.js"></script>-->
+
+
+      <link href="../../../resources/css/componentStyle.css" rel="stylesheet"/>
+      <link href="../resources/css/button.css" rel="stylesheet">
+      <style>
+         .label-name {
+         font-weight: bold;
+         font-size:12px;
+         padding-top:10px;
+         color:black;
+         }
+         .control-group{
+         padding-bottom:2px;
+         padding-left:5px;
+         padding-right:5px;
+         }
+      </style>
+   </head>
+   <body body class="sapUiBody" style='margin: 20px;'>
+      <div id="content"></div>
+      <div id="chart" style="margin: auto; border: 1px solid #dddddd; width: 80%; height: 600px;"></div>
+      <div id="button-container" class="button-content" style="width: 80%; height: 100%;  margin:auto">
+      </div>
+      <div id="code-content" style="border:1px solid #dddddd; margin:auto; width: 80%; clear:right">
+      </div>
+
+      <div class="tab-content" style="width: 100%; height: 100%; margin:10px" id="floatPanel" >
+         <div class="tab-pane active" id="properties">
+            <form>
+               <div class="control-group">
+                  <div class="label-name" style = "padding-top:0px!important">Switch Legend Types</div>
+                  <div class="btn-group chartType" data-toggle="buttons-radio">
+                     <text style="display:inline-block; font-size:12px;">Color&nbspLegend:&nbsp</text>
+                     </br><button type="button" class = "sapUiBtnS" value='pie'>Pie</button><button type="button" class = "sapUiBtnS" value='bar'>Bar</button>
+                     </br>
+                     <text style="display:inline-block; font-size:12px;">Size&nbspLegend:&nbsp</text>
+                     </br><button type="button" class = "sapUiBtnS" value='bubble'>Bubble</button>
+                     </br>
+                     <text style="display:inline-block; font-size:12px;">MBC&nbspLegend:&nbsp</text>
+                     </br>
+                     <button type="button" class = "sapUiBtnS" value='heatmap'>Heatmap</button>
+                     <button type="button" class = "sapUiBtnS btn-primary active" value='treemap'>Treemap</button>
+                     <button type="button" class = "sapUiBtnS" value='tagcloud'>Tagcloud</button>
+                  </div>
+               </div>
+            </form>
+            <form class="form-horizontal">
+               <div class="control-group">
+                  <div class="label-name ">MBC Legend Setting</div>
+                  <text style="display:inline-block;font-size:12px;">Values:&nbsp</text>
+                  </br>
+                  <input type="text" class = "sapMInputBaseInner" data-provide="typeahead" id='legendValues' style="width: 170px" value="[10,11,12,13,14,15]"/>
+               </div>
+               <div class="control-group">
+                  <div class="label-name ">Color Legend Setting&nbsp</div>
+               </div>
+               <div class="control-group">
+                  <text style="display:inline-block;font-size:12px;">ColorPalette:&nbsp</text>
+                  </br>
+                  <input type="text" class = "sapMInputBaseInner" data-provide="typeahead" id='colorPalette' style="width: 170px" value="red,yellow,blue,green,gray"/>
+               </div>
+               <div class="control-group">
+                  <text style="display:inline-block;font-size:12px;">Start Color:&nbsp</text>
+                  </br>
+                  <input type="text" class = "sapMInputBaseInner" data-provide="typeahead" id='startColor'/>
+               </div>
+               <div class="control-group">
+                  <text style="display:inline-block;font-size:12px;">End Color:&nbsp</text>
+                  </br>
+                  <input type="text" class = "sapMInputBaseInner" data-provide="typeahead" id='endColor'/>
+               </div>
+               <button type="button" class = "sapUiBtnS" id='applyColor'>Apply</button>
+            </form>
+         </div>
+      </div>
+      <script type="text/javascript" src="chart.js"></script>
+      <script type="text/javascript" src="../js/showcode.js"></script>
+      <script type="text/javascript" src="../js/util.js"></script>
+   </body>
+</html>

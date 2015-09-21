@@ -1,0 +1,2360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>[VIZDOC] Namespace: VizInstance</title>
+    <script src="static/jquery-1.7.2.min.js"> </script>
+    <script src="static/jquery-ui-1.8.22.custom.min.js"> </script>
+    <script src="static/jquery.ui.autocomplete.html.js"> </script>
+    <script src="metadata.js"> </script>
+    <script>
+        $(function() {
+            $("#tabs").tabs();
+            $("#tags").autocomplete({
+                source: metadata.searchDS,
+                select: function(event, ui) {
+                    var link = ui.item.value;
+                    location.href = link;
+                },
+                html: true
+            });
+            
+            var tcX = $(window).width() - $('#tableContent').width() - 20, tcY = 125;
+            /*$("#tableContent").draggable({
+                handle: '#tcTitle',
+                start: function(event, ui) {
+                    $('#tableContent').css('right', '');
+                },
+                stop: function(event, ui) {
+                    tcX = $(this).offset().left - document.body.scrollLeft;
+                    tcY = $(this).offset().top - document.body.scrollTop;
+                }
+            }).resizable({
+                resize: function(){
+                    $('#tcTitle').width($(this).width());
+                    $('#tcContent').width($(this).width()-11)
+                        .height($(this).height()-11 - $('#tcTitle').height());
+                }
+            });*/
+            $(window).resize(function() {
+                var newX = $(window).width() - $('#tableContent').width() - 20;
+                //if (tcX > newX) {
+                    tcX = newX;
+                    $('#tableContent').css('left', tcX+document.body.scrollLeft);
+                    $('#tableContent').css('right', '');
+                //}
+                
+            });
+            //$('#tableContent').css('left', tcX).css('top', tcY);
+            $('#tableContent').css('right', 20).css('top', 20);
+            if (getParameterByName('version') == '1') {
+                $("#version1").css({"text-decoration":"none","color":"#333333"});
+                $("#version2").css({"text-decoration":"underline","color":"#66ccff"});
+                $("#gif2").hide();
+            }
+            else {
+                $("#version1").css({"color":"#66ccff"});
+                $("#version2").css({"text-decoration":"none"});
+                $("#gif1").hide();
+            }
+
+            $('.widget-header .widget-title').click(function() {
+                $('.widget-body').animate({height: 'toggle', opacity: 'toggle'}, "slow");
+                if ($(this).hasClass("widget-title-click")) {
+                    $(this).removeClass("widget-title-click");
+                } else {
+                    $(this).addClass("widget-title-click");
+                }
+            });
+            if(parent.window._getIndexOfSelection){
+                var selectionIndex = parent.window._getIndexOfSelection();
+                $(".container-overall").before("<h2 id=\"selectionIndex\" style=\"padding-bottom:20px\">"+selectionIndex + "</h2>")
+            }
+
+            
+                $('#tableContent').css('visibility', 'visible');
+            
+        });
+        
+        function linkToChartProperty() {
+            window.location.href = "../chartproperty/chartproperty.html";
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+    </script>
+    <link type="text/css" rel="stylesheet" href="static/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="static/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="static/jquery-ui-1.8.22.custom.css">
+    <link type="text/css" rel="stylesheet" href="static/renew.css">
+</head>
+
+<body>
+<script>
+      function returnTop() {
+          $('body,html').animate({'scrollTop':0}, 500);
+      }
+</script>
+<div class="returnIcon" id="svgToTop">
+  <img src="static/to_top.svg" onclick="returnTop()">
+</div>
+<div id='tableContent'>
+    <div id='tcTitle' class="widget-header">
+        <div class="widget-title">Namespace: VizInstance</div>
+    </div>
+    <div id='tcContent' class='widget-body'>
+         							<a href="#methods" class="table-title">Methods</a> 							<ul><li><a href="#on">on</a></li>
+<li><a href="#size">size</a></li>
+<li><a href="#selection">selection</a></li>
+<li><a href="#data">data</a></li>
+<li><a href="#template">template</a></li>
+<li><a href="#properties">properties</a></li>
+<li><a href="#css">css</a></li>
+<li><a href="#feeding">feeding</a></li>
+<li><a href="#feedingZone">feedingZone</a></li>
+<li><a href="#propertyZone">propertyZone</a></li>
+<li><a href="#update">update</a></li>
+<li><a href="#destroy">destroy</a></li>
+<li><a href="#toJSON">toJSON</a></li>
+<li><a href="#customizations">customizations</a></li>
+<li><a href="#off">off</a></li>
+<li><a href="#action">action</a></li>
+<li><a href="#description">description</a></li>
+<li><a href="#bindings">bindings</a></li>
+<li><a href="#scales">scales</a></li></ul>
+    </div>
+</div>  
+
+<div id="main">
+    
+
+
+
+<section class="container-overall">
+    
+<header>
+    <h2 class="section-title">
+        Namespace: VizInstance
+    </h2>
+    
+    
+        
+            <div class="class-description">sap.viz.api.core.VizInstance</div>
+        
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title"><a name="methods">Methods</a></h3>
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="on">
+        <a name="on"></a>
+        <span class="type-signature">[static] </span>on
+        <span class="method-var">
+        
+                
+                    (evtType,
+                
+                    Callback)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Add event listener. <br>
+An eventType can have only one listener; to register multiple listeners to a certain eventType,
+you have to add additional name spaces after the eventType such as 'selectData.foo' or 'selectData.bar'.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evtType</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Refer to Chart Property for supported events for each kind of chart.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>Callback</code>
+                
+                
+                 : 
+                 
+                        function
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Listener function</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                <a href="sap.viz.api.core.VizInstance.html">sap.viz.api.core.VizInstance</a>
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code>instance.on('initialized', function() {
+    // Do something after the event 'initialized' is fired.
+});</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="size">
+        <a name="size"></a>
+        <span class="type-signature">[static] </span>size
+        <span class="method-var">
+        
+                
+                    (size)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set chart size. <br>
+If set auto = true, the width and height are optional and will be ignored. The chart size will be adjusted
+automatically according to the container size.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>size</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">{"width" : Number, "height" : Number, ["auto" : Boolean]} | {"auto" : Boolean}</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                <a href="sap.viz.api.core.VizInstance.html">sap.viz.api.core.VizInstance</a>
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="selection">
+        <a name="selection"></a>
+        <span class="type-signature">[static] </span>selection
+        <span class="method-var">
+        
+                
+                    (selectionPoint,
+                
+                    options)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set selected data points. <br>
+To get selection, please use selection() or selection(Options). <br>
+To set selection, please use selection(selectionPoint),
+or selection(selectionPoint, Options).
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>selectionPoint</code>
+                
+                
+                 : 
+                 
+                        Array
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Array of Objects with either data or ctx should be set to points.
+Each point should be the following:
+<pre>
+{
+    "data": {key: 'value', ...}, // (Optional) For the FlatTableDataset, the key is ID.
+    "ctx":  [{mi: 0, ...}, {...}, ...], // (Optional) It takes higher priority when both parameters
+                                        // of 'data' and 'ctx' are used.
+}
+</pre></div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>options</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Selection options
+<pre>
+
+Parameters used in getting data points from selection:
+{
+    "withDataCtx": Boolean, // (Optional) This parameter is only applicable to all viz charts, in which the ID starts with "viz/". The default value is false.
+    "withInfo": Boolean, // (Optional) this parameter is deprecated.
+}
+
+Parameters used to set data points to be selected:
+{
+    "selectionMode": "inclusive" or "exclusive" // (Optional) The default value remains the same as the
+                                                // selection mode set by chart property
+                                                // of "interaction -> selectablity -> mode". It takes
+                                                // higher priority when both parameters of
+                                                // 'clearSelection' and 'selectionMode' are used.
+    "clearSelection": Boolean // (Optional) This parameter is deprecated.
+                              // parameter. Use 'clearSelection' for backward-compatibility only.
+}
+</pre></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array
+                     | 
+                
+                    Boolean
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                Array of Points(for getting selection). Each point is
+<pre>
+{
+    "data": {key: 'value', ...},
+    "ctx":  [{mi: 0, ...}, {...}, ...], // (Optional) Depends on "withDataCtx".
+    "info":  [{type: 'additionalData', ...}, {...}, ...], // (Optional) Depends on "withInfo".
+}
+</pre>
+or Boolean (for setting selection)
+<pre>
+    True means setting selection is successful.
+    False means setting selection is unsuccessful.
+</pre>
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code>Get sample:
+ VizInstance.selection(); this will get the selected data points.
+ VizInstance.selection({withDataCtx: false}); this will get the selected data points without the data context.
+ VizInstance.selection({withInfo: false}); this will get the selected data points without additional info.
+</br>
+Set sample:
+here is binding info and dataset for bar chart.
+var binding = [{
+      "feed": "valueAxis",
+      "source": ["Profit", "Revenue"]
+  }  ,{
+      "feed": "categoryAxis",
+      "source": ["Country", "Year"]
+  }, {
+      "feed": "color",
+      "source": ["Product",{"measureNames" : ["valueAxis"]}]
+  }];
+ var ds = new sap.viz.api.data.FlatTableDataset({
+   "metadata" : {
+  "fields" : [{
+      "id" : "Country",
+      "name" : "Country",
+      "semanticType" : "Dimension",
+      "dataType" : "String",
+      "domain":["China", "USA"]
+  }, {
+      "id" : "Year",
+      "name" : "Year",
+      "semanticType" : "Dimension",
+      "dataType" : "String"
+  }, {
+      "id" : "Product",
+      "name" : "Product",
+      "semanticType" : "Dimension",
+      "dataType" : "String",
+      "domain":["Car", "Motorcycle", "Truck"]
+  }, {
+      "id" : "Profit",
+      "name" : "Profit",
+      "semanticType" : "Measure",
+      "dataType" : "Number"
+  }, {
+      "id" : "Revenue",
+      "name" : "Revenue",
+      "semanticType" : "Measure",
+      "dataType" : "Number"
+  }]},
+  "data" : [   
+  ["USA", "2001", "Car", 58, 116 ],
+  ["USA", "2001", "Truck", 149, 249],
+  ["USA", "2001", "Motorcycle", 49, 149 ],
+  ["China", "2001", "Truck", 159, 300],
+  ["China", "2001", "Car", -150, 500,],
+  ["China", "2001", "Motorcycle", 129, 229],
+  ["China", "2002", "Car", 136.1245, 272 ],
+  ["China", "2002", "Truck", 147, 247],
+  ["China", "2002", "Motorcycle", 47, 147],
+  ["USA", "2002", "Car", 128, 256, ],
+  ["USA", "2002", "Truck", 269, 369],
+  ["USA", "2002", "Motorcycle", 69, 169 ]
+  ]
+  }  );
+
+1) select a simple datapoint:
+VizInstance.selection([{
+      "data":{"Country" : "China","Year" : "2001","Product" : "Motorcycle","Profit" : 129}
+}],{"clearSelection": true});
+
+VizInstance.selection([{
+      "data":{"Country" : "China","Year" : "2001","Product" : "Motorcycle","Profit" : 129}
+      
+}],{"selectionMode": "exclusive"});
+
+2) select all measures in special series and catergory: 
+VizInstance.selection([{
+      "data":{"Country" : "China", "Year" : "2001","Product" : "Car"}
+}]);
+
+3) select datapoint with special measure value: 
+VizInstance.selection([{
+      "data":{"Profit": 58}
+}]);
+
+4) select datapoint with special measure name: 
+VizInstance.selection([{
+      "data":{"Profit": "*"}
+}]);
+
+
+5) select datapoint within special range: 
+VizInstance.selection([{
+      "data":{"Profit": {"min": 50, "max": 100}}
+}]);
+
+6) select datapoint in special dimension names : 
+VizInstance.selection([{
+      "data":{"Product":{"in": ["Car", "Truck"]}}
+}]);
+7) select datapoint not with special dimension name: 
+VizInstance.selection([{
+      "data":{"Product":{"notEqual": "Car"}}
+}]);
+
+8) select datapoint with special dimension names and "Profit" >= 60: 
+VizInstance.selection([{
+        data:{"Product" :{ "in" :["Car", "Truck"]}, "Profit":{"min":60}}}]);
+9) select datapoint in special values: 
+VizInstance.selection([{
+        data:{ "Profit": {"in": [58, 128]}}}]);
+
+10) select on series: 
+VizInstance.selection([{
+        data:{"Product" :"Car",  "Profit": "*"}}]);
+
+11) select one category: 
+VizInstance.selection([{
+        data:{"Country" :"China",  "Year":"2011"}}]);
+
+
+
+If you want to clear all the selections, you need to set the input selection data to empty:
+    VizInstance.selection([],{"clearSelection": true})  or
+    VizInstance.selection([],{"selectionMode": "exclusive"});</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="data">
+        <a name="data"></a>
+        <span class="type-signature">[static] </span>data
+        <span class="method-var">
+        
+                
+                    (data)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set chart data.
+To get data, use data()
+To set data, use data(dataset)
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>data</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The object is either a type of CrosstableDataset or FlatTableDataset. <a href="sap.viz.api.data.CrosstableDataset.html">sap.viz.api.data.CrosstableDataset</a> | <a href="sap.viz.api.data.FlatTableDataset.html">sap.viz.api.data.FlatTableDataset</a></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                When getting data, it returns the object of the dataset of the chart.
+When setting the data, it returns the object of VizInstance <a href="sap.viz.api.core.VizInstance.html">sap.viz.api.core.VizInstance</a>.
+Use this api will only pass dataset into chart, but associated data binding information is still kept the same as before. Any invalid dataset will be ignored.
+To update both dataset and binding information at the same time, call <a href="sap.viz.api.core.VizInstance.html#update">sap.viz.api.core.VizInstance.update</a> instead.
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="template">
+        <a name="template"></a>
+        <span class="type-signature">[static] </span>template
+        <span class="method-var">
+        
+                
+                    (templateId)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set chart template <br/>
+[NOTE: for viz charts (chart type started with "viz/"), this API is only a get because viz chart
+ template cannot be properly updated at runtime]
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>templateId</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">a template id</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                <a href="sap.viz.api.core.VizInstance.html">sap.viz.api.core.VizInstance</a>
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code>VizInstance.template('flashy');</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="properties">
+        <a name="properties"></a>
+        <span class="type-signature">[static] </span>properties
+        <span class="method-var">
+        
+                
+                    (props,
+                
+                    options)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set chart properties <br/>
+[NOTE: the options argument is only for info charts (chart type starts with "info/")] <br/>
+When no arguments, return all properties. <br/>
+When the first argument "props" is valid, merge it into existing user setting properties. <br/>
+When options.level is valid (only "user" for now), return specific level properties. <br/>
+When options.level is valid and options.replace is true,
+replace existing properties of this level with the input properties. <br/>
+When there is only one argument or arguments are invalid, return this vizInstance;
+otherwise, return current properties (of specific level if options.level is valid) or empty object.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>props</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Refers to Chart Property</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>options</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">extra options, only support "level" and "replace" for now.
+Only available for info charts</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                <a href="sap.viz.api.core.VizInstance.html">sap.viz.api.core.VizInstance</a>
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code>// set properties (always user level)
+VizInstance.properties({title: { visible : true, text :'Sample Bar Chart Title'}});
+// get all properties
+var props = VizInstance.properties();
+// get user-set properties
+var userProps = VizInstance.properties({}, { level: "user" });
+// replace user properties
+VizInstance.properties({ 'title.text': 'New Title' }, { level: "user", replace: true });
+// reset user-set properties (replace with empty object)
+VizInstance.properties({}, { level: "user", replace: true });</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="css">
+        <a name="css"></a>
+        <span class="type-signature">[static] </span>css
+        <span class="method-var">
+        
+                
+                    (cssText)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+            deprecated
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        [NOTE: This API is only applicable to all viz charts, in which the ID starts with “viz/”]<br>
+Append or get an internal css.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>cssText</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The css text</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                     | 
+                
+                    String
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                <a href="sap.viz.api.core.VizInstance.html">sap.viz.api.core.VizInstance</a> | css string
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code>Set method: VizInstance.css('.v-m-title .v-title{ fill : #333333}');
+Get method: VizInstance.css();</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="feeding">
+        <a name="feeding"></a>
+        <span class="type-signature">[static] </span>feeding
+        <span class="method-var">
+        
+                
+                    (feeding)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set data feeding information.
+To get feeding, use feeding() <br>
+To set feeding, use feeding(feeding)
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>feeding</code>
+                
+                
+                 : 
+                 
+                        Array
+                         | 
+                
+                        Object
+                         | 
+                
+                        null
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">If passing in CrossTable dataset <a href="sap.viz.api.data.CrosstableDataset.html">sap.viz.api.data.CrosstableDataset</a>, the parameter should be an array of feeding items.
+<pre>
+[{
+  "feedId":feedId  // Feed ID for example: "regionColor"; refer to chartproperty
+  "binding": [{
+    "type" : "analysisAxis" | "measureValuesGroup" | "measureNamesDimension",
+    "index":  Number
+  }]
+}]
+
+For example:
+[{
+  "feedId" : "primaryValues",
+    "binding" : [{
+       "type" : "measureValuesGroup",
+       "index" : 1
+    }]
+ }, {
+  "feedId" : "regionColor",
+     "binding" : [{
+       "type" : "analysisAxis",
+       "index" : 2
+     }, {
+       "type" : "measureNamesDimension"
+     }]
+ }, {
+  "feedId" : "axisLabels",
+    "binding" : [{
+       "type" : "analysisAxis",
+       "index" : 1
+    }]
+}]
+</pre>
+
+If passing in the FlatTable dataset <a href="sap.viz.api.data.FlatTableDataset.html">sap.viz.api.data.FlatTableDataset</a>, the parameter should be an object.
+<pre>
+{
+  "feedId": [metadata|"measureNamesDimension"]
+}
+
+For example:
+{
+  axisLabels: ["measureNamesDimension", "Year"],
+  regionColor: ["Country"],
+  primaryValues: ["Profit", "Revenue"]
+}
+</pre>
+
+By passing a null feeding value in the CrossTable dataset, the chart will clean the feeding and use autofeed to create the chart.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array
+                     | 
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                When it receives feeding, it returns the array of the CrossTable dataset <a href="sap.viz.api.data.CrosstableDataset.html">sap.viz.api.data.CrosstableDataset</a> or object of the FlatTable dataset <a href="sap.viz.api.data.FlatTableDataset.html">sap.viz.api.data.FlatTableDataset</a> feed items.
+When setting feeding, it returns the VizInstance <a href="sap.viz.api.core.VizInstance.html">sap.viz.api.core.VizInstance</a>
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="feedingZone">
+        <a name="feedingZone"></a>
+        <span class="type-signature">[static] </span>feedingZone
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+            deprecated
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get current feeding zone information. <br>
+[NOTE: This API is deprecated. Refer to the Chart Properties feedingZone]
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                Feeding information group by the visualization element
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="propertyZone">
+        <a name="propertyZone"></a>
+        <span class="type-signature">[static] </span>propertyZone
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+            deprecated
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get current property zone information <br>
+[NOTE: This API is deprecated. Refer to the chart properties propertyZone]
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                Property information group by visualization element
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="update">
+        <a name="update"></a>
+        <span class="type-signature">[static] </span>update
+        <span class="method-var">
+        
+                
+                    (updates)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Update various items in one go
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>updates</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"><pre>
+{
+    data: <a href="sap.viz.api.data.CrosstableDataset.html">sap.viz.api.data.CrosstableDataset</a>|<a href="sap.viz.api.data.FlatTableDataset.html">sap.viz.api.data.FlatTableDataset</a>,
+    "feeding": <a href="sap.viz.api.core.VizInstance.html#feeding">sap.viz.api.core.VizInstance.feeding</a>,
+    "bindings": <a href="sap.viz.api.core.VizInstance.html#bindings">sap.viz.api.core.VizInstance.bindings</a>,
+    "css": cssString, // (Optional) This parameter is deprecated. Use chart properties to set style instead.
+    "properties": propertiesObj,
+    "propertiesOption": { // only for info charts (charts start with "info/"), see doc for properties() api
+         "level": "user",
+         "replace": true
+    },
+    "scales": scalesArray, // only for info charts (charts start with "info/")
+    "scalesOption": { // only for info charts (charts start with "info/"), see doc for scales() api.
+         "level": "user",
+         "replace": true
+    },
+    "customizations" : customizeObj <a href="sap.viz.api.core.VizInstance.html#customizations">sap.viz.api.core.VizInstance.customizations</a>,
+    // for example:, customizations:{id:'id', customOverlayProperties:{}, customRendererProperties:{}, customInteractionProperties:{}}
+}
+[NOTE: For info charts (chart type starts with "info/"), template can also be updated in this API]
+</pre></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                <a href="sap.viz.api.core.VizInstance.html">sap.viz.api.core.VizInstance</a>
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="destroy">
+        <a name="destroy"></a>
+        <span class="type-signature">[static] </span>destroy
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Destroy this chart instance. This will remove all dom
+nodes of the chart and the chart's listeners.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="toJSON">
+        <a name="toJSON"></a>
+        <span class="type-signature">[static] </span>toJSON
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+            deprecated
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Export the chart instance into a JSON object which contains
+all information of the chart: type, data, properties,
+css, feeding, and size.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                VizDoc object that contains all the information of VizInstance.
+<pre>
+{
+  "type": String, // Refer to the Chart Property for all supported viz chart TypeUtils.
+  "properties": {}, // Refer to the Chart Property for all supported options for each viz type.
+  "css": String, // Refer to the Chart Property or all supported css items for each viz type.
+                 // (Optional) This parameter is deprecated. Use chart properties to set style instead.
+  "size": {
+        "auto": Boolean, // When "auto" is true, the chart will use the parent container size.
+                         // When "auto" is false, the setting of "width" and "height" takes precedence.
+        "width": Number, // Width of chart; only works when 'auto' is true
+        "height": Number // Height of chart; only works when 'auto' is true
+     },
+  "data": {
+        "type":"Crosstable"|"FlatTable",
+        "val":dataset
+        },
+  "feeding": <a href="sap.viz.api.core.VizInstance.html#feeding">sap.viz.api.core.VizInstance.feeding</a>
+}
+</pre>
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="customizations">
+        <a name="customizations"></a>
+        <span class="type-signature">[static] </span>customizations
+        <span class="method-var">
+        
+                
+                    (Customization)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set chart customizations
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>Customization</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">settings with id,  customOverlayProperties , 
+     customRendererProperties, customInteractionProperties. <br>
+     customRendererProperties structure: {customRendererID:{'rules':[{"dataContext":ruleCondition, "Properties":{}}...]}.<br>
+     RuleCondition of customRendererProperties can be an array or object, the definition can be referred to <a href="RuleDefintion.html">RuleDefintion</a>.<br>
+     customRendererID: the id of <a href="BaseCustomRenderer.html">BaseCustomRenderer</a>.<br>
+     ruleCondition: the data context matched rule.<br>
+     properties: the properties for the matched context rule.<br></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Objet
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                Current customizations id ,  customOverlayProperties,  
+customRenderProperties and customInteractionProperties.
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code>VizInstance.customizations({
+      id: id,
+      customOverlayProperties: {
+          indicatorColor: "#FF0000"
+      },
+      customRendererProperties: {
+         'custom.markerRenderer': {
+            "rules": [{
+               "dataContext": [{
+                  'Year': {
+                     'in': ['2001', '2002']
+                  }
+               }],
+               "properties": {
+                  fill: "blue",
+                  stroke: "blue",
+                  borderColor: "blue",
+               }
+            }, {
+               "dataContext": {
+                  Country: "USA",
+                  Product: "Car",
+                  Year: "2002"
+               },
+               "properties": {
+                  fill: "red",
+                  stroke: "red",
+                 background: "red"
+               }
+            }]
+         }
+      },
+      customInteractionProperties: {
+          'custom.infobar.interaction': 4 {
+              highlighter: "#0000FF"
+          }
+      );</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="off">
+        <a name="off"></a>
+        <span class="type-signature">[static] </span>off
+        <span class="method-var">
+        
+                
+                    (eventType)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Remove event listener.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>eventType</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">EventType name</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    <a href="sap.viz.api.core.VizInstance.html">sap.viz.api.core.VizInstance</a>
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                self
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="action">
+        <a name="action"></a>
+        <span class="type-signature">[static] </span>action
+        <span class="method-var">
+        
+                
+                    (name,
+                
+                    args)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+            deprecated
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        [NOTE: This API is only applicable to all viz charts, in which the ID starts with “viz/”]<br>
+Trigger viz action
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>name</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The action's key name</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>args</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The action's arguments in JSON format</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                The action return value
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="description">
+        <a name="description"></a>
+        <span class="type-signature">[static] </span>description
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get viz description
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                Chart description
+<pre>
+{
+    "type": String // Read-only; viz type
+    "classId": String // The viz DIV's class uid
+}
+</pre>
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="bindings">
+        <a name="bindings"></a>
+        <span class="type-signature">[static] </span>bindings
+        <span class="method-var">
+        
+                
+                    (binding)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        [NOTE: This API is only applicable to all info charts, in which the ID starts with "info/"]<br>
+Get/Set data binding information to charts.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>binding</code>
+                
+                
+                 : 
+                 
+                        Array
+                         | 
+                
+                        Object
+                         | 
+                
+                        null
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">To get the data binding information, call VizInstance.bindings() <br>
+To set the data binding information, pass Object in below format into VizInstance
+Use this api will only pass data binding information into chart, but associated dataset value is still kept the same as before. Any invalid data binding information will be ignored.
+To update both dataset and binding information at the same time, call <a href="sap.viz.api.core.VizInstance.html#update">sap.viz.api.core.VizInstance.update</a> instead.
+<pre>
+bindings : [{
+    feed : String, predefined id which indicates the target binding area of chart
+    source : Object, the array consist of dimension name or measure name
+}, ...]
+
+For example:
+bindings :
+[{
+    "feed" : "valueAxis",
+    "source" : ["Profit", "Revenue"]
+ }, {
+    "feed" : "color",
+    "source" : ["Product", {"measureNames" : ["valueAxis"]} ]
+ }, {
+    "feed" : "categoryAxis",
+    "source" : ["Country"]
+}]
+</pre></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array
+                     | 
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                If getting the binding, it returns bindings array;
+if setting the binding, it returns VizInstance <a href="sap.viz.api.core.VizInstance.html">sap.viz.api.core.VizInstance</a>
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="scales">
+        <a name="scales"></a>
+        <span class="type-signature">[static] </span>scales
+        <span class="method-var">
+        
+                
+                    (scales)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        [NOTE: This API is only applicable to all info charts, in which the ID starts with "info/"]<br>
+Setting/getting scales <br/>
+When no arguments, return all scales. <br/>
+When argument "scales" is valid, merge it into existing user setting scales. <br/>
+When options.level is valid (only "user" for now), return specific level scales. <br/>
+When options.level is valid and options.replace is true,
+replace existing sacels of this level with the input scales. <br/>
+When there is only one argument or invalid arguments, return this vizInstance;
+otherwise, return current scales (of specific level if options.level is valid) or empty array
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>scales</code>
+                
+                
+                 : 
+                 
+                        Array
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Scale settings.
+<pre>
+[
+ {
+   "feed": "valueAxis", // Feed named "valueAxis"
+   "type": "linear", // Currently not working
+   "min": 0, // Min value of the scale
+   "max": 300 // Max value of the scale
+ }, {
+   "feed": "color", // Feed named "color"
+   "type": "color", // Currently not working
+   "palette": ["#00ffff", "#ff00ff", "#ff1122", "#ffff00", "#f99f99", "#99ff99"] // Color palette
+ }
+]
+When setting the scales in multiple times, the last one will always override the former one if "feed" name is the same.
+</pre></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                Scale settings of current vizInstance.
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code>// set scales (always user level)
+VizInstance.scales([{ feed: "valueAxis", type: "linear", min: 0 }]);
+// get all scales
+var scales = VizInstance.scales();
+// get user-set scales
+var userScales = VizInstance.scales([], { level: "user" });
+// replace user scales
+VizInstance.scales([{ feed: "valueAxis", type: "linear", min: 0 }], { level: "user", replace: true });
+// reset user-set scales (replace with empty array)
+VizInstance.scales([], { level: "user", replace: true });</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+</article>
+</section>  
+
+
+
+
+</div>
+
+<br clear="both">
+
+<!--footer>
+    Documentation generated by <a href="https://github.com/micmath/jsdoc">JSDoc 3</a> on Wed Jul 08 2015 07:35:12 GMT+0200 (CEST)
+</footer-->
+<script src="static/linenumber.js"> </script>
+<link href="../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet"> 
+<script src="../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/css/css.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+<script src="static/livedemo.js"></script>
+</body>
+</html>

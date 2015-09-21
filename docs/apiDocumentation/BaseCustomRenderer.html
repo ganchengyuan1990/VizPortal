@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>[VIZDOC] Namespace: BaseCustomRenderer</title>
+    <script src="static/jquery-1.7.2.min.js"> </script>
+    <script src="static/jquery-ui-1.8.22.custom.min.js"> </script>
+    <script src="static/jquery.ui.autocomplete.html.js"> </script>
+    <script src="metadata.js"> </script>
+    <script>
+        $(function() {
+            $("#tabs").tabs();
+            $("#tags").autocomplete({
+                source: metadata.searchDS,
+                select: function(event, ui) {
+                    var link = ui.item.value;
+                    location.href = link;
+                },
+                html: true
+            });
+            
+            var tcX = $(window).width() - $('#tableContent').width() - 20, tcY = 125;
+            /*$("#tableContent").draggable({
+                handle: '#tcTitle',
+                start: function(event, ui) {
+                    $('#tableContent').css('right', '');
+                },
+                stop: function(event, ui) {
+                    tcX = $(this).offset().left - document.body.scrollLeft;
+                    tcY = $(this).offset().top - document.body.scrollTop;
+                }
+            }).resizable({
+                resize: function(){
+                    $('#tcTitle').width($(this).width());
+                    $('#tcContent').width($(this).width()-11)
+                        .height($(this).height()-11 - $('#tcTitle').height());
+                }
+            });*/
+            $(window).resize(function() {
+                var newX = $(window).width() - $('#tableContent').width() - 20;
+                //if (tcX > newX) {
+                    tcX = newX;
+                    $('#tableContent').css('left', tcX+document.body.scrollLeft);
+                    $('#tableContent').css('right', '');
+                //}
+                
+            });
+            //$('#tableContent').css('left', tcX).css('top', tcY);
+            $('#tableContent').css('right', 20).css('top', 20);
+            if (getParameterByName('version') == '1') {
+                $("#version1").css({"text-decoration":"none","color":"#333333"});
+                $("#version2").css({"text-decoration":"underline","color":"#66ccff"});
+                $("#gif2").hide();
+            }
+            else {
+                $("#version1").css({"color":"#66ccff"});
+                $("#version2").css({"text-decoration":"none"});
+                $("#gif1").hide();
+            }
+
+            $('.widget-header .widget-title').click(function() {
+                $('.widget-body').animate({height: 'toggle', opacity: 'toggle'}, "slow");
+                if ($(this).hasClass("widget-title-click")) {
+                    $(this).removeClass("widget-title-click");
+                } else {
+                    $(this).addClass("widget-title-click");
+                }
+            });
+            if(parent.window._getIndexOfSelection){
+                var selectionIndex = parent.window._getIndexOfSelection();
+                $(".container-overall").before("<h2 id=\"selectionIndex\" style=\"padding-bottom:20px\">"+selectionIndex + "</h2>")
+            }
+
+            
+                $('#tableContent').css('visibility', 'visible');
+            
+        });
+        
+        function linkToChartProperty() {
+            window.location.href = "../chartproperty/chartproperty.html";
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+    </script>
+    <link type="text/css" rel="stylesheet" href="static/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="static/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="static/jquery-ui-1.8.22.custom.css">
+    <link type="text/css" rel="stylesheet" href="static/renew.css">
+</head>
+
+<body>
+<script>
+      function returnTop() {
+          $('body,html').animate({'scrollTop':0}, 500);
+      }
+</script>
+<div class="returnIcon" id="svgToTop">
+  <img src="static/to_top.svg" onclick="returnTop()">
+</div>
+<div id='tableContent'>
+    <div id='tcTitle' class="widget-header">
+        <div class="widget-title">Namespace: BaseCustomRenderer</div>
+    </div>
+    <div id='tcContent' class='widget-body'>
+         							<a href="#members" class="table-title">Properties</a> 							<ul><li><a href="#id">id</a></li>
+<li><a href="#type">type</a></li>
+<li><a href="#metadata">metadata</a></li></ul> 							<a href="#methods" class="table-title">Methods</a> 							<ul><li><a href="#vizInstanceInfo">vizInstanceInfo</a></li>
+<li><a href="#render">render</a></li></ul>
+    </div>
+</div>  
+
+<div id="main">
+    
+
+
+
+<section class="container-overall">
+    
+<header>
+    <h2 class="section-title">
+        Namespace: BaseCustomRenderer
+    </h2>
+    
+    
+        
+            <div class="class-description">The base object of custom render , static function can be overridden.</div>
+        
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title"><a name="members">Properties</a></h3>
+        
+                
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="id">
+        <span class="type-signature">[static] </span>id<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Define id of BaseCustomRenderer
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+                
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="type">
+        <span class="type-signature">[static] </span>type<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Define type of BaseCustomRenderer, validated value can refer to <a href="sap.viz.extapi.customization.constants.CustomRendererTypes.html">CustomRendererTypes</a>.
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+                
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="metadata">
+        <span class="type-signature">[static] </span>metadata<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Set the metadata of custom renderer of chart, it includes propertyDefinition.<br>
+<pre>
+<h4>propertyDefinition : Object</h4>propertyDefinition schema: {
+                  "supportedValueType": "Object", // Number, String, Boolean, StringArray, NumberArray, BooleanArray
+                  "defaultValue": null,
+                  // optional, by default read-only is false
+                  "readonly": false,
+                  // optional, by default serializable is true
+                  "serializable": true,
+                  // optional
+                  "description": "",
+              }
+
+BaseCustomOverlay.metadata = {
+  propertyDefinition: {}
+}; 
+</pre>
+    </div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+        <h3 class="subsection-title"><a name="methods">Methods</a></h3>
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizInstanceInfo">
+        <a name="vizInstanceInfo"></a>
+        <span class="type-signature">[static] </span>vizInstanceInfo
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get the vizInstanceInfo of current customization chart.
+ The detailed structure can be referred from <a href="BaseCustomOverlay.html#vizInstanceInfo">vizInstanceInfo</a>.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="render">
+        <a name="render"></a>
+        <span class="type-signature">[static] </span>render
+        <span class="method-var">
+        
+                
+                    (ctx,
+                
+                    properties,
+                
+                    graphicInfo,
+                
+                    vizModelInfo)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Delegate render function of chart module, it could be the render function of the following chart properties: 
+   <pre>
+        categoryAxis.labelRenderer
+        plotArea.markerRenderer
+        plotArea.dataLabel.renderer
+   </pre>
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>ctx</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">ctx: the data context of chart module.
+ <br> 
+ Sample:
+ <pre>
+    {
+         "Year": "2001",
+         "Country": "China",
+         "Product": "Moto"
+    }
+ </pre></div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>properties</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">properties: the custom render setting for specified ctx.
+ <br>  
+ Sample:
+ <pre>
+    {
+         fill: "blue",
+         stroke: "blue"
+    }
+ </pre></div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>graphicInfo</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">graphicInfo: the graphic information from the chart.
+                        <br>
+                 supported renderers:
+   <pre>
+    categoryAxis.labelRenderer
+    plotArea.markerRenderer
+    plotArea.dataLabel.renderer
+   <pre>
+ Sample:
+ <pre>
+ GraphicInfo Of "categoryAxis.labelRenderer": <h4> {</h4>
+         //   cell position in the current axis layer
+        'position':{
+             //   x: the cell x position
+            "x": 30,
+             //   y: the cell x position
+            "y": 0,
+        },
+        
+         //   size: the actual size of the cell could be renderered. it's already calcuated by the oritation,
+        "size": {
+            "width": 121.69039062000002,
+            "height": 109.76
+        },
+         //   text: the label text
+        "text": "USA",
+         //   style: the label style which set in the chart properties<categoryAxis.label.style>
+        "styles": {
+            "color": "#333333",
+            "fontFamily": "'Open Sans', Arial, Helvetica, sans-serif",
+            "fontSize": "12px",
+            "fontStyle": "normal",
+            "fontWeight": "normal"
+        },
+   <h4> },</h4>
+ GraphicInfo Of "plotArea.markerRenderer": <h4> {</h4>
+        "graphic": {
+             // size: lineMarker gets NO size property.
+            'size':{
+                 // width: the data point<marker> width
+                "width": 34,
+                 // height: the data point<marker> height
+                "height": 116.88622734375001,
+            }
+             // fill: the color of marker.
+            "fill": "#8873A2",
+             // totalStackHeight: totalStackHeight: the current total stack height, its specifies for stacked based chart<stacked chart/mekko>.
+            'totalStackHeight': 100,
+             // stackPosition: the stacked marker position in current category, its specifies for stacked based chart<stacked chart/mekko>.
+            'stackPosition':{
+                 // x: the x positon which layouts in current category, it specifies for stacked based chart<stacked chart/mekko>.
+                 //    the start point starts<0>.
+                "x": 0,
+ 
+                 // y: the y positon which layouts in current category, it specifies for stacked based chart<stacked chart/mekko>.
+                 //    the start point starts<0>.
+                "y": 142.6281035958904,
+            }
+        },
+         // horizontal: the chart orientation.
+        "horizontal": false,
+         // combinationIsLineMarker: specify for combination chart, illustrate the marker is line marker or column/bar maker.
+        "combinationIsLineMarker": false,
+    <h4>},</h4>
+ GraphicInfo of "plotArea.dataLabel.renderer": <h4>{</h4>
+         // value: the row value of label
+        "value": 369,
+         // text: the text of label
+        "text": "369",
+         // styles: the style which set in the chart property <plotArea.dataLabel.style>
+        "styles": {
+            "color": "#333333",
+            "fontFamily": "'Open Sans', Arial, Helvetica, sans-serif",
+            "fontSize": "12px",
+            "fontWeight": "normal",
+            "fontStyle": "normal",
+        },
+        // dataPointSize: the size of current data point
+        "dataPointSize": {
+            'width': 200,
+            'height': 300
+        }
+    <h4>}</h4>
+
+ </pre></div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>vizModelInfo</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">vizModelInfo: the vizModelInfo of current customization chart, <br>
+                 detailed structure can be referred from <a href="BaseCustomOverlay.html#overrideProperties">vizModelInfo</a>.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    HTMLDIVElement
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                The custom render HTML Node.
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+</article>
+</section>  
+
+
+
+
+</div>
+
+<br clear="both">
+
+<!--footer>
+    Documentation generated by <a href="https://github.com/micmath/jsdoc">JSDoc 3</a> on Wed Jul 08 2015 07:35:14 GMT+0200 (CEST)
+</footer-->
+<script src="static/linenumber.js"> </script>
+<link href="../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet"> 
+<script src="../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/css/css.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+<script src="static/livedemo.js"></script>
+</body>
+</html>

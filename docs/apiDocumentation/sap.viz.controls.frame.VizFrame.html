@@ -1,0 +1,4746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>[VIZDOC] Class: VizFrame</title>
+    <script src="static/jquery-1.7.2.min.js"> </script>
+    <script src="static/jquery-ui-1.8.22.custom.min.js"> </script>
+    <script src="static/jquery.ui.autocomplete.html.js"> </script>
+    <script src="metadata.js"> </script>
+    <script>
+        $(function() {
+            $("#tabs").tabs();
+            $("#tags").autocomplete({
+                source: metadata.searchDS,
+                select: function(event, ui) {
+                    var link = ui.item.value;
+                    location.href = link;
+                },
+                html: true
+            });
+            
+            var tcX = $(window).width() - $('#tableContent').width() - 20, tcY = 125;
+            /*$("#tableContent").draggable({
+                handle: '#tcTitle',
+                start: function(event, ui) {
+                    $('#tableContent').css('right', '');
+                },
+                stop: function(event, ui) {
+                    tcX = $(this).offset().left - document.body.scrollLeft;
+                    tcY = $(this).offset().top - document.body.scrollTop;
+                }
+            }).resizable({
+                resize: function(){
+                    $('#tcTitle').width($(this).width());
+                    $('#tcContent').width($(this).width()-11)
+                        .height($(this).height()-11 - $('#tcTitle').height());
+                }
+            });*/
+            $(window).resize(function() {
+                var newX = $(window).width() - $('#tableContent').width() - 20;
+                //if (tcX > newX) {
+                    tcX = newX;
+                    $('#tableContent').css('left', tcX+document.body.scrollLeft);
+                    $('#tableContent').css('right', '');
+                //}
+                
+            });
+            //$('#tableContent').css('left', tcX).css('top', tcY);
+            $('#tableContent').css('right', 20).css('top', 20);
+            if (getParameterByName('version') == '1') {
+                $("#version1").css({"text-decoration":"none","color":"#333333"});
+                $("#version2").css({"text-decoration":"underline","color":"#66ccff"});
+                $("#gif2").hide();
+            }
+            else {
+                $("#version1").css({"color":"#66ccff"});
+                $("#version2").css({"text-decoration":"none"});
+                $("#gif1").hide();
+            }
+            $('.widget-header .widget-title').click(function() {
+                $('.widget-body').animate({height: 'toggle', opacity: 'toggle'}, "slow");
+                if ($(this).hasClass("widget-title-click")) {
+                    $(this).removeClass("widget-title-click");
+                } else {
+                    $(this).addClass("widget-title-click");
+                }
+            });
+            if(parent.window._getIndexOfSelection){
+                var selectionIndex = parent.window._getIndexOfSelection();
+                $(".container-overall").before("<h2 id=\"selectionIndex\" style=\"padding-bottom:20px\">"+selectionIndex + "</h2>")
+            }
+            
+                $('#tableContent').css('visibility', 'visible');
+            
+        });
+        
+        function linkToChartProperty() {
+            window.location.href = "../chartproperty/chartproperty.html";
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+    </script>
+    <link type="text/css" rel="stylesheet" href="static/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="static/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="static/jquery-ui-1.8.22.custom.css">
+    <link type="text/css" rel="stylesheet" href="static/renew.css">
+</head>
+
+<body>
+<script>
+      function returnTop() {
+          $('body,html').animate({'scrollTop':0}, 500);
+      }
+</script>
+<div class="returnIcon" id="svgToTop">
+  <img src="static/to_top.svg" onclick="returnTop()">
+</div>
+<div id='tableContent'>
+    <div id='tcTitle' class="widget-header">
+        <div class="widget-title">Class: VizFrame</div>
+    </div>
+    <div id='tcContent' class='widget-body'>
+         							<a href="#event" class="table-title">Event</a> 							<ul><li><a href="#event:vizTypeChanged">vizTypeChanged</a></li>
+<li><a href="#event:feedsChanged">feedsChanged</a></li>
+<li><a href="#event:filtersChanged">filtersChanged</a></li>
+<li><a href="#event:requestFilterValues">requestFilterValues</a></li>
+<li><a href="#event:vizDefinitionChanged">vizDefinitionChanged</a></li>
+<li><a href="#event:userInteractionComplete">userInteractionComplete</a></li>
+<li><a href="#event:needEsriCredential">needEsriCredential</a></li></ul> 							<a href="#methods" class="table-title">Methods</a> 							<ul><li><a href="#destroy">destroy</a></li>
+<li><a href="#addEventListener">addEventListener</a></li>
+<li><a href="#analysisObjectsForPicker">analysisObjectsForPicker</a></li>
+<li><a href="#clearSelectedPropertyZone">clearSelectedPropertyZone</a></li>
+<li><a href="#createViz">createViz</a></li>
+<li><a href="#enableMorphing">enableMorphing</a></li>
+<li><a href="#exportToSVGString">exportToSVGString</a></li>
+<li><a href="#feedAnalysisObjects">feedAnalysisObjects</a></li>
+<li><a href="#feeds">feeds</a></li>
+<li><a href="#getChangedProperties">getChangedProperties</a></li>
+<li><a href="#getChangedScales">getChangedScales</a></li>
+<li><a href="#getDefaultIncompleteOptions">getDefaultIncompleteOptions</a></li>
+<li><a href="#getPictogramInfo">getPictogramInfo</a></li>
+<li><a href="#removeEventListener">removeEventListener</a></li>
+<li><a href="#save">save</a></li>
+<li><a href="#scaleGroup">scaleGroup</a></li>
+<li><a href="#setTitleGeneratorFunc">setTitleGeneratorFunc</a></li>
+<li><a href="#showMessage">showMessage</a></li>
+<li><a href="#supportExportToSVG">supportExportToSVG</a></li>
+<li><a href="#vizCss">vizCss</a></li>
+<li><a href="#vizData">vizData</a></li>
+<li><a href="#vizFeedingZone">vizFeedingZone</a></li>
+<li><a href="#vizOff">vizOff</a></li>
+<li><a href="#vizOn">vizOn</a></li>
+<li><a href="#vizCustomizations">vizCustomizations</a></li>
+<li><a href="#vizProperties">vizProperties</a></li>
+<li><a href="#vizScales">vizScales</a></li>
+<li><a href="#vizSelection">vizSelection</a></li>
+<li><a href="#vizTitle">vizTitle</a></li>
+<li><a href="#vizTitleMode">vizTitleMode</a></li>
+<li><a href="#vizTemplate">vizTemplate</a></li>
+<li><a href="#vizType">vizType</a></li>
+<li><a href="#vizUid">vizUid</a></li>
+<li><a href="#vizUpdate">vizUpdate</a></li>
+<li><a href="#connect">connect</a></li>
+<li><a href="#disconnect">disconnect</a></li>
+<li><a href="#load">load</a></li>
+<li><a href="#size">size</a></li></ul>
+    </div>
+</div>  
+
+<div id="main">
+    
+
+
+
+<section class="container-overall">
+    
+<header>
+    <h2 class="section-title">
+        Class: VizFrame
+    </h2>
+    
+        <div class="class-description">Extends: 
+        
+            <a href="sap.viz.controls.common.VizControlHost.html">sap.viz.controls.common.VizControlHost</a>
+        
+        </div>
+    
+    
+        
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        <h3 class="subsection-title">Constructor</h3>
+        
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="VizFrame">
+        <a name="VizFrame"></a>
+        <span class="type-signature"></span>VizFrame
+        <span class="method-var">
+        
+                
+                    (div,
+                
+                    uiConfig)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        The VizFrame class is a composite control of following sub controls of Viz Container. VizFrame can be customized
+to show or hide each sub control.<br/><ul>
+1. Chart: Host a CVOM visualization(i.e. Line Chart, Column Chart, Area Chart, Map) and visualization extension.<br/>
+
+2. ContextMenu: User can right click on the visualization or click the setting menu to display the context menu.<br/>
+
+3. PlayControl: User add animation feed and play the data frame-by-frame. Only Geo Bubble, Scatter and Bubble support this feature.<br/></ul>
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>div</code>
+                
+                
+                 : 
+                 
+                        HTMLElement
+                        
+                
+                
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The dom element to host the VizFrame control.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>uiConfig</code>
+                
+                
+                 : 
+                 
+                        JSON
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Configuration for the control.
+              If without the uiConfig, use the default uiconfig to create the control.<br/><pre>
+              uiConfig.controls.contextMenu.enabled                           enable context menu or not, the default value is true.
+                                                                              If enable context menu, when user right-click on the chart, user can do supported operation in the context menu dialog.
+              uiConfig.controls.contextMenu.config.useCustomizedContextMenu   use customized context menu or not, the default value is false
+                                                                              Only if enable context menu, this option works. User can follow the customized context menu specification to define their own context menu.
+              uiConfig.controls.filterMenu.enabled                            enable filter menu or not, the default value is true
+                                                                              If enable filter menu, when user select data points, user can filter/exclude the seelcted data points.
+              uiConfig.controls.titleEditor.enabled                           enable title editor or not, the default value is true. 
+                                                                              If enable title editor, when user mouse over to the title area, user can rename/reset the title text in the title editor.
+              uiConfig.controls.playControl.enabled                           enable play control or not, the default value is true
+                                                                              If enable play control, when user create a chart which support play control, user can set "dataFrame" feed and play the data frame-by-frame in the play control.
+                                                                              If enable play control, VizFrame has UI5 dependencies: sap.ui.commons
+              uiConfig.controls.dedicatedLegend.enabled                       enable responsive legend or not, the default value is false</pre>
+Sample code:<br/>
+<pre>
+    // Get a default uiConfig of VizFrame from GlobalConfig.
+    var uiConfig = <a href="sap.viz.controls.common.config.GlobalConfig.html">sap.viz.controls.common.config.GlobalConfig</a>.defaultUIConfig(<a href="sap.viz.controls.common.config.GlobalConfig.html">sap.viz.controls.common.config.GlobalConfig</a>.DEFAULT_UICONFIG_TYPE_FRAME);
+    // Customize the default uiconfig.
+    uiConfig.enableFilterMenu = false;
+    // Create a VizFrame control.
+    var vizFrame = new VizFrame($(div), uiConfig);
+</pre></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+    
+    </div>
+    
+    
+        <h3 class="subsection-title"><a name="event">Events</a></h3>
+        
+            
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="event:vizTypeChanged">
+        vizTypeChanged
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Dispatches "vizTypeChanged" event when visualization type changes by UI operation.
+<pre>
+type: "vizTypeChanged"
+handler: function({
+                   type: "vizTypeChanged",
+                   token: "<uuid>",
+                   data: {
+                     type : "<vizType>"
+                   }
+})
+</pre>
+    </div>
+    
+    
+    
+        <h5>Properties</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evt.type</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">"vizTypeChanged".</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evt.data</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+
+    
+        <h5>Example</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var vizFrame = new VizFrame(...);
+var vizTypeChangedHandler = function(event) {
+    console.log("vizTypeChanged event from vizFrame( type: '" + e.data.type + "' ).");
+};
+vizFrame.addEventListener('vizTypeChanged', vizTypeChangedHandler);
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="event:feedsChanged">
+        feedsChanged
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Dispatches "feedsChanged" event when the feeding changes due to add/remove/change FeedItems on feeding panel<br/>
+Application should listen to "feedsChanged" event to get the corresponding data and set it back to VizFrame
+to update the visualization with the new data.
+
+<pre>
+type: "feedsChanged"
+handler: function({
+                   type: "feedsChanged",
+                   feeds: [{feedId, binding}]
+})
+</pre>
+    </div>
+    
+    
+    
+        <h5>Properties</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evt.type</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">"feedsChanged".</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evt.data</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+
+    
+        <h5>Example</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var vizFrame = new VizFrame(...);
+var feedsChangedHandler = function(event) {
+    // an array of FeedItem objects
+    var feedItems = event.data.feeds;
+
+    // Application could restore to initial value, if there is no feeding
+    if (feedItems || feedItems.length === 0) {
+        var dataSet = new sap.viz.api.data.CrosstableDataset();
+        dataSet.data(null);
+        vizFrame.vizUpdate({
+            data : null
+        });
+        return;
+    }
+    // Get filters if the application support it
+    var filterItems = vizFrame.filterItems();
+
+    // Application should handle some logic to get new data based on the feedItems and filterItems
+    var newFeedData; // You can get data from database, data service, local data, etc.
+
+    // update vizFrame
+    var updateVizFrame = function(feedData) {
+        var dataSet = new sap.viz.api.data.CrosstableDataset();
+        dataSet.data(feedData);
+
+        vizFrame.vizUpdate({
+            'data' : dataSet
+        });
+    };
+    upateVizFrame(newFeedData);
+};
+vizFrame.addEventListener('feedsChanged', feedsChangedHandler);
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="event:filtersChanged">
+        filtersChanged
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Dispatches "filtersChanged" event when user clicks the Filter menu if user enable the built-in FilterBar in VizFrame.
+Application could listen to this event to handle the data filter logic and set the new data back to VizFrame to
+update the visualization.
+<pre>
+type: "filtersChanged"
+handler: function({
+                   type: "filtersChanged",
+                   data: [filterItems]
+})
+</pre>
+    </div>
+    
+    
+    
+        <h5>Properties</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evt.type</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">"filtersChanged".</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evt.data</code>
+                
+                
+                 : 
+                 
+                        Array
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">An array of filter items.</div>
+            </ul>
+	
+	
+</div>
+
+    
+
+    
+        <h5>Example</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var vizFrame = new VizFrame(...);
+// update vizFrame
+var updateVizFrame = function(feedData) {
+    var dataSet = new sap.viz.api.data.CrosstableDataset();
+    dataSet.data(feedData);
+    appView.vizFrame().vizUpdate({
+        data : dataSet
+    });
+};
+// Handle filter menu event and update vizframe with new data
+var filterHandler = function(event) {
+    var filters = event.data;
+    var feeds = vizFrame().feeds();
+    // Some logic to get new data based on the feedItems and filterItems
+    var newFeedData;
+
+    updateVizFrame(newFeedData);
+};
+
+// listen to 'filtersChanged' event
+vizFrame.addEventListener('filtersChanged', filterHandler);
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="event:requestFilterValues">
+        requestFilterValues
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Dispatches the "requestFilterValues" event when double click the Filter object in FilterBar. The application
+may need to pop up a dialog to choose the filter values and call event.data.validate(true) after change.
+
+<pre>
+type: "requestFilterValues"
+handler: function({
+                   type: "requestFilterValues",
+                   data: {
+                        bounds, // an object contains left, top, width, height
+                        filterName,
+                        analysisObjectId,
+                        filterItem, // an object of ValueFilter, DateRangeFilter or NumericRangeFilter
+                        validate // function to validate filter item.
+                    }
+})
+</pre>
+    </div>
+    
+    
+    
+        <h5>Properties</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evt.type</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">"requestFilterValues".</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evt.data</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">It contains filterName, analysisObjectId and filterItem properties. User need to call validate(true) method
+if changed filterItem or call validate(false) if no change happens.</div>
+            </ul>
+	
+	
+</div>
+
+    
+
+    
+        <h5>Example</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+// listen to 'requestFilterValues' event
+vizFrame.addEventListener('requestFilterValues', function(event) {
+    var data = event.data;
+    // Get current filter information
+    var filterName = data.filterName;
+    var analysisObjectId = data.analysisObjectId;
+    var filterItem = data.filterItem;
+
+    // 1. Application may pop up some filter value choose dialog.
+    // 2. User input some new filter values.
+    var values = 'USA,China';
+    switch(filterItem.getType()) {
+        case AbstractFilter.VALUE_TYPE:// display as 'USA,China'
+            values = values.length>0 ? values.split(',') : [];
+            var filterValues = [];
+            for(var i = 0, length = values.length; i < length; i++) {
+                filterValues.push({'value':values[i]}); // may contain more information. {'value': 'USA',
+'key':'001'}
+            }
+            filterItem.updateValues(filterValues);
+            break;
+        case AbstractFilter.NUMERIC_RANGE_TYPE:// display as '10 - 20'
+        case AbstractFilter.DATE_RANGE_TYPE:// display as '2000-12-1 - 2013-12-1'
+            values = values.length>0 ? values.split(' - ') : [];
+            if(values.length == 2) {
+                filterItem.setMin(values[0]);
+                filterItem.setMax(values[1]);
+            }
+            break;
+    }
+
+    // 3. Validate the filter item
+    data.validate(true);
+});
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="event:vizDefinitionChanged">
+        vizDefinitionChanged
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Dispatches "vizDefinitionChanged" event when viz definition is changed by user interaction or API, for example,
+<pre>
+1. Change chart type.
+2. Feed new data.
+3. Edit title.
+4. Show/hide visualization legend.
+5. Change direction(switch between horizontal and vertical) for some chart.
+6. Add/remove/update filter.
+7. Edit property.
+8. etc.
+</pre>
+
+Application may listen to this event to inform user to save the document.
+
+<pre>
+type: "vizDefinitionChanged"
+handler: function({
+                   type: "vizDefinitionChanged",
+                   data: {
+                        commentChanged,
+                        vizTypeChanged,
+                        vizPropertiesChanged,
+                        vizCssChanged,
+                        feedingItemsChanged,
+                        filterChanged
+                   }
+})
+</pre>
+    </div>
+    
+    
+    
+        <h5>Properties</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evt.type</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">"vizDefinitionChanged".</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evt.data</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Identify the changed perperty.</div>
+            </ul>
+	
+	
+</div>
+
+    
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="event:userInteractionComplete">
+        userInteractionComplete
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Dispatches "userInteractionComplete" event when there are UI interaction , for example:
+<pre>
+1. Change chart type.
+2. Change FeedItems.
+3. Edit title in title editor
+4. Operate in context menu, such as: show/hide title, show/hide legend, MDN, show/hide Data Labels and so on
+5. Operate in the filter menu
+6. Edit property
+7. etc.
+</pre>
+
+VizFrame will dispatch this event.
+
+<pre>
+type: "userInteractionComplete"
+handler: function({
+                   type: "userInteractionComplete"
+})
+</pre>
+    </div>
+    
+    
+    
+        <h5>Propertie</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evt.type</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">"userInteractionComplete".</div>
+            </ul>
+	
+	
+</div>
+
+    
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="event:needEsriCredential">
+        needEsriCredential
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Dispatches "needEsriCredential" event when importing customer services.
+<pre>
+type: "needEsriCredential"
+handler: function({
+                   type: "needEsriCredential",
+                   data: {
+                     callback : "<callback>"
+                   }
+})
+</pre>
+    </div>
+    
+    
+    
+        <h5>Properties</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evt.type</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">"needEsriCredential".</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evt.data</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">a callback function contained for continue to poping up Esri customer services dialog</div>
+            </ul>
+	
+	
+</div>
+
+    
+
+    
+        <h5>Example</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var vizFrame = new VizFrame(...);
+var esriCredentialHandler = function(event) {
+    event.callback();
+};
+vizFrame.addEventListener('needEsriCredential', esriCredentialHandler);
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title"><a name="methods">Methods</a></h3>
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="destroy">
+        <a name="destroy"></a>
+        <span class="type-signature"></span>destroy
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Destroy VizFrame.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="addEventListener">
+        <a name="addEventListener"></a>
+        <span class="type-signature"></span>addEventListener
+        <span class="method-var">
+        
+                
+                    (type,
+                
+                    listener,
+                
+                    scope,
+                
+                    priority)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Registers an event listener object with an EventDispatcher object so that the listener receives notification of an
+event.
+
+You can register event listeners on any EventDispatcher object for a specific type of event, scope, and
+priority. If you no longer need an event listener, remove it by calling removeEventListener(), or memory problems
+could result.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>type</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The type of event.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>listener</code>
+                
+                
+                 : 
+                 
+                        function
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The listener function that processes the event.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>scope</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The scope.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>priority</code>
+                
+                
+                 : 
+                 
+                        int
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The priority level of the event listener.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="analysisObjectsForPicker">
+        <a name="analysisObjectsForPicker"></a>
+        <span class="type-signature"></span>analysisObjectsForPicker
+        <span class="method-var">
+        
+                
+                    (analysisObjects)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+            deprecated
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set available AnalysisObjects for object picker popup UI,
+VizFrame cannot call this function if the flag "enableFilterBar" is false.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>analysisObjects</code>
+                
+                
+                 : 
+                 
+                        Array&lt;<a href="sap.viz.controls.common.feeds.AnalysisObject.html">sap.viz.controls.common.feeds.AnalysisObject</a>&gt;
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array&lt;<a href="sap.viz.controls.common.feeds.AnalysisObject.html">sap.viz.controls.common.feeds.AnalysisObject</a>&gt;
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var vizFrame = new VizFrame(...);
+//Set analysisObjects, please refer to FeedItem for details.
+var newAnalysisObjects = [
+    new AnalysisObject("M1", "M1", "measure", "number"),
+    new AnalysisObject("D1", "D1", "dimension", "string"),
+    new AnalysisObject("D2", "D2", "dimension", "string")
+];
+vizFrame.analysisObjectsForPicker(newAnalysisObjects);
+//Get analysisObjects
+var currentAnalysisObjects = vizFrame.analysisObjectsForPicker();
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="clearSelectedPropertyZone">
+        <a name="clearSelectedPropertyZone"></a>
+        <span class="type-signature"></span>clearSelectedPropertyZone
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Clear the selected property zone when 'useBuiltInPropertyZoneInteraction' is true in ui config.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    undefined
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var frame = new VizFrame(...);
+frame.clearSelectedPropertyZone();
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="createViz">
+        <a name="createViz"></a>
+        <span class="type-signature"></span>createViz
+        <span class="method-var">
+        
+                
+                    (options)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        To achieve interoperability with prior CVOM based application, VizFrame provides a wrapper of CVOM
+sap.viz.api.core.createViz(options), which creates a viz instance by passing options.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>options</code>
+                
+                
+                 : 
+                 
+                        JSON
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">{
+                             type: String, // refer to propDoc.html for all supported viz chart TypeUtils
+                             data: sap.viz.api.data.CrosstableDataset,
+                             feeds: Array of FeedItem,
+                             properties: JSON, // refer to propDoc.html for all supported options for each viz
+type
+                             css: String, // refer to propDoc.html for all supported css items for each viz type
+                             description: JSON,
+                             events: Object // events is an object with key and value pair. Key is the event name,
+and the value is the listener function,
+                             template: String, //Template id.
+                         }</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                <a href="sap.viz.controls.frame.VizFrame.html">sap.viz.controls.frame.VizFrame</a> VizFrame itself.
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="enableMorphing">
+        <a name="enableMorphing"></a>
+        <span class="type-signature"></span>enableMorphing
+        <span class="method-var">
+        
+                
+                    (value)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Enable or disable morphing.
+Note: The following viz types are not supporting morphing:
+- ChartConst.TYPE_GEO_BUBBLE
+- ChartConst.TYPE_GEO_CHOROPLETH
+- ChartConst.TYPE_GEO_PIE
+- ChartConst.TYPE_GEO_MAP
+- ChartConst.TYPE_CROSSTAB
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>value</code>
+                
+                
+                 : 
+                 
+                        Boolean
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Default value is true.
+                 If value is true, enable morphing.
+                 If value is false, disable morphing.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="exportToSVGString">
+        <a name="exportToSVGString"></a>
+        <span class="type-signature"></span>exportToSVGString
+        <span class="method-var">
+        
+                
+                    (option)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Export the current viz as SVG String.
+The viz is ready to be exported to svg ONLY after the initialization is finished.
+Any attempt to export to svg before that will result in an empty svg string.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>option</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">{
+                             width: Number - the exported svg will be scaled to the specific width.
+                             height: Number - the exported svg will be scaled to the specific height.
+                             hideTitleLegend: Boolean - flag to indicate if the exported svg includes the original title and legend.
+                             hideAxis: Boolean - flag to indicate if the exported svg includes the original axis.
+                          }</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                the SVG Object of the current viz or empty svg if error occurs.
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="feedAnalysisObjects">
+        <a name="feedAnalysisObjects"></a>
+        <span class="type-signature"></span>feedAnalysisObjects
+        <span class="method-var">
+        
+                
+                    (analysisObjects,
+                
+                    append)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Update or add feed FeedItem.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>analysisObjects</code>
+                
+                
+                 : 
+                 
+                        Array&lt;<a href="sap.viz.controls.common.feeds.AnalysisObject.html">sap.viz.controls.common.feeds.AnalysisObject</a>&gt;
+                        
+                
+                
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>append</code>
+                
+                
+                 : 
+                 
+                        Boolean
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">optional, whether to append new feeds.
+                     Default value is false.
+                     If append is true, append new feeds.
+                     If append is false, clean existing feeds.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array&lt;<a href="sap.viz.controls.common.feeds.FeedItem.html">sap.viz.controls.common.feeds.FeedItem</a>&gt;
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                actually applied feeds by BVR (Best Visualization Recommendation)
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var vizFrame = new VizFrame(...);
+//Set analysisObjects, please refer to FeedItem for details.
+var newAnalysisObjects = [
+    new AnalysisObject("M1", "M1", "measure", "number"),
+    new AnalysisObject("D1", "D1", "dimension", "string"),
+    new AnalysisObject("D2", "D2", "dimension", "string")
+];
+vizFrame.feedAnalysisObjects(newAnalysisObjects, true);
+//Get analysisObjects
+var currentAnalysisObjects = vizFrame.feedAnalysisObjects();
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="feeds">
+        <a name="feeds"></a>
+        <span class="type-signature"></span>feeds
+        <span class="method-var">
+        
+                
+                    (value)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set all feeds data.
+To get feeds, please use feeds() or feeds({withMND: true/false}). The feeds order is always same with the feeding
+definition of chart.
+If the user shows MND in UI,
+with option {withMND : true}, return current feeds with MND;
+with option {withMND : false}, return current feeds without MND;
+with no option, return current feeds.
+If the user doesn't show MND in UI, get feeds always return current feeds, the option value will be ignored.
+To set feeds, please use feeds(feedItems). Currently setting feeds for multilayer viz is not support.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>value</code>
+                
+                
+                 : 
+                 
+                        Array.&lt;sap.viz.controls.common.feeds.FeedItem>
+                         | 
+                
+                        JSON
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array.&lt;sap.viz.controls.common.feeds.FeedItem>
+                     | 
+                
+                    Array.&lt;Array.&lt;sap.viz.controls.common.feeds.FeedItem>>
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                Current feed items.
+    An array of <a href="sap.viz.controls.common.feeds.FeedItem.html">sap.viz.controls.common.feeds.FeedItem</a> | An array of array of <a href="sap.viz.controls.common.feeds.FeedItem.html">sap.viz.controls.common.feeds.FeedItem</a>.
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="getChangedProperties">
+        <a name="getChangedProperties"></a>
+        <span class="type-signature"></span>getChangedProperties
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get properties changed by api or user interaction.<br/>
+For API, the properties changed in createViz, vizUpdate, load, vizProperties.
+For user interaction, operate in context menu such as show/hide title, show/hide legend, show/hide data labels change properties.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    JSON
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="getChangedScales">
+        <a name="getChangedScales"></a>
+        <span class="type-signature"></span>getChangedScales
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get scales changed by api or user interaction.<br/>
+For API, the scales changed in createViz, vizUpdate, load, vizScales.
+For user interaction, scales changed via property editor.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    JSON
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="getDefaultIncompleteOptions">
+        <a name="getDefaultIncompleteOptions"></a>
+        <span class="type-signature">[static] </span>getDefaultIncompleteOptions
+        <span class="method-var">
+        
+                
+                    (vizType)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get default incomplete ghost options for createViz.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>vizType</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    JSON
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var vizFrame = new VizFrame(...);
+var options = VizFrame.getDefaultIncompleteOptions(ChartConst.TYPE_LINE);
+vizFrame.createViz(options);
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="getPictogramInfo">
+        <a name="getPictogramInfo"></a>
+        <span class="type-signature"></span>getPictogramInfo
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get pictogram relevant info from VizFrame.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    JSON
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="removeEventListener">
+        <a name="removeEventListener"></a>
+        <span class="type-signature"></span>removeEventListener
+        <span class="method-var">
+        
+                
+                    (valueJSON,
+                
+                    type,
+                
+                    listener,
+                
+                    scope)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Deserialize VizFrame from JSON object.<br/>
+1. Create viz instance from JSON object which including type, data, properties,
+css, feeding and size.<br/>
+2. Restore VizFrame, including internal data model<br/>
+3. Handle backward compatibility.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>valueJSON</code>
+                
+                
+                 : 
+                 
+                        JSON
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Removes a listener from the EventDispatcher object.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>type</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The type of event.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>listener</code>
+                
+                
+                 : 
+                 
+                        function
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The listener function that processes the event.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>scope</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The scope.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="save">
+        <a name="save"></a>
+        <span class="type-signature"></span>save
+        <span class="method-var">
+        
+                
+                    (options)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Serialize VizFrame to a JSON object. The serialization includes:<br/>
+1. Viz instance(including type, data, properties, css, feeding and size).<br/>
+2. Internal data model(including feeds, filters).<br/>
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>options</code>
+                
+                
+                 : 
+                 
+                        JSON
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">optional
+     supported options: {emptyDataset : false}</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    JSON
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="scaleGroup">
+        <a name="scaleGroup"></a>
+        <span class="type-signature"></span>scaleGroup
+        <span class="method-var">
+        
+                
+                    (group,
+                
+                    index)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set vizFrame scale group.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>group</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>index</code>
+                
+                
+                 : 
+                 
+                        int
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">This indicates the index of vizframe in scale group.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                scale group
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var frame = new VizFrame(...);
+...
+frame.scaleGroup("GroupA");
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="setTitleGeneratorFunc">
+        <a name="setTitleGeneratorFunc"></a>
+        <span class="type-signature"></span>setTitleGeneratorFunc
+        <span class="method-var">
+        
+                
+                    (callback)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set callback func for title generator.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>callback</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Function</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var vizFrame = new VizFrame(...);
+...
+var callback = function(vizUid){
+   var runtime = RuntimeManager.getRuntime();
+   var model = runtime.getModel(vizUid);
+   var titleText = "";
+   ...
+   return titleText;
+};
+vizFrame.setTitleGeneratorFunc(callback);
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="showMessage">
+        <a name="showMessage"></a>
+        <span class="type-signature"></span>showMessage
+        <span class="method-var">
+        
+                
+                    (message)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        show customized message and destroy the viz instance.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>message</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var vizFrame = new VizFrame(...);
+...
+case 1:
+if (errorHappened) {
+    vizFrame.showMessage("your error message");
+} else {
+    vizFrame.vizUpdate(); // or vizFrame.vizXXX();
+}
+case 2:
+try {
+    vizFrame.vizUpdate(); // or vizFrame.vizXXX();
+} catch (error) {
+    vizFrame.showMessage(error);
+}
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="supportExportToSVG">
+        <a name="supportExportToSVG"></a>
+        <span class="type-signature"></span>supportExportToSVG
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Check whether the chart type supports API exportToSVGString
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Boolean
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizCss">
+        <a name="vizCss"></a>
+        <span class="type-signature"></span>vizCss
+        <span class="method-var">
+        
+                
+                    (value)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set vizFrame css. VizFrame provides a wrapper of CVOM
+sap.viz.api.core.VizInstance.css() to get/set css.
+Deperated for chart which use sap.viz.api.data.FlattableDataset.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>value</code>
+                
+                
+                 : 
+                 
+                        CSS
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    CSS
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizData">
+        <a name="vizData"></a>
+        <span class="type-signature"></span>vizData
+        <span class="method-var">
+        
+                
+                    (value)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set vizFrame dataset. VizFrame provides a wrapper of CVOM
+sap.viz.api.core.VizInstance.data() to get/set data.
+Please refer to <a href="sap.viz.controls.common.constants.ChartConst.html">sap.viz.controls.common.constants.ChartConst</a> to get the dataset type for each chart types.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>value</code>
+                
+                
+                 : 
+                 
+                        sap.viz.api.data.CrosstableDataset
+                         | 
+                
+                        sap.viz.api.data.FlattableDataset
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The new dataset</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    sap.viz.api.data.CrosstableDataset
+                     | 
+                
+                    sap.viz.api.data.FlattableDataset
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizFeedingZone">
+        <a name="vizFeedingZone"></a>
+        <span class="type-signature"></span>vizFeedingZone
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get viz instance feeding zone. The feeding zone is used to drag-and-drop an object onto different feeding zone to
+feed data. Application can get this functionality by free if use VizFrame control.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                All the feeding zones of the CVOM chart.
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizOff">
+        <a name="vizOff"></a>
+        <span class="type-signature"></span>vizOff
+        <span class="method-var">
+        
+                
+                    (evtType)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Remove event listener on viz instance. VizFrame provides a wrapper of CVOM
+sap.viz.api.core.VizInstance.on() to remove event listener.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evtType</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                <a href="sap.viz.controls.frame.VizFrame.html">sap.viz.controls.frame.VizFrame</a> VizFrame itself.
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizOn">
+        <a name="vizOn"></a>
+        <span class="type-signature"></span>vizOn
+        <span class="method-var">
+        
+                
+                    (evtType,
+                
+                    callback)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Add event listener on viz instance. VizFrame provides a wrapper of CVOM
+sap.viz.api.core.VizInstance.on() to add event listener.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>evtType</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>callback</code>
+                
+                
+                 : 
+                 
+                        function
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                <a href="sap.viz.controls.frame.VizFrame.html">sap.viz.controls.frame.VizFrame</a> VizFrame itself.
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizCustomizations">
+        <a name="vizCustomizations"></a>
+        <span class="type-signature"></span>vizCustomizations
+        <span class="method-var">
+        
+                
+                    (value)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set vizFrame customizations. VizFrame provides a wrapper of CVOM
+sap.viz.api.core.VizInstance.customizations() to get/set customizations.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>value</code>
+                
+                
+                 : 
+                 
+                        JSON
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The new customizations.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    JSON
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizProperties">
+        <a name="vizProperties"></a>
+        <span class="type-signature"></span>vizProperties
+        <span class="method-var">
+        
+                
+                    (value,
+                
+                    propertiesOption)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set vizFrame properties. VizFrame provides a wrapper of CVOM
+sap.viz.api.core.VizInstance.properteis() to get/set properties.
+For the detailed properties of each viz type, please refer to [CHART PROPERTY].
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>value</code>
+                
+                
+                 : 
+                 
+                        JSON
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The new properties.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>propertiesOption</code>
+                
+                
+                 : 
+                 
+                        JSON
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">{level : 'user', replace : true/false}</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    JSON
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizScales">
+        <a name="vizScales"></a>
+        <span class="type-signature"></span>vizScales
+        <span class="method-var">
+        
+                
+                    (value,
+                
+                    scalesOption)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set vizFrame scales. VizFrame provides a wrapper of CVOM
+sap.viz.api.core.VizInstance.scales() to get/set scales.
+This API only works for the chart use sap.viz.api.data.FlattableDataset.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>value</code>
+                
+                
+                 : 
+                 
+                        Array
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The new scales.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>scalesOption</code>
+                
+                
+                 : 
+                 
+                        JSON
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">{level : 'user', replace : true/false}</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizSelection">
+        <a name="vizSelection"></a>
+        <span class="type-signature"></span>vizSelection
+        <span class="method-var">
+        
+                
+                    (items,
+                
+                    clearFlag)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set selected data points. VizFrame provides a wrapper of CVOM
+sap.viz.api.core.VizInstance.selection() to get/set selected data points.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>items</code>
+                
+                
+                 : 
+                 
+                        Array&lt;JSON&gt;
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">optional, viz instance will hold the passed-in description,
+                         but if the properties are changed, it must be re-pass to viz instance to take effect.
+                         point:
+                         {
+                             data: {key: "value", ...},
+                             ctx:  [{mi: 0, ...}, {...}, ...], // !important
+                             info: [{obj}, null, ... } // optional
+                         }</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>clearFlag</code>
+                
+                
+                 : 
+                 
+                        Boolean
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">optional, whether to clear previous selection.
+                         Default value is true.
+                         If clearFlag is true, the selection will be incremental selection.
+                         If clearFlag is false, the selection will not be incremental selection.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizTitle">
+        <a name="vizTitle"></a>
+        <span class="type-signature"></span>vizTitle
+        <span class="method-var">
+        
+                
+                    (value)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set title properties.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>value</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    String
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                title
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var frame = new VizFrame(...);
+var oldTitle = frame.vizTitle();
+var newTitle = 'new Title';
+frame.vizTitle(newTitle);
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizTitleMode">
+        <a name="vizTitleMode"></a>
+        <span class="type-signature"></span>vizTitleMode
+        <span class="method-var">
+        
+                
+                    (viz)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set for viz title mode.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>viz</code>
+                
+                
+                 : 
+                 
+                        string
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">title mode("manual" or "auto")<br/>
+In manual mode, user can set title manually. <br/>
+In auto mode, VizFrame generates the title according FeedItems.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var vizFrame = new VizFrame(...);
+...
+vizFrame.vizTitleMode('manual');
+...
+var titleMode = vizFrame.vizTitleMode();
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizTemplate">
+        <a name="vizTemplate"></a>
+        <span class="type-signature"></span>vizTemplate
+        <span class="method-var">
+        
+                
+                    (value)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set vizFrame templateId. Viz Container provides a wrapper of CVOM.
+sap.viz.api.core.VizInstance.template() to get/set template.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>value</code>
+                
+                
+                 : 
+                 
+                        string
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    string
+                     | 
+                
+                    <a href="sap.viz.controls.frame.VizFrame.html">sap.viz.controls.frame.VizFrame</a>
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                .
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var vizFrame = new VizFrame(...);
+...
+vizFrame.vizTemplate("bluecrystal"); 
+vizFrame.vizTemplate();
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizType">
+        <a name="vizType"></a>
+        <span class="type-signature"></span>vizType
+        <span class="method-var">
+        
+                
+                    (vizType)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set/Get vizType.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>vizType</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    String
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizUid">
+        <a name="vizUid"></a>
+        <span class="type-signature"></span>vizUid
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get the uid of vizFrame.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    String
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var frame = new VizFrame(...);
+...
+frame.vizUid();
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="vizUpdate">
+        <a name="vizUpdate"></a>
+        <span class="type-signature"></span>vizUpdate
+        <span class="method-var">
+        
+                
+                    (updates)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Update viz instance by passing options in single function.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>updates</code>
+                
+                
+                 : 
+                 
+                        JSON
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The update options with below data structure:
+<pre>
+{
+    'data' : dataset,
+    'css' : cssString,
+    'properties' : {},
+    'propertiesOption' : {}, // {level : 'user', replace : true/false}
+    'scales' : [], // only for info charts
+    'scalesOption' : {}, // {level : 'user', replace : true/false}, only for info charts
+    'feeds' : [], // Array of FeedItem object
+    'filters' : [] // Array of ValueFilter|NumericRangeFilter|DateRangeFilter object
+    'template' : String //Template id.
+}
+All the options (data, css, properties, scales, feeds and filters) are optional and you can pass partial options.
+</pre></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                <a href="sap.viz.controls.frame.VizFrame.html">sap.viz.controls.frame.VizFrame</a> VizFrame itself.
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+var vizFrame = new VizFrame(...);
+var dataset = new sap.viz.api.data.CrosstableDataset();
+//dataset.data(your data);
+var cssString = '';
+vizFrame.vizUpdate({
+    'properties' : {},
+    'feeds' : [], //FeedItem object
+    'filters' : [] //ValueFilter|NumericRangeFilter|DateRangeFilter object
+});
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="connect">
+        <a name="connect"></a>
+        <span class="type-signature"></span>connect
+        <span class="method-var">
+        
+                
+                    (vizUid)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Connect to a viz instance.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>vizUid</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The uid of the viz instance.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="disconnect">
+        <a name="disconnect"></a>
+        <span class="type-signature"></span>disconnect
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Disconnect a viz control from a viz instance.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="load">
+        <a name="load"></a>
+        <span class="type-signature"></span>load
+        <span class="method-var">
+        
+                
+                    (valueJSON)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Deserialize VizControlHost from JSON object.<br/>
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>valueJSON</code>
+                
+                
+                 : 
+                 
+                        JSON
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last"></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="size">
+        <a name="size"></a>
+        <span class="type-signature"></span>size
+        <span class="method-var">
+        
+                
+                    (value)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set VizControl size {width, height} in pixel or in percentage.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>value</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Optional, current VizControl size.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    JSON
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                
+            </div>
+    
+        </ul>
+</div>
+
+    
+    
+    
+        <h5>Example:</h5>
+        
+        <p class="code-caption">Sample Code:</p>
+    
+    <pre class="prettyprint"><code><pre>
+vizControl.size({
+         'width' : width,
+         'height' : height
+});
+var size = vizControl.size();
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+</article>
+</section>  
+
+
+
+
+</div>
+
+<br clear="both">
+
+<!--footer>
+    Documentation generated by <a href="https://github.com/micmath/jsdoc">JSDoc 3</a> on Wed Jul 08 2015 07:37:49 GMT+0200 (CEST)
+</footer-->
+<script src="static/linenumber.js"> </script>
+<link href="../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet"> 
+<script src="../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/css/css.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+<script src="static/livedemo.js"></script>
+</body>
+</html>

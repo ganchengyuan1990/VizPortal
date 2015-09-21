@@ -1,0 +1,229 @@
+body,div,p{
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin-left: 70px;
+    margin-right: 70px;
+}
+.chartArea {
+    height: 28.75em;
+    background-color: #ffffff;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #BDBDBD;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.codeArea {
+    position: absolute; 
+    left:0; 
+    right: 0; 
+    top:0; 
+    bottom: 0; 
+    background-color: #ffffff;
+    margin: 32.75em 10em 2em 10em;
+}
+
+.footer {
+    position: absolute;
+    right:10px;
+    bottom:10px;
+    font-size:12px;
+    font-style:italic;
+    text-align:right;
+}
+
+.overallPanel1 {
+    border-width: 1px;
+    border-color: #BDBDBD;
+    margin: 1.875em 0 3.75em 0;
+}
+
+
+.pic_link {
+    text-decoration: none;
+}
+.demo_illus {
+    text-decoration: none;
+    font-family: 'Arial';
+    font-weight: 200;
+    font-style: normal;
+    font-size: 0.875em;
+    color: #3498DB;
+    overflow: hidden;
+    width: 12.5em;
+    display: inline-block;
+}
+
+.overview_page_title {
+    text-decoration: none;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1.1em;
+    margin-left: -1.875em;
+}
+
+.overview_chart_title {
+    text-decoration: none;
+    font-family: Arial,Helvetica,sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    margin-left: 1.1%;
+    font-size: 1.1em;
+    
+}
+.pic_small {
+    border: solid;
+    border-width: 1px;
+    border-color: #BDBDBD;
+    width: 100%;
+    height: auto;
+}
+
+.pic_small_container {
+    text-align: center;
+    padding: 0 1.18% 4.375em 1.18%;
+    display: inline-block;
+    vertical-align: top;
+    width: 22%;
+}
+.picPanel {
+    margin-top: 1.125em;
+}
+@media screen and (device-width: 768px) {
+     .pic_small_container {
+        text-align: center;
+        padding: 0 1.5% 4.375em 1.5%;
+        display: inline-block;
+        vertical-align: top;
+        width: 30%;
+     }
+}
+@media screen and (max-device-width: 767px) {
+    .overview_chart_title {
+        text-decoration: none;
+        font-family: Arial,Helvetica,sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        margin-left: 4%;
+        font-size: 1.1em;
+     }
+     .pic_small_container {
+        text-align: center;
+        padding: 0 4% 4.375em 4%;
+        display: inline-block;
+        vertical-align: top;
+        width: 40%;
+     }
+}
+@media screen and (max-width: 610px ) and (min-width: 605px)   {
+    .overview_chart_title {
+        text-decoration: none;
+        font-family: Arial,Helvetica,sans-serif;
+        font-weight: 500;
+        font-style: normal;
+        margin-left: 4%;
+        font-size: 1.1em;
+     }
+     .pic_small_container {
+        text-align: center;
+        padding: 0 4% 4.375em 4%;
+        display: inline-block;
+        vertical-align: top;
+        width: 40%;
+     }
+}
+div[class*="sapMPanelHdr"] {
+    font-family: "Arial";
+    font-weight: 700;
+    color: #666666;
+}
+ .htmlView{
+    padding-bottom: 5px;
+    margin-right: 10px;
+}
+.Panel1 {
+    font-family: "Arial";
+    font-weight: 700;
+    color: #666666;
+}
+.settingPanel {
+    margin: -0.6em 2em 2em 2em;
+    position: relative;
+    height: auto;
+}
+div[class*="sapMPanelContent"] {
+    padding-top: 0.5em;
+    border: none !important;
+    overflow: visible;
+}
+.sapUiVlt.sapuiVlt {
+    overflow: visible;
+}
+
+.myRadio{
+    margin-top: 10px;
+}
+
+.vboxStyle {
+    margin-right: 5em;
+    margin-bottom: 1.5em;
+}
+
+.selectStyle {
+    height: 1.5em !important;
+}
+
+.selectStyle > span {
+    height: 1.5em !important;
+    width: 1.5em;
+    line-height: 1.6em;
+}
+
+label[class*="sapMSltLabel"] {
+    font-family: "Arial";
+    line-height: 1.5em !important;
+}
+
+li[class*="sapMSelectListItem"] {
+    font-family: Arial,Helvetica,sans-serif;;
+    height: 1.5em;
+    line-height: 1.5em;
+}
+div[class*="sapMSLITitleDiv"] {
+    font-family: Arial,Helvetica,sans-serif;
+    height: 1.5em;
+    line-height: 1.5em !important;
+}
+
+div[class*="sapMPanelContent"] {
+    background-color: #EEEEEE;
+}
+
+body{
+    margin: 0 70px 0 70px;
+}
+
+span[class*="sapMTokenText"] {
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+.chartAreaSetting {
+    height: 35em;
+    margin-top: 1em;
+    margin-bottom: 15px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #BDBDBD;
+}
+
+label, button, input {
+    font-size: 14px !important;
+}
+
+div[class*="sapMPanelContent"], label{
+    padding-bottom: 0.5em !important;
+}

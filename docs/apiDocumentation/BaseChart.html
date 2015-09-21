@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>[VIZDOC] Namespace: BaseChart</title>
+    <script src="static/jquery-1.7.2.min.js"> </script>
+    <script src="static/jquery-ui-1.8.22.custom.min.js"> </script>
+    <script src="static/jquery.ui.autocomplete.html.js"> </script>
+    <script src="metadata.js"> </script>
+    <script>
+        $(function() {
+            $("#tabs").tabs();
+            $("#tags").autocomplete({
+                source: metadata.searchDS,
+                select: function(event, ui) {
+                    var link = ui.item.value;
+                    location.href = link;
+                },
+                html: true
+            });
+            
+            var tcX = $(window).width() - $('#tableContent').width() - 20, tcY = 125;
+            /*$("#tableContent").draggable({
+                handle: '#tcTitle',
+                start: function(event, ui) {
+                    $('#tableContent').css('right', '');
+                },
+                stop: function(event, ui) {
+                    tcX = $(this).offset().left - document.body.scrollLeft;
+                    tcY = $(this).offset().top - document.body.scrollTop;
+                }
+            }).resizable({
+                resize: function(){
+                    $('#tcTitle').width($(this).width());
+                    $('#tcContent').width($(this).width()-11)
+                        .height($(this).height()-11 - $('#tcTitle').height());
+                }
+            });*/
+            $(window).resize(function() {
+                var newX = $(window).width() - $('#tableContent').width() - 20;
+                //if (tcX > newX) {
+                    tcX = newX;
+                    $('#tableContent').css('left', tcX+document.body.scrollLeft);
+                    $('#tableContent').css('right', '');
+                //}
+                
+            });
+            //$('#tableContent').css('left', tcX).css('top', tcY);
+            $('#tableContent').css('right', 20).css('top', 20);
+            if (getParameterByName('version') == '1') {
+                $("#version1").css({"text-decoration":"none","color":"#333333"});
+                $("#version2").css({"text-decoration":"underline","color":"#66ccff"});
+                $("#gif2").hide();
+            }
+            else {
+                $("#version1").css({"color":"#66ccff"});
+                $("#version2").css({"text-decoration":"none"});
+                $("#gif1").hide();
+            }
+
+            $('.widget-header .widget-title').click(function() {
+                $('.widget-body').animate({height: 'toggle', opacity: 'toggle'}, "slow");
+                if ($(this).hasClass("widget-title-click")) {
+                    $(this).removeClass("widget-title-click");
+                } else {
+                    $(this).addClass("widget-title-click");
+                }
+            });
+            if(parent.window._getIndexOfSelection){
+                var selectionIndex = parent.window._getIndexOfSelection();
+                $(".container-overall").before("<h2 id=\"selectionIndex\" style=\"padding-bottom:20px\">"+selectionIndex + "</h2>")
+            }
+
+            
+                $('#tableContent').css('visibility', 'visible');
+            
+        });
+        
+        function linkToChartProperty() {
+            window.location.href = "../chartproperty/chartproperty.html";
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+    </script>
+    <link type="text/css" rel="stylesheet" href="static/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="static/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="static/jquery-ui-1.8.22.custom.css">
+    <link type="text/css" rel="stylesheet" href="static/renew.css">
+</head>
+
+<body>
+<script>
+      function returnTop() {
+          $('body,html').animate({'scrollTop':0}, 500);
+      }
+</script>
+<div class="returnIcon" id="svgToTop">
+  <img src="static/to_top.svg" onclick="returnTop()">
+</div>
+<div id='tableContent'>
+    <div id='tcTitle' class="widget-header">
+        <div class="widget-title">Namespace: BaseChart</div>
+    </div>
+    <div id='tcContent' class='widget-body'>
+         							<a href="#members" class="table-title">Properties</a> 							<ul><li><a href="#metadata">metadata</a></li></ul> 							<a href="#methods" class="table-title">Methods</a> 							<ul><li><a href="#destroy">destroy</a></li>
+<li><a href="#exportToSVGString">exportToSVGString</a></li>
+<li><a href="#feedingZone">feedingZone</a></li>
+<li><a href="#getSelection">getSelection</a></li>
+<li><a href="#init">init</a></li>
+<li><a href="#propertyZone">propertyZone</a></li>
+<li><a href="#render">render</a></li>
+<li><a href="#setSelection">setSelection</a></li>
+<li><a href="#updateBuiltInComponents">updateBuiltInComponents</a></li>
+<li><a href="#binding">binding</a></li>
+<li><a href="#container">container</a></li>
+<li><a href="#data">data</a></li>
+<li><a href="#dispatchEvent">dispatchEvent</a></li>
+<li><a href="#properties">properties</a></li>
+<li><a href="#size">size</a></li></ul>
+    </div>
+</div>  
+
+<div id="main">
+    
+
+
+
+<section class="container-overall">
+    
+<header>
+    <h2 class="section-title">
+        Namespace: BaseChart
+    </h2>
+    
+    
+        
+            <div class="class-description">The base class of extension. The instance function and metadata can be overridden.</div>
+        
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title"><a name="members">Properties</a></h3>
+        
+                
+<div class="members"><dl class="members-content">
+<dt>
+    <h4 class="name" id="metadata">
+        <span class="type-signature">[static] </span>metadata<span class="type-signature"></span>
+        <span class="member-detail">
+        
+
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        Set the metadata of extension chart, which includes id, chartType, properties.
+
+<pre>
+<h4>id : String</h4>The unique extension id. Recommended naming convention is "your company name".viz.ext."extension name"
+
+<h4>dataType : String("raw"|"csv")</h4>"raw" - any customized or standard data format in JSON. Such as OData, 2D-Array or else. When “raw” data type is set, SDK does not do any data conversion, but passes the raw data directly into the extension renderer. 
+"csv" – it is a flatten data structure just like the return of d3.csv(). The data binding definition will decide the position of columns in csv table. When "csv" data type is set, the extension can only support <a href="sap.viz.api.data.CrosstableDataset.html">sap.viz.api.data.CrosstableDataset</a> or <a href="sap.viz.api.data.FlatTableDataset.html">sap.viz.api.data.FlatTableDataset</a> as input dataset.
+
+<h4>properties : Object</h4>Custom configurable settings provided by extension. The schema of properties definition is shown below 
+     {
+            
+            "defaultValue": null,
+            // optional, by default read-only is false
+            "readonly": false,
+            // optional, by default serializable is true
+            "serializable": true,
+            // optional
+            "description": "",
+            // optional
+            "supportedValueType": "Object", // Number, String, Boolean, StringArray, NumberArray, BooleanArray
+      }
+
+<h4>bindingDefinition : Array</h4>Data binding definition for the extension. The schema of the binding definition is shown below
+    {
+            "feed": "valueAxis", //Binding id
+            "properties": {
+                 "min": {// min means the minimum columns(dimensions or measures) of data this binding needs.
+                      "name": "min",
+                      "supportedValueType": "Number",
+                      "defaultValue": "1",//Means this binding needs at least one column measure.
+                      // optional
+                      "description": ""
+                 },
+                 "max": {// max means the maximun columns(dimensions or measures) of data this binding needs.
+                      "name": "max",
+                      "supportedValueType": "Number",
+                      "defaultValue": "3",//Means this binding needs at most three column measures.
+                      // optional
+                      "description": ""
+                 }
+            }
+      }
+
+<h4>events : Array</h4>Supported user defined events. Once an event is listed here, the extension itself can fire an event by using dispatchEvent() method.
+To listen to the event, use <a href="sap.viz.api.core.VizInstance.html#on">sap.viz.api.core.VizInstance.on</a>. Natively, two built-in events “renderComplete” and “initialized” are also supported by default.
+
+<h4>css : String</h4>String of CSS or css file is loaded by requireJS with css rules
+Example for css strings:
+ css = "color:red;background:blue;fill:rgba(111,111,111,0.5)"
+Example for css files: 
+define(["css!../css/extension.css"], function (cssRules) {
+     metadata.css = cssRules;
+}
+
+<h4>builtInComponents : Array</h4>Built-in components used by the extension. Two components are supported, <a href="Title.html">Title</a> and <a href="ColorLegend.html">ColorLegend</a>
+ The schema of built-in components is shown below
+ {
+       name : sap.viz.extapi.component.TITLE.NAME, //Currently we support <a href="Title.html">Title</a> & <a href="ColorLegend.html">ColorLegend</a>
+       properties : {} //Predefined built-in module properties.
+ }
+ builtInCompoent sample:
+ builtInComponents = [{
+     name: sap.viz.extapi.component.Title.NAME
+ }, {
+     name: sap.viz.extapi.component.ColorLegend.NAME,
+     properties: {
+         "position": "top"
+     }
+ }];
+    </div>
+    
+    
+    
+        <h5>Example</h5>
+        
+    <pre class="prettyprint"><code>define(["css!../css/extension.css"], function (cssRules) {
+     var ExtensionClass = sap.viz.extapi.BaseChart.extend();
+     ExensionClass.metadata = {
+        id: "sap.viz.ext.helloWorld",
+        dataType: "csv", // "raw" or "csv",
+        bindingDefinition: [{
+            "id": "categoryAxis",
+            "name": "IDS_CATEGORY_AXIS",
+            "type": "Dimension",
+            "min": 1,
+            "max": Infinity,
+            "role": "layout.category"
+        }, {
+            "id": "color",
+            "name": "IDS_COLOR",
+            "type": "Dimension",
+            "min": 0,
+            "max": Infinity,
+            "role": "mark.color"
+        }, {
+            "id": "valueAxis",
+           "name": "IDS_VALUE_AXIS",
+            "type": "Measure",
+            "min": 1,
+            "max": Infinity,
+            "role": "layout.value"
+        }],
+        properties: {
+            "a": {
+                "defaultValue": "Sample Chart",
+            },
+            "b": {
+                "defaultValue": "#cccccc",
+            }
+        },
+        css : cssRules,
+        events: ["extensionEvent"],
+        builtInComponents: [{
+            name: sap.viz.extapi.component.Title.NAME
+        }, {
+            name: sap.viz.extapi.component.ColorLegend.NAME,
+            properties: {
+                "position": "top"
+            }
+        }]
+     };
+}
+</pre></code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+        <h3 class="subsection-title"><a name="methods">Methods</a></h3>
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="destroy">
+        <a name="destroy"></a>
+        <span class="type-signature"></span>destroy
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Destroy the whole extension instance. This method can be overridden.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="exportToSVGString">
+        <a name="exportToSVGString"></a>
+        <span class="type-signature"></span>exportToSVGString
+        <span class="method-var">
+        
+                
+                    (option)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Export extension to SVG string. If the extension uses DIV instead of SVG, like using a Google map, exporting to SVG is not supported by default. However, you can add your own DIV->SVG code to overwrite this method.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>option</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the size object required to export {width: Number, height: Number}</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example:</h5>
+        
+    <pre class="prettyprint"><code> 
+ ExtensionClass.prototype.exportToSVGString = function (option) {
+      var width = option.width || this.container().style('width');
+      var height = option.height || this.container().style('height');
+     return "<g><rect width= '" + width + "' height='" + height + "'></rect></g>";
+ };</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="feedingZone">
+        <a name="feedingZone"></a>
+        <span class="type-signature"></span>feedingZone
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Configure the visual area on the extension that supports drag/drop data feeding item to that extension.  This method should be overwritten with own implementation only if extension requires feedingZone feature. The feedingZone API information can be found at <a href="sap.viz.api.core.VizInstance.html#feedingZone">sap.viz.api.core.VizInstance.feedingZone</a>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example:</h5>
+        
+    <pre class="prettyprint"><code> ExtensionClass.prototype.feedingZone = function () {
+    var bind = this.bindings();
+    var result = [];
+    for (var i in bind) {
+        if (bind[i].feed === 'valueAxis') {
+            result.push({//Basic schema for the feedingZone definition.
+                 name: 'valueAxis',
+                bound: [
+                    [
+                        [20, 20], //top left position
+                        [300, 20],    //top right position
+                        [200, 300],   //right bottom position
+                        [20, 300]    //left bottom position
+                    ]
+                ],
+                bindDef: [bind[i]] // bindings for the specific binding id.
+            });
+        }
+     }
+    return result;
+ };</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="getSelection">
+        <a name="getSelection"></a>
+        <span class="type-signature"></span>getSelection
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get the current selected data points for the extension. This method should be overwritten with own implementation only if extension requires selection feature. The selection API information can be found at <a href="sap.viz.api.core.VizInstance.html#selection">sap.viz.api.core.VizInstance.selection</a>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example:</h5>
+        
+    <pre class="prettyprint"><code> 
+ ExtensionClass.prototype.getSelection = function () {
+    return [{
+        data: {
+             'Product':'Car',
+             'Country':'Canada',
+             'Profit':120
+        }
+    }];
+ };
+ </code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="init">
+        <a name="init"></a>
+        <span class="type-signature"></span>init
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Initialization of the extension. This method can be overridden.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="propertyZone">
+        <a name="propertyZone"></a>
+        <span class="type-signature"></span>propertyZone
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Configure the visual area on the extension that is able to interact with property. This method should be overwritten with own implementation only if extension requires selection feature. The propertyZone API information can be found at <a href="sap.viz.api.core.VizInstance.html#propertyZone">sap.viz.api.core.VizInstance.propertyZone</a>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example:</h5>
+        
+    <pre class="prettyprint"><code> ExtensionClass.prototype.propertyZone = function () {
+    var result = [];
+    var properties = ['a','b'];//supported properties list.
+    for (var i in properties) {
+        if (i === 'a') {
+            result.push({
+                bound: [
+                    [
+                        [20, 20], //top left position
+                        [300, 20],    //top right position
+                        [200, 300],   //right bottom position
+                        [20, 300]    //left bottom position
+                 ]
+                ],
+                name: "a" //property name.
+            })
+        }
+    }
+    return result;
+ };</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="render">
+        <a name="render"></a>
+        <span class="type-signature"></span>render
+        <span class="method-var">
+        
+                
+                    (builtInComponents,
+                
+                    changes)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Drawing extension special design or building the interaction in extension plot. It is mandatory to add your own rendering logic here for building a new extension. 
+ The function is called after all other modules' rendering is finished.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>builtInComponents</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The list of builtInComponents;</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>changes</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Include Indicators for the status of extension,  including dataChanged, bindingChanged scalesChanged, propertiesChanged, sizeChanged. 
+ For example:
+ <pre>
+           changes {
+                            dataChanged : false,
+                            bindingChanged : false,
+                            scalesChanged : false,
+                            propertiesChanged : false,  
+                            sizeChanged : false
+                       }
+ </pre></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="setSelection">
+        <a name="setSelection"></a>
+        <span class="type-signature"></span>setSelection
+        <span class="method-var">
+        
+                
+                    (dataContext,
+                
+                    options)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set  the current selected data points for the extension. This method should be overwritten with own implementation only if extension requires selection feature. The selection API information can be found at <a href="sap.viz.api.core.VizInstance.html#selection">sap.viz.api.core.VizInstance.selection</a>
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>dataContext</code>
+                
+                
+                 : 
+                 
+                        Array
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Refer to dataContext schema described in <a href="sap.viz.api.core.VizInstance.html#selection">sap.viz.api.core.VizInstance.selection</a></div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>options</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Refer to the option described in  <a href="sap.viz.api.core.VizInstance.html#selection">sap.viz.api.core.VizInstance.selection</a></div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="updateBuiltInComponents">
+        <a name="updateBuiltInComponents"></a>
+        <span class="type-signature"></span>updateBuiltInComponents
+        <span class="method-var">
+        
+                
+                    (builtInComponents,
+                
+                    changes)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Override the built-in components property.  Some deprecated properties, such as ‘scale’, cannot be updated. <br>
+ The function is called before built-in components start their layout and rendering. If you are setting extension property in different places, the function follows the below priority:
+   updated properties > user setting properties > template properties > viz default properties.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>builtInComponents</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The list of builtInComponents.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>changes</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">• Include Indicators for the status of extension,  including dataChanged, bindingChanged scalesChanged, propertiesChanged, sizeChanged.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example:</h5>
+        
+    <pre class="prettyprint"><code> ExtensionClass.prototype.updateBuiltInComponents = function(builtInComponents, changes) {
+     var title = builtInComponents[sap.viz.extapi.component.Title.NAME];
+     title.properties("alignment","left");// Update title's properties here.
+     var legend = builtInComponents[sap.viz.extapi.component.ColorLegend.NAME];
+     var value = [];
+     var color = [];
+     var data = this.data(); 
+     data.forEach(function (d) {// Build legend's data here, 
+         value.push(d.label);
+         color.push(d.color);
+     })
+     //sample for legend's data schema.
+     legend.setData({
+         data: value,
+         color: color,
+         metadata: [{ 
+             id: 'Product',
+             name: 'Product',
+             type: 'Dimension'
+         }]
+     });
+     legend.addEventListener('selectionChanged', callback, this);
+ }</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="binding">
+        <a name="binding"></a>
+        <span class="type-signature"></span>binding
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get the current binding information of the extension
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Array
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                array Refer to binding schema described in {sap.viz.api.core.VizInstance.bindings}
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="container">
+        <a name="container"></a>
+        <span class="type-signature"></span>container
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get the current extension module's container layer.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    HTMLDIVElement
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                Node the extension Layer DIV
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="data">
+        <a name="data"></a>
+        <span class="type-signature"></span>data
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Pass in dataset as raw or csv date type.
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                data Data model which is set through createViz(raw) or a CSV data model(csv).
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="dispatchEvent">
+        <a name="dispatchEvent"></a>
+        <span class="type-signature"></span>dispatchEvent
+        <span class="method-var">
+        
+                
+                    (eventName,
+                
+                    data)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Fire supported events.<br> DispatchEvent() should be the only way when firing out the events in the extension. Overwriting this function will cause an event dispatcher problem.
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>eventName</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Event name. Event listeners will get called if they're listening to the event name.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>data</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Event listeners will get the data through its callback function.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+        <h5>Example:</h5>
+        
+    <pre class="prettyprint"><code> this.dispathcEvent('renderComplete');</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="properties">
+        <a name="properties"></a>
+        <span class="type-signature"></span>properties
+        <span class="method-var">
+        
+                
+                    (properties,
+                
+                    value)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get/Set the properties defined in extension metadata, as well as the properties of used built-in modules
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>properties</code>
+                
+                
+                 : 
+                 
+                        String
+                         | 
+                
+                        Object
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">The name of the property. If you use a string key only, it will be treated as a get. Otherwise it's a set.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>value</code>
+                
+                
+                 : 
+                 
+                        String
+                         | 
+                
+                        Object
+                         | 
+                
+                        null
+                        
+                
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Value of the property. Optional.</div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                the property's value for for the specific key if get.
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+        <h5>Example:</h5>
+        
+    <pre class="prettyprint"><code>    // get a single property:
+    var visible = this.properties('extension.visible');
+    // get a bunch of properties by prefix:
+    var props = this.properties('extension');
+    var visible = props.visible;
+
+    // set a single property value:
+    this.properties('extension.title.color', '#cccccc');
+    // set a bunch of properties by providing a prefix:
+    this.properties('extension', {
+         title: {
+            visible: true,
+            color: '#cccccc'
+         }
+    });
+    // set a bunch of properties by providing a prefix:
+    this.properties('extension.title', {
+         visible: true,
+         color: '#cccccc'
+    });</code></pre>
+
+    
+</dd>
+</dl>
+</div>
+
+        
+            
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="size">
+        <a name="size"></a>
+        <span class="type-signature"></span>size
+        <span class="method-var">
+        
+                ()
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Get the size of extension plot area
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h5>Returns:</h5>
+        <div class="params">
+    
+        <ul>
+    
+            <li class="name">
+                
+                    Object
+                    
+                
+            </li> 
+            
+            <div class="description last">
+                size Return the width/height of current plot's size.
+            </div>
+    
+        </ul>
+</div>
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+        
+    
+    
+    
+</article>
+</section>  
+
+
+
+
+</div>
+
+<br clear="both">
+
+<!--footer>
+    Documentation generated by <a href="https://github.com/micmath/jsdoc">JSDoc 3</a> on Wed Jul 08 2015 07:35:15 GMT+0200 (CEST)
+</footer-->
+<script src="static/linenumber.js"> </script>
+<link href="../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet"> 
+<script src="../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/css/css.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+<script src="static/livedemo.js"></script>
+</body>
+</html>

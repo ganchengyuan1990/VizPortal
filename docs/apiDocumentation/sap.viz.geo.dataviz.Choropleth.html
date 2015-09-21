@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>[VIZDOC] Class: Choropleth</title>
+    <script src="static/jquery-1.7.2.min.js"> </script>
+    <script src="static/jquery-ui-1.8.22.custom.min.js"> </script>
+    <script src="static/jquery.ui.autocomplete.html.js"> </script>
+    <script src="metadata.js"> </script>
+    <script>
+        $(function() {
+            $("#tabs").tabs();
+            $("#tags").autocomplete({
+                source: metadata.searchDS,
+                select: function(event, ui) {
+                    var link = ui.item.value;
+                    location.href = link;
+                },
+                html: true
+            });
+            
+            var tcX = $(window).width() - $('#tableContent').width() - 20, tcY = 125;
+            /*$("#tableContent").draggable({
+                handle: '#tcTitle',
+                start: function(event, ui) {
+                    $('#tableContent').css('right', '');
+                },
+                stop: function(event, ui) {
+                    tcX = $(this).offset().left - document.body.scrollLeft;
+                    tcY = $(this).offset().top - document.body.scrollTop;
+                }
+            }).resizable({
+                resize: function(){
+                    $('#tcTitle').width($(this).width());
+                    $('#tcContent').width($(this).width()-11)
+                        .height($(this).height()-11 - $('#tcTitle').height());
+                }
+            });*/
+            $(window).resize(function() {
+                var newX = $(window).width() - $('#tableContent').width() - 20;
+                //if (tcX > newX) {
+                    tcX = newX;
+                    $('#tableContent').css('left', tcX+document.body.scrollLeft);
+                    $('#tableContent').css('right', '');
+                //}
+                
+            });
+            //$('#tableContent').css('left', tcX).css('top', tcY);
+            $('#tableContent').css('right', 20).css('top', 20);
+            if (getParameterByName('version') == '1') {
+                $("#version1").css({"text-decoration":"none","color":"#333333"});
+                $("#version2").css({"text-decoration":"underline","color":"#66ccff"});
+                $("#gif2").hide();
+            }
+            else {
+                $("#version1").css({"color":"#66ccff"});
+                $("#version2").css({"text-decoration":"none"});
+                $("#gif1").hide();
+            }
+            $('.widget-header .widget-title').click(function() {
+                $('.widget-body').animate({height: 'toggle', opacity: 'toggle'}, "slow");
+                if ($(this).hasClass("widget-title-click")) {
+                    $(this).removeClass("widget-title-click");
+                } else {
+                    $(this).addClass("widget-title-click");
+                }
+            });
+            if(parent.window._getIndexOfSelection){
+                var selectionIndex = parent.window._getIndexOfSelection();
+                $(".container-overall").before("<h2 id=\"selectionIndex\" style=\"padding-bottom:20px\">"+selectionIndex + "</h2>")
+            }
+            
+                $('#tableContent').css('visibility', 'visible');
+            
+        });
+        
+        function linkToChartProperty() {
+            window.location.href = "../chartproperty/chartproperty.html";
+        }
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+    </script>
+    <link type="text/css" rel="stylesheet" href="static/node-dark.css">
+    <link type="text/css" rel="stylesheet" href="static/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="static/jquery-ui-1.8.22.custom.css">
+    <link type="text/css" rel="stylesheet" href="static/renew.css">
+</head>
+
+<body>
+<script>
+      function returnTop() {
+          $('body,html').animate({'scrollTop':0}, 500);
+      }
+</script>
+<div class="returnIcon" id="svgToTop">
+  <img src="static/to_top.svg" onclick="returnTop()">
+</div>
+<div id='tableContent'>
+    <div id='tcTitle' class="widget-header">
+        <div class="widget-title">Class: Choropleth</div>
+    </div>
+    <div id='tcContent' class='widget-body'>
+        
+    </div>
+</div>  
+
+<div id="main">
+    
+
+
+
+<section class="container-overall">
+    
+<header>
+    <h2 class="section-title">
+        Class: Choropleth
+    </h2>
+    
+        <div class="class-description">Extends: 
+        
+            sap.viz.geo.dataviz.AbstractViz
+        
+        </div>
+    
+    
+        
+    
+</header>  
+
+<article>
+    <div class="container-overview">
+    
+    
+    
+        <h3 class="subsection-title">Constructor</h3>
+        
+<div class="method">
+<dl class="method-content">
+<dt>
+    <h4 class="name" id="Choropleth">
+        <a name="Choropleth"></a>
+        <span class="type-signature"></span>Choropleth
+        <span class="method-var">
+        
+                
+                    (options)
+                
+        
+        </span>
+        <span class="method-detail">
+        
+        </span>
+    </h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Create a new choropleth visualization object. It will show polygons of
+geo locations specified by data and fill them with different colors by
+values in data.
+
+<p>
+Feeding Information:
+
+<pre>
+{
+    location : FieldId1,
+    color : FieldId2
+}
+</pre>
+
+</p>
+    </div>
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>options</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the configuration object.
+                <h6>Properties</h6>
+                
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>startColor</code>
+                
+                
+                 : 
+                 
+                        Color
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Choropleth start color, default
+           value:"#fac99e"</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>endColor</code>
+                
+                
+                 : 
+                 
+                        Color
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Choropleth end color, default
+           value:"#703C10"</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>colorPalette</code>
+                
+                
+                 : 
+                 
+                        Array
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Set colorPalette for choropleth. If
+           this array length greater than numOfSegments, we will ignore
+           startColor and endColor. Default is ["#fAC99E","#f7A660",
+           "#f48323", "#b7621a","#703c10" ]. Set to [] if you want to use
+           startColor and endColor .</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>numOfSegments</code>
+                
+                
+                 : 
+                 
+                        Number
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Set Interval number for choropleth.
+           value range[1~9], default value is 5</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>legendValues</code>
+                
+                
+                 : 
+                 
+                        Number
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Set Interval values for choropleth.
+           number array in ascending order</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>mbcLegend</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Set the MBC(MeasureValue-Based-Color)
+           legend configuration.
+                <h6>Properties</h6>
+                
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>formatString</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Set the format pattern to be
+           applied for numbers in the MBC legend</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>unitFormatType</code>
+                
+                
+                 : 
+                 
+                        String
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">Set the type of format pattern to be
+           applied for numbers in the MBC legend</div>
+            </ul>
+	
+	
+</div>
+
+            </div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>dataLabel</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">the configuration object for data label.
+                <h6>Properties</h6>
+                
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>visible</code>
+                
+                
+                 : 
+                 
+                        Boolean
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">whether enable data labels, false
+           by default.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>showColorValue</code>
+                
+                
+                 : 
+                 
+                        Boolean
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">whether color value show in
+           data label, true by default. It take effect only when visible
+           is true.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>showLocationName</code>
+                
+                
+                 : 
+                 
+                        Boolean
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">whether geo location name
+           show in data label, true by default. It take effect only when
+           visible is true.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>autoHide</code>
+                
+                
+                 : 
+                 
+                        Boolean
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">when data label exceed polygon
+           bound box, weather hide or truncate labels, false by default.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>format</code>
+                
+                
+                 : 
+                 
+                        String
+                         | 
+                
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">a string to indicate the format
+           pattern of numbers in data label. It can be also an object
+           keys of which are ids of measures to specify the patterns
+           separately.</div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>unitFormatType</code>
+                
+                
+                 : 
+                 
+                        String
+                         | 
+                
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">a string to indicate the 
+           type of format pattern of numbers in data label. It can be also an object
+           keys of which are ids of measures to specify the patterns separately.</div>
+            </ul>
+	
+	
+</div>
+
+            </div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>hover</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">
+                <h6>Properties</h6>
+                
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>color</code>
+                
+                
+                 : 
+                 
+                        string
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                    
+                        [Default: null]
+                    
+                
+                </li>
+            
+            
+            <div class="description last">Set hovered data point color
+           effect. Four operation functions will be supported. -
+           darken/lighten/desaturate/greyscale</div>
+            </ul>
+	
+	
+</div>
+
+            </div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>selected</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">
+                <h6>Properties</h6>
+                
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>color</code>
+                
+                
+                 : 
+                 
+                        string
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                    
+                        [Default: null]
+                    
+                
+                </li>
+            
+            
+            <div class="description last">Set selected data point color
+           effect. Four operation functions will be supported. -
+           darken/lighten/desaturate/greyscale</div>
+            </ul>
+	
+	
+</div>
+
+            </div>
+            </ul>
+	
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>deselected</code>
+                
+                
+                 : 
+                 
+                        Object
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                </li>
+            
+            
+            <div class="description last">
+                <h6>Properties</h6>
+                
+
+<div class="params">
+	
+        <ul>	
+                <li class="name">
+                
+                    <code>color</code>
+                
+                
+                 : 
+                 
+                        string
+                        
+                
+                
+                    
+                        [Optional]
+                    
+                
+                
+                
+                    
+                        [Default: null]
+                    
+                
+                </li>
+            
+            
+            <div class="description last">Set deselected data point
+           color effect. Four operation functions will be supported. -
+           darken/lighten/desaturate/greyscale</div>
+            </ul>
+	
+	
+</div>
+
+            </div>
+            </ul>
+	
+	
+</div>
+
+            </div>
+            </ul>
+	
+	
+</div>
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+</dl>
+</div>
+
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Example</h3>
+        <div class="class-examples"><dl class="class-examples-content">
+            
+        <p class="code-caption">add a new choropleth layer</p>
+    
+    <pre class="prettyprint"><code><pre>
+... //get map using viz api
+
+var data = {
+   &quot;metadata&quot; : {
+     &quot;fields&quot; : [{
+       &quot;id&quot; : &quot;Location&quot;,
+       &quot;name&quot; : &quot;City&quot;,
+       &quot;semanticType&quot; : &quot;Dimension&quot;, 
+       &quot;dataType&quot; : &quot;String&quot;
+     }, {
+       &quot;id&quot; : &quot;Measure&quot;,
+       &quot;name&quot; : &quot;Sales&quot;,
+       &quot;semanticType&quot; : &quot;Measure&quot;
+     }]
+   },
+   &quot;data&quot; : [[&quot;Los Angeles&quot;, 30.12], [&quot;Long Beach&quot;, 50.0],
+       [&quot;Washington&quot;, 40.32]]
+ };
+var feeding = {location: 'Location', color: 'Measure'};
+var viz = new sap.viz.geo.dataviz.Choropleth({
+ startColor : 'rgb(194,227,00)',
+ endColor : 'rgb(115,192,60)',
+  nullColor : 'rgb(204,204,204)',
+  numOfSegments : 4,
+  colorPalette:[],
+  legendValues:[0,34,56,122,123,234]
+ });
+
+var ds = new sap.viz.api.data.FlatTableDataset(data);
+var layer = new sap.viz.geo.dataviz.Layer({
+  viz : viz,
+  data : ds,
+  feeding: feeding
+});
+map.addLayer(layer);
+
+... //add lay into map
+</pre></code></pre>
+
+        </dl></div>
+    
+</article>
+</section>  
+
+
+
+
+</div>
+
+<br clear="both">
+
+<!--footer>
+    Documentation generated by <a href="https://github.com/micmath/jsdoc">JSDoc 3</a> on Wed Jul 08 2015 07:30:32 GMT+0200 (CEST)
+</footer-->
+<script src="static/linenumber.js"> </script>
+<link href="../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+<link href="../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet"> 
+<script src="../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/css/css.js"></script>
+<script src="../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+<script src="static/livedemo.js"></script>
+</body>
+</html>

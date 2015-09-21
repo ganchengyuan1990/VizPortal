@@ -1,0 +1,373 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta charset="utf-8"></meta>
+      <title >Axis Fixscale Testing</title>
+      <script type="text/javascript" src="../../../resources/libs/d3.js"></script>
+      <script type="text/javascript" src="../../../resources/libs/jquery.js"></script>
+      <script type="text/javascript" src="../../../resources/libs/json2.js"></script>
+      <script type="text/javascript" src="../../../resources/libs/sap.viz/sap.viz.info.js"></script>
+      <!--<script type="text/javascript" src="../../../resources/libs/Info_chart/sap.common.globalization.js"></script>
+      <script type="text/javascript" src="../../../resources/libs/Info_chart/require.js"></script>
+      <script type="text/javascript" src="requireconfig.js"></script>-->
+      <!--<script type="text/javascript" src="../demo_charts/resources/js/internal/load.js"></script>-->
+      <script src="../../../resources/libs/CodeMirror/lib/codemirror.js"></script>
+      <script src="../../../resources/libs/CodeMirror/mode/javascript/javascript.js"></script>
+      <script src="../../../resources/libs/CodeMirror/mode/htmlmixed/htmlmixed.js"></script>
+      <script src="../../../resources/libs/CodeMirror/mode/htmlembedded/htmlembedded.js"></script>
+      <script src="../../../resources/libs/CodeMirror/mode/css/css.js"></script>
+      <script src="../../../resources/libs/CodeMirror/mode/xml/xml.js"></script>
+      <link href="../../../resources/libs/CodeMirror/lib/codemirror.css" rel="stylesheet">
+      <link href="../../../resources/libs/CodeMirror/theme/vibrant-ink.css" rel="stylesheet">
+      <link href="../../../resources/libs/CodeMirror/theme/no-highlight.css" rel="stylesheet">
+      <link href="../resources/css/button.css" rel="stylesheet">
+
+      <script type="text/javascript">
+         // $(document).ready(function() {
+         //   var Locale = sap.viz.api.env.Locale;
+         //   var locale = $("#locale");
+         //   locale.change(function() {
+         //     Locale.set(this.value);
+         //   });
+         // })
+      </script>
+      <!--<script type="text/javascript" src="resources/libs/Info_chart/export.js"></script>
+         <script type="text/javascript" src="https://getfirebug.com/firebug-lite-debug.js"></script>-->
+    <style type="text/css">
+    #chart {
+        width: 1000px;
+        height: 800px;
+        background-color: #ffffff;
+    }
+
+    #resizediv {
+        height: 10px;
+        width: 10px;
+        left: 800px;
+        margin-top: -10px;
+        position: absolute;
+        cursor: nw-resize;
+        background-color: #ffffff;
+    }
+
+    .Options {
+        position: relative;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="chart" style="width: 80%; height: 600px; margin:auto; background-color: #ffffff; border:1px solid #dddddd">
+    </div>
+    <div id="button-container" class="button-content" style="width: 80%; height: 100%;  margin:auto">
+      </div>
+    <div id="code-content" style="border:1px solid #dddddd; margin:auto; width: 80%; clear:right">
+    </div>
+    <script type="text/javascript" src="chart.js"></script>
+    <script type="text/javascript" src="../js/showcode.js"></script>
+    <script type="text/javascript" src="../js/util.js"></script>
+    <table>
+        <tr>
+            <td>
+                <div id="resizediv" onmousedown="resize(this,event)" style="display:none">
+                    <img id="resizeimg" src="img/resize.png"></img>
+                </div>
+            </td>
+            <td>
+                <div id="dataupdate" align="left" style="display:none">
+                    Update your data here: <a id="randomSchema" title="Random Schema" href="javascript:void(0)">
+                  Random Schema</a>
+                    <br></br>
+                    <textarea id="textarea_data" cols="50" rows="20"></textarea>
+                    <input name="updateData" type="button" onclick="updateData()" value="Update Data"></input>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="floatPanel">
+                    <table>
+                        <tr>
+                            <td>
+                                <!-- <input type="button" onclick="redrawChart()" value="Redraw Chart"></input> -->
+                                <input id="redrawChart" type="button" value="Redraw Chart"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Chart type:</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <!-- <select id="charttype" onchange="loadChart()"> -->
+                                <select id="charttype">
+                                    <option>info/heatmap</option>
+                                    <option>info/trellis_column</option>
+                                    <option>info/column</option>
+                                    <option>info/dual_column</option>
+                                    <option>info/stacked_column</option>
+                                    <option>info/dual_stacked_column</option>
+                                    <option>info/bar</option>
+                                    <option>info/dual_bar</option>
+                                    <option>info/stacked_bar</option>
+                                    <option>info/dual_stacked_bar</option>
+                                    <option>info/line</option>
+                                    <option>info/horizontal_line</option>
+                                    <option>info/dual_line</option>
+                                    <option>info/dual_horizontal_line</option>
+                                    <option>info/area</option>
+                                    <option>info/horizontal_area</option>
+                                    <option>info/combination</option>
+                                    <option>info/dual_combination</option>
+                                    <option>info/horizontal_combination</option>
+                                    <option>info/dual_horizontal_combination</option>
+                                    <option>info/mekko</option>
+                                    <option>info/horizontal_mekko</option>
+                                    <option>info/100_mekko</option>
+                                    <option>info/100_horizontal_mekko</option>
+                                    <option>info/scatter</option>
+                                    <option>info/bubble</option>
+                                    <option>info/radar</option>
+                                    <option>info/boxplot</option>
+                                    <option>info/horizontal_boxplot</option>
+                                    <option>info/waterfall</option>
+                                    <option>info/horizontal_waterfall</option>
+                                    <option>info/stacked_waterfall</option>
+                                    <option>info/horizontal_stacked_waterfall</option>
+                                    <option>info/treemap</option>
+                                    <option>info/tagcloud</option>
+                                    <option>info/pie</option>
+                                    <option>info/tree</option>
+                                    <option>info/network</option>
+                                    <option>info/3d_column</option>
+                                    <option>info/multi_stacked_bar</option>
+                                    <option>info/multi_dual_stacked_bar</option>
+                                    <option>info/multi_stacked_column</option>
+                                    <option>info/multi_dual_stacked_column</option>
+                                    <option>info/multi_radar</option>
+                                    <option>info/multi_scatter</option>
+                                    <option>info/multi_bar</option>
+                                    <option>info/multi_dual_bar</option>
+                                    <option>info/multi_bubble</option>
+                                    <option>info/multi_column</option>
+                                    <option>info/multi_dual_column</option>
+                                    <option>info/multi_horizontal_line</option>
+                                    <option>info/multi_line</option>
+                                    <option>info/multi_dual_line</option>
+                                    <option>info/multi_dual_horizontal_line</option>
+                                    <option>info/multi_horizontal_area</option>
+                                    <option>info/multi_area</option>
+                                    <option>info/scatter_matrix</option>
+                                    <option>info/trellis_line</option>
+                                    <option>info/trellis_dual_line</option>
+                                    <option>info/trellis_bar</option>
+                                    <option>info/trellis_dual_bar</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <!-- <input name="updateProperties" type="button" onclick="updateProperties()" value="Update Properties"></input> -->
+                                <input id="updateProperties" name="updateProperties" type="button" value="Update Properties"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>dataLabel</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_datelabel_visible" class="Options" type="checkbox" checked="true">Visible</input>
+                            </td>
+                        </tr>
+<!--                         <tr>
+                            <td>
+                                <input id="option_datelabel_position" class="Options" type="checkbox" checked="true">Inside</input>
+                            </td>
+                        </tr> -->
+                        <tr>
+                            <td>yAxis</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_yAxis_visible" class="Options" type="checkbox" checked="true">Visible</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_yAxis_gridline_visible" class="Options" type="checkbox" checked="true">GridLineVisible</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>minValue:</label>
+                                <input id="option_yAxis_scale_minvalue" class="Options"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>maxValue:</label>
+                                <input id="option_yAxis_scale_maxvalue" class="Options"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_yAxis_scale_fixedRange" class="Options" type="checkbox" checked="true">FixedRange</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>numberFormat:</label>
+                                <input id="option_yAxis_label_numberFormat" class="Options"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>formatString:</label>
+                                <input id="option_yAxis_label_formatString" class="Options"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>yAxis2</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_yAxis2_visible" class="Options" type="checkbox" checked="true">Visible</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_yAxis2_gridline_visible" class="Options" type="checkbox" checked="true">GridLineVisible</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>minValue:</label>
+                                <input id="option_yAxis2_scale_minvalue" class="Options"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>maxValue:</label>
+                                <input id="option_yAxis2_scale_maxvalue" class="Options"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_yAxis2_scale_fixedRange" class="Options" type="checkbox" checked="true">FixedRange</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>xAxis</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_xAxis_visible" class="Options" type="checkbox" checked="true">Visible</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_xAxis_gridline_visible" class="Options" type="checkbox" checked="true">GridLineVisible</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>minValue:</label>
+                                <input id="option_xAxis_scale_minvalue" class="Options"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>maxValue:</label>
+                                <input id="option_xAxis_scale_maxvalue" class="Options"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_xAxis_scale_fixedRange" class="Options" type="checkbox" checked="true">FixedRange</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>numberFormat:</label>
+                                <input id="option_xAxis_label_numberFormat" class="Options"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>formatString:</label>
+                                <input id="option_xAxis_label_formatString" class="Options"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>xAxis2</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_xAxis2_visible" class="Options" type="checkbox" checked="true">Visible</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_xAxis2_gridline_visible" class="Options" type="checkbox" checked="true">GridLineVisible</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>minValue:</label>
+                                <input id="option_xAxis2_scale_minvalue" class="Options"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>maxValue:</label>
+                                <input id="option_xAxis2_scale_maxvalue" class="Options"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_xAxis2_scale_fixedRange" class="Options" type="checkbox" checked="true">FixedRange</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>radar_valueAxis</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_radar_valueAxis_visible" class="Options" type="checkbox" checked="true">Visible</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_radar_valueAxis_gridline_visible" class="Options" type="checkbox" checked="true">GridLineVisible</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>minValue:</label>
+                                <input id="option_radar_valueAxis_scale_minvalue" class="Options"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>maxValue:</label>
+                                <input id="option_radar_valueAxis_scale_maxvalue" class="Options"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="option_radar_valueAxis_scale_fixedRange" class="Options" type="checkbox" checked="true">FixedRange</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>formatString:</label>
+                                <input id="option_radar_valueAxis_label_formatString" class="Options"></input>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
