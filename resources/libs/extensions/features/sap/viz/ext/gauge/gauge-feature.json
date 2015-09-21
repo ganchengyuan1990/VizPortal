@@ -1,0 +1,19 @@
+{
+	"metadataVersion": "1.0",
+	"id": "sap.viz.ext.gauge",
+	"name": "sap.viz.ext.gauge",
+	"description": " ",
+	"version": "1.0.0",
+	"vendor": {
+		"name": "Your company",
+		"url": "Your company website"
+	},
+	"requires": [{
+		"id": "sap.viz.common.core",
+		"version": "5.0.3"
+	}],
+	"bundles": [{
+		"id": "sap.viz.ext.gauge",
+		"version": "1.0.0"
+	}]
+}

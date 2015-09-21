@@ -1,0 +1,35 @@
+.geomap .legends {
+    background-color: #1b1b1b;
+    border-width: 1px;
+    border-color: #aaa;
+}
+
+.geomap .legends .v-legend {
+    border-top-width: 1px;
+    border-top-color: #aaa;
+}
+
+.geomap .legends-scroll::-webkit-scrollbar-track {
+    background-color: #333;
+}
+
+.geomap .legends-scroll::-webkit-scrollbar-thumb {
+    background-color: #a6a6a6;
+}
+
+.geomap .legends-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #888;
+}
+
+.geomap .v-geo-container-background {
+    fill: #393839
+}
+
+.geomap  .v-geo-container-base {
+    fill: #000000;
+    stroke: #b3b3b3
+}
+
+.geomap  .v-oceanlabel {
+    fill: #999999;
+}

@@ -1,0 +1,348 @@
+.geomap {
+	position: relative;
+}
+
+.geomap .mapContainer{
+    height: 100%;
+}
+
+.geomap .mapContainer .cvomRoot{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.geomap .mapContainer .esriRoot{
+    height: 100%;
+}
+
+.geomap svg.effectsContainer {
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+.geomap .overlayPane {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+}
+
+.geomap .elementWrapper {
+	position: absolute;
+	pointer-events: none;
+}
+
+.geomap .eventTarget {
+	cursor: pointer;
+	pointer-events: auto;
+}
+
+.geomap .v-datapoint-hover .mainShape {
+  opacity: 1!important;
+}
+
+.geomap .overlayPane.selected .mainShape {
+  opacity: 0.2;
+}
+
+.geomap .label {
+  color: #1d5365;
+  font: 12px 'Open Sans', Arial, Helvetica, sans-serif;
+  display: inline-block;
+  vertical-align: middle;
+  word-break: break-all;
+}
+
+.geomap .overlayPane.selected .dataLabelContainer .dataLabel {
+  opacity: 0.2;
+}
+
+.geomap .overlayPane.selected .v-datapoint:not(.v-datapoint-hover):not(.v-datapoint-selected) .labelContainer {
+  opacity: 0.2;
+}
+
+
+.geomap .overlayPane.selected .dataLabelContainer .warningIcon {
+  opacity: 0.2;
+}
+
+.geomap .overlayPane.selected .v-datapoint-hover .dataLabelContainer .dataLabel {
+  opacity: 1;
+}
+
+.geomap .overlayPane.selected .v-datapoint-hover .labelContainer  {
+  opacity: 1;
+}
+
+.geomap .overlayPane.selected .v-datapoint-hover .dataLabelContainer .warningIcon {
+  opacity: 1;
+}
+
+.geomap .overlayPane.selected .v-datapoint-selected .dataLabelContainer .dataLabel {
+	opacity: 1;
+}
+
+geomap .overlayPane.selected .v-datapoint-selected .labelContainer  {
+  opacity: 1;
+}
+
+.geomap .overlayPane.selected .v-datapoint-selected .dataLabelContainer .warningIcon {
+	opacity: 1;
+}
+
+
+.geomap .cluster {
+  text-align: center;
+}
+
+/* start of SVG based viz */
+.geomap .elementWrapper svg {
+  display:block;
+}
+
+.geomap svg .eventTarget {
+  pointer-events: visiblePainted;
+}
+
+.geomap svg .mainShape {
+  opacity: 0.8;
+  stroke-width: 1px;
+  stroke: #fff;
+}
+
+.geomap .overlayPane.selected .v-datapoint-selected svg .mainShape {
+  opacity: 0.8;
+  stroke-width: 2px;
+  -webkit-filter: drop-shadow(0 0 1px rgba(0, 0, 0, 1));
+}
+
+@-moz-document url-prefix() {
+  .geomap .v-datapoint-selected svg .mainShape {
+    filter: url(shadow.svg#filter);
+  }
+}
+/* end of SVG based viz */
+
+/* start of bubble */
+.geomap .bubble {
+	text-align: center;
+}
+
+.geomap .bubble .extraBorder {
+	opacity: 0.25;
+}
+
+.geomap .bubble .warningIcon {
+	width : 0px;
+	height : 0px;
+}
+
+.geomap .bubble .warningIcon.show {
+	background : url(../images/warning.png);
+	background-repeat : no-repeat;
+	background-position : center center;
+	width : 14px;
+	height : 14px;
+	display: inline-table;
+	vertical-align: middle;
+}
+
+.geomap .overlayPane.selected .bubble .extraBorder {
+	opacity: 0.1;
+}
+
+.geomap .overlayPane.selected .v-datapoint-selected .bubble .extraBorder {
+	opacity: 0.25;
+}
+
+.geomap .v-datapoint-hover .bubble .extraBorder {
+  opacity: 0.5!important;
+}
+/* end of bubble */
+
+
+/* start of marker */
+.geomap .marker.cluster .labelContainer:before {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.geomap .marker.cluster .labelContainer {
+  position: absolute;
+  top : 0;
+  overflow: hidden;
+  width : 100%;
+}
+
+.geomap .overlayPane.selected .marker .mainShape {
+  opacity: 0.5;
+}
+
+.geomap .overlayPane.selected .v-datapoint-selected .marker .mainShape{
+  opacity: 1;
+}
+
+.geomap .marker.cluster .label {
+	color: #ffffff;
+}
+/* end of marker */
+
+/* start of map control*/
+.geomap .mapControlContainer {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+}
+
+.geomap .mapControl {
+  background: rgba(131, 131, 134, 0.8);
+  border: 1px solid #666666;
+}
+
+.geomap .mapControl > div {
+  margin : 6px 3px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+.geomap .mapControl .btnToggleLasso {
+  background: url(../images/panEnabled.png);
+}
+
+.geomap .mapControl .btnToggleLasso.on {
+  background: url(../images/panDisabled.png);
+}
+
+.geomap .mapControl .zoomOutBtn {
+  background: url(../images/zoomout.png);
+}
+
+.geomap .mapControl .zoomOutBtn:active {
+  background: url(../images/zoomout_blue.png);
+}
+
+.geomap .mapControl .zoomInBtn {
+  background: url(../images/zoomin.png);
+}
+
+.geomap .mapControl .zoomInBtn:active {
+  background: url(../images/zoomin_blue.png);
+}
+
+.geomap .mapControl .resetBtn {
+  background: url(../images/resetMap.png);
+}
+
+.geomap .mapControl .resetBtn:active {
+  background: url(../images/resetMap_blue.png);
+}
+/* end of map control*/
+
+/* start of legends*/
+.geomap .legends {	
+    position: absolute;
+    bottom: 15px;
+    left: 15px; 
+	box-sizing: border-box;
+	background-color: #FFF;
+	border: 1px solid #ccc;
+}
+
+.geomap .legends .v-legend {
+    border-top: 1px solid #ccc;
+}
+
+.geomap .legends .v-legend.first {
+    border-top: none;
+}
+
+.geomap .legends-scroll {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	scrollbar-face-color: #bfbfbf;
+	scrollbar-shadow-color: #FFFFFF;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-3dlight-color: #FFFFFF;
+	scrollbar-darkshadow-color: #FFFFFF;
+	scrollbar-track-color: #FFFFFF;
+	scrollbar-arrow-color: #FFFFFF;
+}
+
+.geomap .legends-scroll::-webkit-scrollbar {
+	width: 8px;
+}
+
+.geomap .legends-scroll::-webkit-scrollbar-track {
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	background: #FFFFFF;
+	-webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0);
+}
+
+.geomap .legends-scroll::-webkit-scrollbar-thumb {
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	background: #bfbfbf;
+	-webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0);
+}
+/* end of legends*/
+
+/* start of base map switcher*/
+.geomap .basemapSwitcherContainer {
+    position : absolute;
+    right : 15px;
+    top : 15px;
+}
+
+.geomap .basemapSwitcher {
+    background: rgba(131, 131, 134, 0.8);
+    border: 1px solid #666666;
+    padding: 1px 2px 2px 1px;
+    max-width: 106px;
+    display: none;
+}
+
+.geomap .basemapSwitcher.show {
+    display: block;
+}
+
+.geomap .basemapSwitcher .basemap {
+    margin: 3px 2px 2px 3px;
+    width: 48px;
+    height: 41px;
+    vertical-align: bottom;
+    display: none;
+    cursor: pointer;
+}
+
+.geomap .basemapSwitcher .basemap.selected {
+    display: inline;
+}
+
+.geomap .basemapSwitcher.expand .basemap {
+    display: inline;
+}
+/* end of base map switcher*/
+
+.geomap .popupWindow {
+	position: absolute;
+	z-index : 10;
+	background-color : white;
+	border-radius : 5px;
+	border : 1px solid #BFBFBF;
+	box-shadow : 1px 1px 5px 0px rgba(0,0,0,0.3);
+}
+
+.geomap .popupWindow .btnClosePopupWindow {
+	position: relative;
+	background: url(../images/delete.png);
+	cursor: pointer;
+}

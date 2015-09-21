@@ -1,0 +1,19 @@
+{
+	"metadataVersion": "1.0",
+	"id": "sap.viz.ext.flagbar",
+	"name": "Flag Bar Chart",
+	"description": " ",
+	"version": "1.0.0",
+	"vendor": {
+		"name": "SAP",
+		"url": "www.sap.com"
+	},
+	"requires": [{
+		"id": "sap.viz.common.core",
+		"version": "5.0.3"
+	}],
+	"bundles": [{
+		"id": "sap.viz.ext.flagbar",
+		"version": "1.0.0"
+	}]
+}

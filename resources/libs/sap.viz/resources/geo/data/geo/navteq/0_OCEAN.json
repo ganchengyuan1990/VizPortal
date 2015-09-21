@@ -1,0 +1,14 @@
+{"features": 
+    [{"name": "IDS_OCEAN_NAME_ARCTIC", "centroid" : [-140, 78]},
+    {"name": "IDS_OCEAN_NAME_ARCTIC", "centroid" : [10, 83]},
+    {"name": "IDS_OCEAN_NAME_ARCTIC", "centroid" : [130, 79]},
+    {"name": "IDS_OCEAN_NAME_PACIFIC", "centroid" : [-155, 35]},
+    {"name": "IDS_OCEAN_NAME_PACIFIC", "centroid" : [-125, -10]},
+    {"name": "IDS_OCEAN_NAME_PACIFIC", "centroid" : [160, 20]},
+    {"name": "IDS_OCEAN_NAME_ATLANTIC", "centroid" : [-50, 30]},
+    {"name": "IDS_OCEAN_NAME_ATLANTIC", "centroid" : [-20, -30]},
+    {"name": "IDS_OCEAN_NAME_INDIAN", "centroid" : [80, -20]},
+    {"name": "IDS_OCEAN_NAME_SOUTHERN", "centroid" : [-150, -60]},
+    {"name": "IDS_OCEAN_NAME_SOUTHERN", "centroid" : [-20, -60]},
+    {"name": "IDS_OCEAN_NAME_SOUTHERN", "centroid" : [130, -60]}]
+}
