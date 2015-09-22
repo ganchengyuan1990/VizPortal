@@ -3,8 +3,7 @@
 What is CVOM?
     
     CVOM (Common Visual Object Modeler) originated as a new standard visualization solution for SAP BI client tools. 
-    CVOM is an open visualization platform and charting library that enables highly 
-    interactive data visualization solutions across web, desktop and mobile clients. 
+    CVOM is an open visualization platform and charting library that enables highly interactive data visualization solutions across web, desktop and mobile clients. 
     Its chart library features a growing set of over 60+ pre-built chart types, including geo maps. 
     CVOM provides a SDK/API for chart extensions, enabling practically any type of custom visualization.
 
